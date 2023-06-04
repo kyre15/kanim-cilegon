@@ -1,0 +1,87 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    {% include 'layouts/content-header.html' with content_name="Dasbor" subcontent_name="Publik"%}
+    <div class="main-content-galeri">
+        <div class="content-galeri-wrapper">
+            <div class="content-galeri-tab-wrapper">
+                <button id="content-galeri-foto-tab-button" autofocus onclick="">Laporan Pelayanan</button>
+                <button id="content-galeri-video-tab-button" onclick="">IPK dan IKM</button>
+            </div>
+        </div>
+    </div>
+    <div class="rinci-pelayanan-container">
+        <div class="pelayanan-wrapper">
+            <div class="rinci-pelayanan-table-wrapper">
+                <span id="rinci-pelayanan-title">6.840 Pelayanan</span>
+                <span id="rinci-pelayanan-subtitle">Total keseluruhan pelayanan di Kantor Imigrasi Kelas II TPI Cilegon</span>
+                <div class="rinci-pelayanan-wrapper">
+                    <div class="rinci-pelayanan-tahunan">
+                        <span id="rinci-pelayanan-tahunan-title">Tahun ini</span>
+                        <span id="rinci-pelayannan-tahunan-jumlah">4.233 Pelayanan</span>
+                    </div>
+                    <div class="rinci-pelayanan-bulanana">
+                        <span id="rinci-pelayanan-bulanana-title">Tahun ini</span>
+                        <span id="rinci-pelayannan-bulanana-jumlah">4.233 Pelayanan</span>
+                    </div>
+                    <div class="rinci-pelayanan-mingguan">
+                        <span id="rinci-pelayanan-mingguan-title">Tahun ini</span>
+                        <span id="rinci-pelayannan-mingguan-jumlah">4.233 Pelayanan</span>
+                    </div>
+                </div>
+            </div>
+            <div class="laporan-detail-pelayanan-wrapper">
+                <span id="laporan-detail-pelayanan-title">Laporan Detail Pelayanan</span>
+                <button class="dropdown">
+                    <span class="dropdown-text">Bulan Ini</span>
+                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                </button>
+                <div class="dropdown-list" style="display: none;">
+                    <button id="tahun-button">Tahun ini</button>
+                    <button id="bulan-button">Bulan ini</button>
+                    <button id="minggu-button">Minggu ini</button>
+                    <button id="custom-button">Custom</button>
+                </div>
+                <div class="jenis-pelayanan-table-wrapper">
+                    <div class="jenis-pelayanan-wni-wrapper">
+                        <span class="jenis-pelayanan-wni-title">Jenis Pelayannan Warna Negara Indonesia</span>
+                        <div class="jenis-pelayanan-wni-item">
+                            <span class="jenis-pelayanan-wni-item-number">1</span>
+                            <span class="jenis-pelayanan-wni-jenis">Paspor Baru</span>
+                            <span class="jenis-pelayanan-wni-jumlah">152</span>
+                        </div>
+                        <div class="jenis-pelayanan-wni-item">
+                            <span class="jenis-pelayanan-wni-item-number">2</span>
+                            <span class="jenis-pelayanan-wni-jenis">Pergantian Paspor</span>
+                            <span class="jenis-pelayanan-wni-jumlah">227</span>
+                        </div>
+                        <span id="jenis-pelayanan-wni-jumlah-keseluruhan">1123</span>
+                    </div>
+                    <div class="jenis-pelayanan-wna-wrapper">
+                        <span class="jenis-pelayanan-wna-title">Jenis Pelayannan Warna Negara Asing</span>
+                        <div class="jenis-pelayanan-wna-item">
+                            <span class="jenis-pelayanan-wna-item-number">1</span>
+                            <span class="jenis-pelayanan-wna-jenis">Ijin Tinggal Kunjungan</span>
+                            <span class="jenis-pelayanan-wna-jumlah">24</span>
+                        </div>
+                        <div class="jenis-pelayanan-wna-item">
+                            <span class="jenis-pelayanan-wna-item-number">2</span>
+                            <span class="jenis-pelayanan-wna-jenis">Izin Tinggal Terbatas</span>
+                            <span class="jenis-pelayanan-wna-jumlah">46</span>
+                        </div>
+                        <span id="jenis-pelayanan-wna-jumlah-keseluruhan">120</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'layouts/jam-layanan.html' %}
+    <script>
+    window.onload = function () {
+        setSubMenuOnLoad();
+    }
+    </script>
+{% endblock %}

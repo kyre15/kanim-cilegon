@@ -1,0 +1,223 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    {% include 'layouts/content-header.html' with content_name="PPID" subcontent_name="PPID"%}
+    <div class="main-content">
+        <div class="content-wrapper">
+            <div class="content-sidebar-container">
+                <div class="content-sidebar-menu-list-wrapper">
+                    <div class="sidebar-menu-title">
+                        <span id="sidebar-menu-title-text">PPID</span>
+                    </div>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            {% if list_of_submenu_ppid %}
+                                {% for list_of_submenu in list_of_submenu_ppid %}
+                                    <li class="sidebar-submenu-item">
+                                        <button id="sidebar-submenu-item-text" onclick="changeSubMenu('{{ list_of_submenu.permalink }}')">{{list_of_submenu.submenu_name}}</button>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="content-show">
+                <ul class="content-core-show" id="dasar-hukum-ppid">
+                    <li>
+                        <h1>Dasar Hukum PPID</h1>
+                    </li>
+                    <li>
+                        <div>
+                            {% if content_dasar_hukum_ppid %}
+                                {{ content_dasar_hukum_ppid.content|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="sk-penetapan-ppid">
+                    <li>
+                        <h1>SK Penetapan PPID</h1>
+                    </li>
+                    <li>
+                        <div>
+                            {% if content_sk_penetapan_ppid %}
+                                {{ content_sk_penetapan_ppid.content|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="struktur-ppid">
+                    <li>
+                        <h1>Struktur PPID</h1>
+                    </li>
+                    <li>
+                        <div>
+                            {% if content_struktur_ppid %}
+                                {{ content_struktur_ppid.content|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="tugas-dan-fungsi-ppid">
+                    <li>
+                        <h1>Tugas dan Fungsi PPID</h1>
+                    </li>
+                    <li>
+                        <div>
+                            {% if content_tugas_dan_fungsi_ppid %}
+                                {{ content_tugas_dan_fungsi_ppid.content|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="standar-pelayanan-informasi">
+                    <li>
+                        <h1>Standar Pelayanan Informasi</h1>
+                    </li>
+                    <li>
+                        <div>
+                            {% if content_standar_pelayanan_informasi %}
+                                {{ content_standar_pelayanan_informasi.content|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="kegiatan-tata-kelola-informasi-publik">
+                    <li>
+                        <h1>Kegiatan Tata kelola Informasi Publik</h1>
+                    </li>
+                    <li>
+                        <div>
+                            {% if content_kegiatan_tata_kelola_informasi_publik %}
+                                {{ content_kegiatan_tata_kelola_informasi_publik.content|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="sk-informasi-yang-dikecualikan">
+                    <li>
+                        <h1>SK Informasi yang Dikecualikan</h1>
+                    </li>
+                    <li>
+                        <div>
+                            {% if content_sk_informasi_yang_dikecualikan %}
+                                {{ content_sk_informasi_yang_dikecualikan.content|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="daftar-informasi-publik">
+                    <li>
+                        <h1>Daftar Informasi Publik</h1>
+                    </li>
+                    <li>
+                        <div>
+                            {% if content_daftar_informasi_publik %}
+                                {{ content_daftar_informasi_publik.content|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="informasi-berkala">
+                    <li>
+                        <h1>Informasi Berkala</h1>
+                    </li>
+                    <li class="informasi-berkala-wrapper">
+                        {% if content_informasi_berkala %}
+                            {% for item in content_informasi_berkala %}
+                                <div class="file-wrapper">
+                                    <img src="{% static 'main/img/icon/pdf-file-icon.png' %}">
+                                    <span class="file-title">{{ item.file_name }}</span>
+                                    <a href="{{ item.file.url }}" id="unduh-file-button">
+                                        <button class="unduh-button">Unduh</button>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="informasi-setiap-saat">
+                    <li>
+                        <h1>Informasi Setiap Saat</h1>
+                    </li>
+                    <li>
+                        <div>
+                            {% if content_informasi_setiap_saat %}
+                                {{ content_informasi_setiap_saat.content|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="informasi-serta-merta">
+                    <li>
+                        <h1>Informasi Serta Merta</h1>
+                    </li>
+                    <li>
+                        <div>
+                            {% if content_informasi_serta_merta %}
+                                {{ content_informasi_serta_merta.content|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="informasi-dikecualikan">
+                    <li>
+                        <h1>Informasi Dikecualikan</h1>
+                    </li>
+                    <li>
+                        <div>
+                            {% if content_informasi_dikecualikan %}
+                                {{ content_informasi_dikecualikan.content|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="profile-ppid">
+                    <li>
+                        <h1>Profile PPID</h1>
+                    </li>
+                    <li>
+                        <div>
+                            {% if content_profile_ppid %}
+                                {{ content_profile_ppid.content|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="form-permintaan-informasi-dan-pernyataan-kebenaran">
+                    <li>
+                        <h1>Form Permintaan Informasi & Pernyataan Kebenaran</h1>
+                    </li>
+                    <li>
+                        <div>
+                            {% if content_form_permintaan_informasi_dan_Pernyataan_kebenaran %}
+                                {{ content_form_permintaan_informasi_dan_Pernyataan_kebenaran.content|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% include 'layouts/jam-layanan.html' %}
+    window.onload = function () {
+        setSubMenuOnLoad();
+    }
+{% endblock %}

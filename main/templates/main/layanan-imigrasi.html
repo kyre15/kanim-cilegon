@@ -1,0 +1,486 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    {% include 'layouts/content-header.html' with content_name="Layanan Imigrasi" subcontent_name="Layanan Imigrasi"%}
+    <div class="main-content">
+        <div class="content-wrapper">
+        {% if list_of_submenu_wni and list_of_submenu_wna %}
+            <div class="content-sidebar-container">
+                <div class="content-sidebar-menu-list-wrapper">
+                    <div class="sidebar-menu-title">
+                        <span id="sidebar-menu-title-text"> Warga Negara Indonesia</span>
+                    </div>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            {% if list_of_submenu_wni %}
+                                {% for list_of_submenu in list_of_submenu_wni %}
+                                    <li class="sidebar-submenu-item">
+                                        <button id="sidebar-submenu-item-text" onclick="changeSubMenu('{{ list_of_submenu.permalink }}')">{{list_of_submenu.submenu_name}}</button>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="sidebar-menu-title">
+                        <span id="sidebar-menu-title-text"> Warga Negara Asing</span>
+                    </div>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            {% if list_of_submenu_wna %}
+                                {% for list_of_submenu in list_of_submenu_wna %}
+                                    <li class="sidebar-submenu-item">
+                                        <button id="sidebar-submenu-item-text" onclick="changeSubMenu('{{ list_of_submenu.permalink }}')">{{list_of_submenu.submenu_name}}</button>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            <div class="content-show">
+                <ul class="content-core-show" id="paspor-baru">
+                    <li>
+                        <h1>{% if content_paspor_baru %} {{ content_paspor_baru.content_name}} {% endif %}</h1>
+                    </li>
+                    <li>
+                        <div class="layanan-imigrasi-content-tab">
+                            <button class="tentang-layanan-dan-persyaratan-button" autofocus onclick="changeSubMenuTab(this)">Tentang Layanan dan Peryaratan</button>
+                            <button class="alur-proses-dan-prosedur-button" onclick="changeSubMenuTab(this)">Alur Proses dan Prosedur</button>
+                            <button class="biaya-button" onclick="changeSubMenuTab(this)">Biaya</button>
+                        </div>
+                    </li>
+                    <li class="tentang-layanan-dan-persyaratan-content">
+                        <div>
+                            {% if content_paspor_baru %}
+                                {{ content_paspor_baru.tentang_layanan_dan_persyaratan|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                    </li>
+                    <li class="alur-proses-dan-prosedur-content">
+                        <div>
+                            {% if content_paspor_baru %}
+                                {{ content_paspor_baru.alur_proses_dan_prosedur|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                    </li>
+                    <li class="biaya-button-content">
+                        <div>
+                            {% if content_paspor_baru %}
+                                {{ content_paspor_baru.biaya|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="penyerahan-paspor">
+                        <li>
+                            <h1>{% if content_penyerahan_paspor %} {{ content_penyerahan_paspor.content_name}} {% endif %}</h1>
+                        </li>
+                        <li>
+                            <div class="layanan-imigrasi-content-tab">
+                                <button class="tentang-layanan-dan-persyaratan-button" autofocus onclick="changeSubMenuTab(this)">Tentang Layanan dan Peryaratan</button>
+                                <button class="alur-proses-dan-prosedur-button" onclick="changeSubMenuTab(this)">Alur Proses dan Prosedur</button>
+                                <button class="biaya-button" onclick="changeSubMenuTab(this)">Biaya</button>
+                            </div>
+                        </li>
+                        <li class="tentang-layanan-dan-persyaratan-content">
+                        <div>
+                            {% if content_penyerahan_paspor %}
+                                {{ content_penyerahan_paspor.tentang_layanan_dan_persyaratan|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                        </li>
+                        <li class="alur-proses-dan-prosedur-content">
+                            <div>
+                                {% if content_penyerahan_paspor %}
+                                    {{ content_penyerahan_paspor.alur_proses_dan_prosedur|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                        <li class="biaya-button-content">
+                            <div>
+                                {% if content_penyerahan_paspor %}
+                                    {{ content_penyerahan_paspor.biaya|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="content-core-hide" id="pergantian-paspor">
+                        <li>
+                            <h1>{% if content_pergantian_paspor %} {{ content_pergantian_paspor.content_name}} {% endif %}</h1>
+                        </li>
+                        <li>
+                            <div class="layanan-imigrasi-content-tab">
+                                <button class="tentang-layanan-dan-persyaratan-button" autofocus onclick="changeSubMenuTab(this)">Tentang Layanan dan Peryaratan</button>
+                                <button class="alur-proses-dan-prosedur-button" onclick="changeSubMenuTab(this)">Alur Proses dan Prosedur</button>
+                                <button class="biaya-button" onclick="changeSubMenuTab(this)">Biaya</button>
+                            </div>
+                        </li>
+                        <li class="tentang-layanan-dan-persyaratan-content">
+                        <div>
+                            {% if content_pergantian_paspor %}
+                                {{ content_pergantian_paspor.tentang_layanan_dan_persyaratan|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                        </li>
+                        <li class="alur-proses-dan-prosedur-content">
+                            <div>
+                                {% if content_pergantian_paspor %}
+                                    {{ content_pergantian_paspor.alur_proses_dan_prosedur|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                        <li class="biaya-button-content">
+                            <div>
+                                {% if content_pergantian_paspor %}
+                                    {{ content_pergantian_paspor.biaya|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+                <ul class="content-core-hide" id="pergantian-paspor-hilang-rusak">
+                        <li>
+                            <h1>{% if content_pergantian_paspor_hilang_rusak %} {{ content_pergantian_paspor_hilang_rusak.content_name}} {% endif %}</h1>
+                        </li>
+                        <li>
+                            <div class="layanan-imigrasi-content-tab">
+                                <button class="tentang-layanan-dan-persyaratan-button" autofocus onclick="changeSubMenuTab(this)">Tentang Layanan dan Peryaratan</button>
+                                <button class="alur-proses-dan-prosedur-button" onclick="changeSubMenuTab(this)">Alur Proses dan Prosedur</button>
+                                <button class="biaya-button" onclick="changeSubMenuTab(this)">Biaya</button>
+                            </div>
+                        </li>
+                        <li class="tentang-layanan-dan-persyaratan-content">
+                        <div>
+                            {% if content_pergantian_paspor_hilang_rusak %}
+                                {{ content_pergantian_paspor_hilang_rusak.tentang_layanan_dan_persyaratan|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                        </li>
+                        <li class="alur-proses-dan-prosedur-content">
+                            <div>
+                                {% if content_pergantian_paspor_hilang_rusak %}
+                                    {{ content_pergantian_paspor_hilang_rusak.alur_proses_dan_prosedur|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                        <li class="biaya-button-content">
+                            <div>
+                                {% if content_pergantian_paspor_hilang_rusak %}
+                                    {{ content_pergantian_paspor_hilang_rusak.biaya|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+                <ul class="content-core-hide" id="perpanjang-visa-kunjungan-saat-kedatangan">
+                        <li>
+                            <h1>{% if content_perpanjang_visa_kunjugnan_saat_kedatangan %} {{ content_perpanjang_visa_kunjugnan_saat_kedatangan.content_name}} {% endif %}</h1>
+                        </li>
+                        <li>
+                            <div class="layanan-imigrasi-content-tab">
+                                <button class="tentang-layanan-dan-persyaratan-button" autofocus onclick="changeSubMenuTab(this)">Tentang Layanan dan Peryaratan</button>
+                                <button class="alur-proses-dan-prosedur-button" onclick="changeSubMenuTab(this)">Alur Proses dan Prosedur</button>
+                                <button class="biaya-button" onclick="changeSubMenuTab(this)">Biaya</button>
+                            </div>
+                        </li>
+                        <li class="tentang-layanan-dan-persyaratan-content">
+                        <div>
+                            {% if content_perpanjang_visa_kunjugnan_saat_kedatangan %}
+                                {{ content_perpanjang_visa_kunjugnan_saat_kedatangan.tentang_layanan_dan_persyaratan|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                        </li>
+                        <li class="alur-proses-dan-prosedur-content">
+                            <div>
+                                {% if content_perpanjang_visa_kunjugnan_saat_kedatangan %}
+                                    {{ content_perpanjang_visa_kunjugnan_saat_kedatangan.alur_proses_dan_prosedur|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                        <li class="biaya-button-content">
+                            <div>
+                                {% if content_perpanjang_visa_kunjugnan_saat_kedatangan %}
+                                    {{ content_perpanjang_visa_kunjugnan_saat_kedatangan.biaya|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+                <ul class="content-core-hide" id="izin-tinggal-kunjungan">
+                        <li>
+                            <h1>{% if content_izin_tingga_kunjungan %} {{ content_izin_tingga_kunjungan.content_name}} {% endif %}</h1>
+                        </li>
+                        <li>
+                            <div class="layanan-imigrasi-content-tab">
+                                <button class="tentang-layanan-dan-persyaratan-button" autofocus onclick="changeSubMenuTab(this)">Tentang Layanan dan Peryaratan</button>
+                                <button class="alur-proses-dan-prosedur-button" onclick="changeSubMenuTab(this)">Alur Proses dan Prosedur</button>
+                                <button class="biaya-button" onclick="changeSubMenuTab(this)">Biaya</button>
+                            </div>
+                        </li>
+                        <li class="tentang-layanan-dan-persyaratan-content">
+                        <div>
+                            {% if content_izin_tingga_kunjungan %}
+                                {{ content_izin_tingga_kunjungan.tentang_layanan_dan_persyaratan|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                        </li>
+                        <li class="alur-proses-dan-prosedur-content">
+                            <div>
+                                {% if content_izin_tingga_kunjungan %}
+                                    {{ content_izin_tingga_kunjungan.alur_proses_dan_prosedur|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                        <li class="biaya-button-content">
+                            <div>
+                                {% if content_izin_tingga_kunjungan %}
+                                    {{ content_izin_tingga_kunjungan.biaya|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+                <ul class="content-core-hide" id="izin-tinggal-terbatas">
+                        <li>
+                            <h1>{% if content_izin_tinggal_terbatas %} {{ content_izin_tinggal_terbatas.content_name}} {% endif %}</h1>
+                        </li>
+                        <li>
+                            <div class="layanan-imigrasi-content-tab">
+                                <button class="tentang-layanan-dan-persyaratan-button" autofocus onclick="changeSubMenuTab(this)">Tentang Layanan dan Peryaratan</button>
+                                <button class="alur-proses-dan-prosedur-button" onclick="changeSubMenuTab(this)">Alur Proses dan Prosedur</button>
+                                <button class="biaya-button" onclick="changeSubMenuTab(this)">Biaya</button>
+                            </div>
+                        </li>
+                        <li class="tentang-layanan-dan-persyaratan-content">
+                        <div>
+                            {% if content_izin_tinggal_terbatas %}
+                                {{ content_izin_tinggal_terbatas.tentang_layanan_dan_persyaratan|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                        </li>
+                        <li class="alur-proses-dan-prosedur-content">
+                            <div>
+                                {% if content_izin_tinggal_terbatas %}
+                                    {{ content_izin_tinggal_terbatas.alur_proses_dan_prosedur|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                        <li class="biaya-button-content">
+                            <div>
+                                {% if content_izin_tinggal_terbatas %}
+                                    {{ content_izin_tinggal_terbatas.biaya|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+                <ul class="content-core-hide" id="izin-masuk-kembali">
+                        <li>
+                            <h1>{% if content_izin_masuk_kembali %} {{ content_izin_masuk_kembali.content_name}} {% endif %}</h1>
+                        </li>
+                        <li>
+                            <div class="layanan-imigrasi-content-tab">
+                                <button class="tentang-layanan-dan-persyaratan-button" autofocus onclick="changeSubMenuTab(this)">Tentang Layanan dan Peryaratan</button>
+                                <button class="alur-proses-dan-prosedur-button" onclick="changeSubMenuTab(this)">Alur Proses dan Prosedur</button>
+                                <button class="biaya-button" onclick="changeSubMenuTab(this)">Biaya</button>
+                            </div>
+                        </li>
+                        <li class="tentang-layanan-dan-persyaratan-content">
+                        <div>
+                            {% if content_izin_masuk_kembali %}
+                                {{ content_izin_masuk_kembali.tentang_layanan_dan_persyaratan|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                        </li>
+                        <li class="alur-proses-dan-prosedur-content">
+                            <div>
+                                {% if content_izin_masuk_kembali %}
+                                    {{ content_izin_masuk_kembali.alur_proses_dan_prosedur|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                        <li class="biaya-button-content">
+                            <div>
+                                {% if content_izin_masuk_kembali %}
+                                    {{ content_izin_masuk_kembali.biaya|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+                <ul class="content-core-hide" id="izin-tinggal-tetap">
+                        <li>
+                            <h1>{% if content_izin_tinggal_kembali %} {{ content_izin_tinggal_kembali.content_name}} {% endif %}</h1>
+                        </li>
+                        <li>
+                            <div class="layanan-imigrasi-content-tab">
+                                <button class="tentang-layanan-dan-persyaratan-button" autofocus onclick="changeSubMenuTab(this)">Tentang Layanan dan Peryaratan</button>
+                                <button class="alur-proses-dan-prosedur-button" onclick="changeSubMenuTab(this)">Alur Proses dan Prosedur</button>
+                                <button class="biaya-button" onclick="changeSubMenuTab(this)">Biaya</button>
+                            </div>
+                        </li>
+                        <li class="tentang-layanan-dan-persyaratan-content">
+                        <div>
+                            {% if content_izin_tinggal_kembali %}
+                                {{ content_izin_tinggal_kembali.tentang_layanan_dan_persyaratan|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                        </li>
+                        <li class="alur-proses-dan-prosedur-content">
+                            <div>
+                                {% if content_izin_tinggal_kembali %}
+                                    {{ content_izin_tinggal_kembali.alur_proses_dan_prosedur|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                        <li class="biaya-button-content">
+                            <div>
+                                {% if content_izin_tinggal_kembali %}
+                                    {{ content_izin_tinggal_kembali.biaya|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+                <ul class="content-core-hide" id="alih-status-izin-tinggal">
+                        <li>
+                            <h1>{% if content_alih_status_izin_tinggal %} {{ content_alih_status_izin_tinggal.content_name}} {% endif %}</h1>
+                        </li>
+                        <li>
+                            <div class="layanan-imigrasi-content-tab">
+                                <button class="tentang-layanan-dan-persyaratan-button" autofocus onclick="changeSubMenuTab(this)">Tentang Layanan dan Peryaratan</button>
+                                <button class="alur-proses-dan-prosedur-button" onclick="changeSubMenuTab(this)">Alur Proses dan Prosedur</button>
+                                <button class="biaya-button" onclick="changeSubMenuTab(this)">Biaya</button>
+                            </div>
+                        </li>
+                        <li class="tentang-layanan-dan-persyaratan-content">
+                        <div>
+                            {% if content_alih_status_izin_tinggal %}
+                                {{ content_alih_status_izin_tinggal.tentang_layanan_dan_persyaratan|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                        </li>
+                        <li class="alur-proses-dan-prosedur-content">
+                            <div>
+                                {% if content_alih_status_izin_tinggal %}
+                                    {{ content_alih_status_izin_tinggal.alur_proses_dan_prosedur|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                        <li class="biaya-button-content">
+                            <div>
+                                {% if content_alih_status_izin_tinggal %}
+                                    {{ content_alih_status_izin_tinggal.biaya|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+                <ul class="content-core-hide" id="perubahan-alamat">
+                        <li>
+                            <h1>{% if content_perubahan_alamat %} {{ content_perubahan_alamat.content_name}} {% endif %}</h1>
+                        </li>
+                        <li>
+                            <div class="layanan-imigrasi-content-tab">
+                                <button class="tentang-layanan-dan-persyaratan-button" autofocus onclick="changeSubMenuTab(this)">Tentang Layanan dan Peryaratan</button>
+                                <button class="alur-proses-dan-prosedur-button" onclick="changeSubMenuTab(this)">Alur Proses dan Prosedur</button>
+                                <button class="biaya-button" onclick="changeSubMenuTab(this)">Biaya</button>
+                            </div>
+                        </li>
+                        <li class="tentang-layanan-dan-persyaratan-content">
+                        <div>
+                            {% if content_perubahan_alamat %}
+                                {{ content_perubahan_alamat.tentang_layanan_dan_persyaratan|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                        </li>
+                        <li class="alur-proses-dan-prosedur-content">
+                            <div>
+                                {% if content_perubahan_alamat %}
+                                    {{ content_perubahan_alamat.alur_proses_dan_prosedur|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                        <li class="biaya-button-content">
+                            <div>
+                                {% if content_perubahan_alamat %}
+                                    {{ content_perubahan_alamat.biaya|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+                <ul class="content-core-hide" id="pendaftaran-anak-berkewarganegaraan-ganda">
+                        <li>
+                            <h1>{% if content_pendaftaran_anak_berkewarganegaraan_ganda %} {{ content_pendaftaran_anak_berkewarganegaraan_ganda.content_name}} {% endif %}</h1>
+                        </li>
+                        <li>
+                            <div class="layanan-imigrasi-content-tab">
+                                <button class="tentang-layanan-dan-persyaratan-button" autofocus onclick="changeSubMenuTab(this)">Tentang Layanan dan Peryaratan</button>
+                                <button class="alur-proses-dan-prosedur-button" onclick="changeSubMenuTab(this)">Alur Proses dan Prosedur</button>
+                                <button class="biaya-button" onclick="changeSubMenuTab(this)">Biaya</button>
+                            </div>
+                        </li>
+                        <li class="tentang-layanan-dan-persyaratan-content">
+                        <div>
+                            {% if content_pendaftaran_anak_berkewarganegaraan_ganda %}
+                                {{ content_pendaftaran_anak_berkewarganegaraan_ganda.tentang_layanan_dan_persyaratan|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                        </li>
+                        <li class="alur-proses-dan-prosedur-content">
+                            <div>
+                                {% if content_pendaftaran_anak_berkewarganegaraan_ganda %}
+                                    {{ content_pendaftaran_anak_berkewarganegaraan_ganda.alur_proses_dan_prosedur|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                        <li class="biaya-button-content">
+                            <div>
+                                {% if content_pendaftaran_anak_berkewarganegaraan_ganda %}
+                                    {{ content_pendaftaran_anak_berkewarganegaraan_ganda.biaya|safe }}
+                            {{ else }}
+                                {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+    </div>
+    {% include 'layouts/jam-layanan.html' %}
+    <script>
+    window.onload = function () {
+        setSubMenuOnLoad();
+    }
+    </script>
+{% endblock %}

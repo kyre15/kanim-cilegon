@@ -1,0 +1,169 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    {% include 'layouts/content-header.html' with content_name="Informasi Publik" subcontent_name="Biaya Keimigrasian"%}
+    <div class="main-content">
+        <div class="content-wrapper">
+            <div class="content-sidebar-container">
+                <div class="content-sidebar-menu-list-wrapper">
+                    <div class="sidebar-menu-title">
+                        <span id="sidebar-menu-title-text">Dokumen Perjalanan</span>
+                    </div>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            {% if list_of_submenu_dokumen_perjalanan %}
+                                {% for list_of_submenu in list_of_submenu_dokumen_perjalanan %}
+                                    <li class="sidebar-submenu-item">
+                                        <button id="sidebar-submenu-item-text" onclick="autoScroll('{{ list_of_submenu.permalink }}')">{{list_of_submenu.submenu_name}}</button>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-sidebar-menu-list-wrapper">
+                        <div class="sidebar-menu-title">
+                            <span id="sidebar-menu-title-text">Visa</span>
+                        </div>
+                        <div class="sidebar-submenu">
+                            <ul>
+                                {% if list_of_submenu_visa %}
+                                    {% for list_of_submenu in list_of_submenu_visa %}
+                                        <li class="sidebar-submenu-item">
+                                            <button id="sidebar-submenu-item-text" onclick="autoScroll('{{ list_of_submenu.permalink }}')">{{list_of_submenu.submenu_name}}</button>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                <div class="content-sidebar-menu-list-wrapper">
+                        <div class="sidebar-menu-title">
+                            <span id="sidebar-menu-title-text">Izin Keimigrasian</span>
+                        </div>
+                        <div class="sidebar-submenu">
+                            <ul>
+                                {% if list_of_submenu_izin_keimigrasian %}
+                                    {% for list_of_submenu in list_of_submenu_izin_keimigrasian %}
+                                        <li class="sidebar-submenu-item">
+                                            <button id="sidebar-submenu-item-text" onclick="autoScroll('{{ list_of_submenu.permalink }}')">{{list_of_submenu.submenu_name}}</button>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                <div class="content-sidebar-menu-list-wrapper">
+                        <div class="sidebar-menu-title">
+                            <span id="sidebar-menu-title-text">PNBP Keimigrasian Lainnya</span>
+                        </div>
+                        <div class="sidebar-submenu">
+                            <ul>
+                                {% if list_of_submenu_pnbp_keimigrasian_lainnya %}
+                                    {% for list_of_submenu in list_of_submenu_pnbp_keimigrasian_lainnya %}
+                                        <li class="sidebar-submenu-item">
+                                            <button id="sidebar-submenu-item-text" onclick="autoScroll('{{ list_of_submenu.permalink }}')">{{list_of_submenu.submenu_name}}</button>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            <div class="content-show">
+                <ul class="content-core-show">
+                    <li>
+                        <h1>Penerimaan Negara Bukan Pajak (PNBP)</h1>
+                    </li>
+                    <li>
+                        <ul>
+                            <h1>Dokumen Perjalanan Republik Indonesia</h1>
+                            <li >
+                                <div id="dokumen-perjalanan-republik-indonesia">
+                                    {% if content_dokumen_perjalanan_republik_indonesia %}
+                                        {{ content_dokumen_perjalanan_republik_indonesia.content|safe }}
+                                    {% endif %}
+                                </div>
+                            </li>
+                            <h1>Visa</h1>
+                            <li id="{{ list_of_submenu_visa.permalink }}">
+                                <div>
+                                    <div id="visa-kunjungan">
+                                        {% if content_visa_kunjungan %}
+                                            {{ content_visa_kunjungan.content|safe }}
+                                        {% endif %}
+                                    </div>
+                                    <div id="visa-tinggal-terbatas">
+                                      {% if content_visa_tinggal_terbatas %}
+                                        {{ content_visa_tinggal_terbatas.content|safe }}
+                                    {% endif %}
+                                    </div>
+
+                                </div>
+                            </li>
+                            <h1>Izin Keimigrasian</h1>
+                            <li>
+                                <div>
+                                    <div id="izin-kunjungan">
+                                        {% if content_izin_kunjugan %}
+                                            {{ content_izin_kunjugan.content|safe }}
+                                        {% endif %}
+                                    </div>
+                                    <div id="izin-tinggal-terbatas">
+                                    {% if content_izin_tinggal_terbatas %}
+                                        {{ content_izin_tinggal_terbatas.content|safe }}
+                                    {% endif %}
+                                    </div>
+                                    <div id="izin-tinggal-tetap">
+                                    {% if content_izin_tinggal_tetap %}
+                                        {{ content_izin_tinggal_tetap.content|safe }}
+                                    {% endif %}
+                                    </div>
+                                    <div id="izin-masuk-kembali">
+                                    {% if content_izin_masuk_kembali %}
+                                        {{ content_izin_masuk_kembali.content|safe }}
+                                    {% endif %}
+                                    </div>
+                                </div>
+                            </li>
+                            <h1>PNBP Keimigrasian Lainnya</h1>
+                            <li id="pnbp-keimigrasian">
+                                <div>
+                                    <div id="biaya-beban">
+                                        {% if content_biaya_beban %}
+                                            {{ content_biaya_beban.content|safe }}
+                                        {% endif %}
+                                    </div>
+                                    <div id="smart-card">
+                                        {% if content_smart_card %}
+                                            {{ content_smart_card.content|safe }}
+                                        {% endif %}
+                                    </div>
+                                    <div id="kartu-perjalanan-pebisnis-asia">
+                                        {% if content_kartu_perjalan_Pebisnis %}
+                                            {{ content_kartu_perjalan_Pebisnis.content|safe }}
+                                        {% endif %}
+                                    </div>
+                                    <div id="fasilitas-keimigrasian">
+                                        {% if content_failitas_keimigrasian %}
+                                            {{ content_failitas_keimigrasian.content|safe }}
+                                        {% endif %}
+                                    </div>
+                                    <div id="surat-keterangan-keimigrasian">
+                                        {% if content_surat_keterangan_keimigrasian %}
+                                            {{ content_surat_keterangan_keimigrasian.content|safe }}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% include 'layouts/jam-layanan.html' %}
+{% endblock %}

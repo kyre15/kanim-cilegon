@@ -1,0 +1,32 @@
+<div class="content-sidebar-container">
+    <div class="content-sidebar-menu-list-wrapper">
+        <div class="sidebar-menu-title">
+            <span id="sidebar-menu-title-text"> Warga Negara Indonesia</span>
+        </div>
+        <div class="sidebar-submenu">
+            <ul>
+                {% if list_of_submenu_1 %}
+                    {% for list_of_submenu in list_of_submenu_1 %}
+                        <li class="sidebar-submenu-item">
+                            <button id="sidebar-submenu-item-text" onclick="changeSubMenu('{{ list_of_submenu.permalink }}')">{{list_of_submenu.submenu_name}}</button>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+        <div class="sidebar-menu-title">
+            <span id="sidebar-menu-title-text"> Warga Negara Asing</span>
+        </div>
+        <div class="sidebar-submenu">
+            <ul>
+                {% if list_of_submenu_2 %}
+                    {% for list_of_submenu in list_of_submenu_2 %}
+                        <li class="sidebar-submenu-item">
+                            <button id="sidebar-submenu-item-text" onclick="changeSubMenu('{{ list_of_submenu.permalink }}')">{{list_of_submenu.submenu_name}}</button>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,103 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    {% if berita_header_from_kantor_imigrasi_cilegon and berita_header_image_from_kantor_imigrasi_cilegon %}
+        <div id="kantor_imigrasi_cilegon_header" class="show berita-header-container", style="background: linear-gradient(0deg, #1E293B, #1E293B), url(' {{ berita_header_image_from_kantor_imigrasi_cilegon.berita_image_file.url }} ')">
+            <div class="berita-header-wrapper">
+                <div class="breadcrumb-berita-wrapper">
+                    <span id="breadcrumb-berita-beranda">Beranda</span>
+                    <i class="fa fa-chevron-right text-white" aria-hidden="true" id="chevron-right-breadcrumb"></i>
+                    <span id="current-content" class="text-white">Berita</span>
+                </div>
+                <div class="headline-wrapper">
+                    <span id="headline-subtitle-berita">Kantor Imigrasi Cilegon</span>
+                    <span id="headline-title-berita"> {{ berita_header_from_kantor_imigrasi_cilegon.berita_title }} </span>
+                    <span id="headline-date-berita">{{ berita_header_from_kantor_imigrasi_cilegon.create_at }}</span>
+                    <a href="{% url 'berita-detail' berita_header_from_kantor_imigrasi_cilegon.id %}" id="headline-baca-selengkapnya-button-berita" class="hover-button-light">Baca Selengkapnya</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if berita_header_from_kemenkumham_republik_indonesia and berita_header_image_from_kemenkumham_republik_indonesia %}
+        <div id="kemenkumham_republik_indonesia_header" class="hide berita-header-container", style="background: linear-gradient(0deg, #1E293B, #1E293B), url(' {{ berita_header_image_from_kemenkumham_republik_indonesia.berita_image_file.url }} ')">
+            <div class="berita-header-wrapper">
+                <div class="breadcrumb-berita-wrapper">
+                    <span id="breadcrumb-berita-beranda">Beranda</span>
+                    <i class="fa fa-chevron-right text-white" aria-hidden="true" id="chevron-right-breadcrumb"></i>
+                    <span id="current-content" class="text-white">Berita</span>
+                </div>
+                <div class="headline-wrapper">
+                    <span id="headline-subtitle-berita">Kemenkumham Republik Indonesia</span>
+                    <span id="headline-title-berita">{{ berita_header_from_kemenkumham_republik_indonesia.berita_title }}</span>
+                    <span id="headline-date-berita">{{ berita_header_from_kemenkumham_republik_indonesia.create_at }}</span>
+                    <a href="{% url 'berita-detail' berita_header_from_kemenkumham_republik_indonesia.id %}" id="headline-baca-selengkapnya-button-berita" class="hover-button-light">Baca Selengkapnya</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if berita_header_from_kemenkumham_kanwil_banten and berita_header_image_from_kemenkumham_kanwil_banten%}
+        <div id="kemenkumham_kanwil_banten_header" class="hide berita-header-container", style="background: linear-gradient(0deg, #1E293B, #1E293B), url(' {{ berita_header_image_from_kemenkumham_kanwil_banten.berita_image_file.url }} ')">
+            <div class="berita-header-wrapper">
+                <div class="breadcrumb-berita-wrapper">
+                    <span id="breadcrumb-berita-beranda">Beranda</span>
+                    <i class="fa fa-chevron-right text-white" aria-hidden="true" id="chevron-right-breadcrumb"></i>
+                    <span id="current-content" class="text-white">Berita</span>
+                </div>
+                <div class="headline-wrapper">
+                    <span id="headline-subtitle-berita">Kemenkumham Kanwil Banten</span>
+                    <span id="headline-title-berita">{{ berita_header_from_kemenkumham_kanwil_banten.berita_title }}</span>
+                    <span id="headline-date-berita">{{ berita_header_from_kemenkumham_kanwil_banten.create_at }}</span>
+                    <a href="{% url 'berita-detail' berita_header_from_kemenkumham_kanwil_banten.id %}" id="headline-baca-selengkapnya-button-berita" class="hover-button-light">Baca Selengkapnya</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <div class="main-content-berita">
+        <div class="content-berita-wrapper">
+            <div class="content-berita-tab-wrapper">
+                <button id="content-kantor-imigrasi-cilegon-tab-button" autofocus onclick="berita('kantor-imigrasi-cilegon')">Kantor Imigrasi Cilegon</button>
+                <button id="content-kemenkumham-republik-indonesia-tab-button" onclick="berita('kemenkumham-republik-indonesia')">Kemenkumham Republik Indonesia</button>
+                <button id="content-grid-kemenkumham-kanwil-banten-tab-button" onclick="berita('kemenkumham-kanwil-banten')">Kemenkumham Kanwil Banten</button>
+            </div>
+            <div class="berita-grid-wrapper berita-grid-kantor-imigrasi-cilegon">
+                {% if berita_image_from_kantor_imigrasi_cilegon %}
+                    {% for berita, image in berita_image_from_kantor_imigrasi_cilegon %}
+                        <a class="berita-item" href="{% url 'berita-detail' berita.id %}">
+                            <img src="{{ image.berita_image_file.url }}" alt="" id="berita-item-image">
+                            <span id="berita-item-title">{{ berita.berita_title|slice:":30" }}... </span>
+                            <span id="berita-item-description">{{ berita.berita_descrition|slice:":200" }}...</span>
+                            <span id="berita-item-date">{{ berita.create_at }}</span>
+                        </a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="berita-grid-wrapper berita-grid-kemenkumham-republik-indonesia">
+                {% if berita_image_from_kemenkumham_republik_indonesia %}
+                    {% for berita, image in berita_image_from_kemenkumham_republik_indonesia %}
+                        <a class="berita-item" href="{% url 'berita-detail' berita.id %}">
+                            <img src="{{ image.berita_image_file.url }}" alt="" id="berita-item-image">
+                            <span id="berita-item-title">{{ berita.berita_title|slice:":30" }}... </span>
+                            <span id="berita-item-description">{{ berita.berita_descrition|slice:":200" }}...</span>
+                            <span id="berita-item-date">{{ berita.create_at }}</span>
+                        </a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="berita-grid-wrapper berita-grid-kemenkumham-kanwil-banten">
+                {% if berita_image_from_kemenkumham_kanwil_banten %}
+                    {% for berita, image in berita_image_from_kemenkumham_kanwil_banten %}
+                        <a class="berita-item" href="{% url 'berita-detail' berita.id %}">
+                            <img src="{{ image.berita_image_file.url }}" alt="" id="berita-item-image">
+                            <span id="berita-item-title">{{ berita.berita_title|slice:":30" }}... </span>
+                            <span id="berita-item-description">{{ berita.berita_descrition|slice:":200" }}...</span>
+                            <span id="berita-item-date">{{ berita.create_at }}</span>
+                        </a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,260 @@
+{% load static %}
+<footer id="page-footer">
+    <div class="footer-info">
+        <div class="footer-head">
+            <div class="logo">
+                <img src="{% static 'main/img/footer-logo.png' %}" alt="footer-head-logo">
+            </div>
+            <div class="social-media-url">
+                <a class="social-media-icon mr-10" href="#">
+                    <img src="{% static 'main/img/icon/facebook-icon.png' %}" alt="">
+                </a>  
+                <a class="social-media-icon mr-10" href="#">
+                    <img src="{% static 'main/img/icon/instagram-icon.png' %}" alt="">
+                </a>
+                <a class="social-media-icon mr-10" href="#">
+                    <img src="{% static 'main/img/icon/twitter-icon.png' %}" alt="">
+                </a>
+                <a class="social-media-icon mr-10" href="#">
+                    <img src="{% static 'main/img/icon/youtube-icon.png' %}" alt="">
+                </a>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <br/>
+            <hr/>
+            <br/>
+        </div>
+        <div class="container-fluid">
+            <div class="row row-cols-4 footer-contact">
+              <div class="col">
+                <div>
+                    <i class="fa fa-map-marker text-white"></i>
+                    <b  class="text-white">Alamat Kantor</b>
+                </div>
+                <p class="text-white">Jln Raya Gerem Merak No.14, RT.2/RW.1, Kota Cilegon, Banten 42436</p>
+              </div>
+              <div class="col">
+                <div>
+                    <i class="fa fa-envelope text-white"></i>
+                    <b class="text-white">Surel</b>
+                </div>
+                <p class="text-white">kanim.cilegon@kemenkumham.go.id</p>
+              </div>
+              <div class="col">
+                <div>
+                    <i class="fa fa-phone text-white"></i>
+                    <b class="text-white">Whatsapp</b>
+                </div>
+                <p class="text-white">+62 822 998 416 94</p>
+              </div>
+              <div class="col">
+                <div>
+                    <i class="fa fa-envelope-open text-white"></i>
+                    <b class="text-white">Umpan Balik</b>
+                </div>
+                <p class="text-white">Isi survei performa situs web</p>
+              </div>
+            </div>
+        </div>
+        <br/>
+        <div class="container-fluid sitemap-icon">
+            <i class="fa fa-sitemap text-white"></i>
+            <b class="text-white">Sitemap</b>
+          </div>
+        <div class="container-fluid footer-menu">
+            <div class="row">
+                <div class="col">
+                    <div class=" footer-menu-title">
+                        <b class="text-white">Layanan Imigrasi WNI</b>
+                    </div>
+                    <ul>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('paspor-baru')"> Paspor Baru </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('penyerahan-paspor')"> Penyerahan Paspor </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('pergantian-paspor')"> Pergantian Paspor </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('pergantian-paspor-hilang-rusak')"> Pergantian Paspor Hilang/Rusak </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col vl">
+                    <div class=" footer-menu-title">
+                        <b class="text-white footer-menu-title">Layanan Imigrasi WNA</b>
+                    </div>
+                    <ul>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('perpanjang-visa-kunjungan-saat-kedatangan')"> Perpanjang Visa Kunjungan Saat Kedatangan </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('izin-tinggal-kunjungan')"> Izin Tinggal Kunjungan </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('izin-tinggal-terbatas')"> Izin Tinggal Terbatas </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('izin-masuk-kembali')"> Izin Masuk Kembali </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href=""{% url 'layanan-imigrasi' %} onclick="selectSubMenu('izin-tinggal-tetap')"> Izin Tinggal Tetap </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'layanan-imigrasi' %}"onclick="selectSubMenu('alih-status-izin-tinggal')"> Alih Status Izin Tinggal </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('perubahan-alamat')"> Perubahan Alamat </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('pendaftaran-anak-berkewarganegaraan-ganda')"> Pendaftaran Anak Berkewarganegaraan Ganda dan Fasilitas Keimigrasian (Ganda Terbatas) </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col vl">
+                    <div class="footer-menu-title">
+                        <b class="text-white footer-menu-title">Informasi Publik</b>
+                    </div>
+                    <div class="footer-submenu-title">
+                        <span> BERITA </span>
+                        <ul>
+                            <li class="footer-menu-item">
+                                <a class="text-white mr-10" href="{% url 'berita' %}"> Kantor Imigrasi Cilegon </a>
+                            </li>
+                            <li class="footer-menu-item">
+                                <a class="text-white mr-10" href="{% url 'berita' %}"> Kemenkumham Republik Indonesia </a>
+                            </li>
+                            <li class="footer-menu-item">
+                                <a class="text-white mr-10" href="{% url 'berita' %}"> Kemenkumham Kanwil Banten </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-submenu-title">
+                        <span> ARSIP DAN DOKUMEN </span>
+                        <ul>
+                            <li class="footer-menu-item">
+                                <a class="text-white mr-10" href="{% url 'arsip-dan-dokumen' %}" onclick="selectSubMenu('daftar-isian-pelaksanaan-anggaran')"> Daftar Isian Pelaksanaan Anggaran </a>
+                            </li>
+                            <li class="footer-menu-item">
+                                <a class="text-white mr-10" href="{% url 'arsip-dan-dokumen' %}" onclick="selectSubMenu('laporan-akuntabilitas-kinerja')"> Daftar Isian Pelaksanaan Anggaran </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-submenu-title">
+                        <span> DASBOR PUBLIK </span>
+                        <ul>
+                            <li class="footer-menu-item">
+                                <a class="text-white mr-10" href="{% url 'dasbor-publik' %}"> Laporan Layanan </a>
+                            </li>
+                            <li class="footer-menu-item">
+                                <a class="text-white mr-10" href="{% url 'dasbor-publik' %}"> IPK dan IKM </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col vl">
+                    <div class="footer-menu-title">
+                        <b class="text-white footer-menu-title">Profile</b>
+                    </div>
+                    <div class="footer-submenu-title">
+                        <span> TENTANG IMIGRASI </span>
+                        <ul>
+                            <li class="footer-menu-item">
+                                <a class="text-white mr-10" href="{% url 'profile' %}" onclick="selectSubMenu('sejarah-imigrasi')"> Sejarah Imigrasi </a>
+                            </li>
+                            <li class="footer-menu-item">
+                                <a class="text-white mr-10" href="{% url 'profile' %}" onclick="selectSubMenu('sejarah-kantor')"> Sejarah Kantor </a>
+                            </li>
+                            <li class="footer-menu-item">
+                                <a class="text-white mr-10" href="{% url 'profile' %}" onclick="selectSubMenu('visi-dan-misi')"> Visi dan Misi </a>
+                            </li>
+                            <li class="footer-menu-item">
+                                <a class="text-white mr-10" href="{% url 'profile' %}" onclick="selectSubMenu('struktur-organisasi')"> Struktur Organisasi </a>
+                            </li>
+                            <li class="footer-menu-item">
+                                <a class="text-white mr-10" href="{% url 'profile' %}" onclick="selectSubMenu('tugas-dan-funsi')"> Tugas dan Fungsi </a>
+                            </li>
+                            <li class="footer-menu-item">
+                                <a class="text-white mr-10" href="{% url 'profile' %}" onclick="selectSubMenu('wilayah-kerja')"> Wilayah Kerja </a>
+                            </li>
+                            <li class="footer-menu-item">
+                                <a class="text-white mr-10" href="{% url 'profile' %}" onclick="selectSubMenu('kakanim-dari-waktu')"> Kakanim dari Waktu </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-submenu-title">
+                        <span> GALERI </span>
+                        <ul>
+                            <li class="footer-menu-item">
+                                <a class="text-white mr-10" href="{% url 'galeri' %}"> Foto </a>
+                            </li>
+                            <li class="footer-menu-item">
+                                <a class="text-white mr-10" href="{% url 'galeri' %}"> Video </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col vl">
+                    <div class="footer-menu-title">
+                        <b class="text-white footer-menu-title">PPID</b>
+                    </div>
+                    <ul>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('dasar-hukum-ppid')"> Dasar Hukum PPID </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('sk-penetapan-ppid')"> SK Penetapan PPID </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('struktur-ppid')"> Struktur PPID </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('tugas-dan-fungsi-ppid')"> Tugas dan Fungsi PPID </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('standar-pelayanan-informasi')"> Standar Pelayanan Informasi </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('kegiatan-tata-kelola-informasi-publik')"> Kegiatan Tata Kelola Informasi Publik </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('sk-informasi-yang-dikecualikan')"> SK Informasi yang Dikecualikan </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('daftar-informasi-publik')"> Daftar Informasi Publik </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('informasi-berkala')"> Informasi Berkala </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('informasi-setiap-saat')"> Informasi Setiap Saat </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('informasi-serta-merta')"> Informasi Serta Merta </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('informasi-dikecualikan')"> Informasi Dikecualikan </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('profile-ppid')"> Profil PPID </a>
+                        </li>
+                        <li class="footer-menu-item">
+                            <a class="text-white mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('form-permintaan-informasi-dan-pernyataan-kebenaran')"> Form Permintaan Informasi & Pernyataan Kebenaran </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid footer-foot">
+            <div class="footer-foot-item-left">
+                <span class="text-white">Kanim Cilegon © 2023</span>
+            </div>
+            <div class="footer-foot-item-right">
+                <span class="text-white">Kemenkumham RI</span>
+            </div>
+        </div>
+    </div>
+</footer>

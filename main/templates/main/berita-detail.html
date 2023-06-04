@@ -1,0 +1,76 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    {% if berita and berita_image_header%}
+        <div id="kantor_imigrasi_cilegon_header" class="show berita-header-container", style="background: linear-gradient(0deg, #1E293B, #1E293B), url(' {{ berita_image_header.berita_image_file.url }} ')">
+            <div class="berita-header-wrapper">
+                <div class="breadcrumb-berita-wrapper">
+                    <span id="breadcrumb-berita-beranda">Beranda</span>
+                    <i class="fa fa-chevron-right text-white" aria-hidden="true" id="chevron-right-breadcrumb"></i>
+                    <span id="current-content" class="text-white">Berita</span>
+                    <i class="fa fa-chevron-right text-white" aria-hidden="true" id="chevron-right-breadcrumb"></i>
+                    <span id="current-detail-content" class="text-white">
+                        {% if berita.category_berita == "KANTOR_IMIGRASI_CILEGON" %}
+                            Kantor Imigrasi Cilegon
+                        {% elif berita.category_berita == "KEMENKUMHAM_REPUBLIK_INDONESIA"%}
+                            Kemenkumham Republik Indonesia
+                        {% else %}
+                            Kemenkumham Kanwil Banten
+                        {% endif %}
+                    </span>
+                </div>
+                <div class="headline-wrapper">
+                    <span id="headline-subtitle-berita">
+                        {% if berita.category_berita == "KANTOR_IMIGRASI_CILEGON" %}
+                            Kantor Imigrasi Cilegon
+                        {% elif berita.category_berita == "KEMENKUMHAM_REPUBLIK_INDONESIA"%}
+                            Kemenkumham Republik Indonesia
+                        {% else %}
+                            Kemenkumham Kanwil Banten
+                        {% endif %}
+                    </span>
+                    <span id="headline-title-berita"> {{ berita.berita_title }} </span>
+                    <span id="headline-date-berita">{{ berita.create_at }}</span>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <div class="berita-detail-container">
+        <div class="berita-detail-wrapper">
+            <div class="berita-detail-headline-wrapper">
+                <img src="{% if berita_image_header %}
+                    {{ berita_image_header.berita_image_file.url }}
+                {% endif %} " alt="" id="berita-detail-preview-image">
+                <div class="berita-detail-thumbnail-wrapper">
+                    {% if berita_image_content %}
+                        {% for image in berita_image_content %}
+                            <img src="{{ image.berita_image_file.url }}" alt="" id="thumbnail-item-image">
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="berita-detail-description">
+                    {% if berita %}
+                        <p>{{ berita.berita_descrition }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="berita-detail-terkait-list-wrapper">
+                <span id="berita-detail-terkait-list-title">Berita Terkait</span>
+                {% if berita_terkini %}
+                    {% for berita, image in berita_terkini %}
+                        <a href="{% url 'berita-detail' berita.id %}" class="berita-detail-terkait-item">
+                            <div class="berita-terkait-text-wrapper">
+                                <span id="berita-detail-terkini-item-title">{{ berita.berita_title|slice:":30"}}</span>
+                                <span id="berita-detail-terkini-item-date">{{ berita.berita_descrition|slice:":200"  }}</span>
+                            </div>
+                            <img src="{{ image.berita_image_file.url }}" alt="" id="berita-detail-terkini-item-image">
+                        </a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

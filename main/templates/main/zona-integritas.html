@@ -1,0 +1,101 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    {% include 'layouts/content-header.html' with content_name="Zona Integritas" subcontent_name="Zona Integritas"%}
+    <div class="main-content">
+        <div class="content-wrapper">
+            <div class="content-sidebar-container">
+                <div class="content-sidebar-menu-list-wrapper">
+                    <div class="sidebar-menu-title">
+                        <span id="sidebar-menu-title-text">Zona Integritas</span>
+                    </div>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            {% if list_of_submenu_zona_integritas %}
+                                {% for list_of_submenu in list_of_submenu_zona_integritas %}
+                                    <li class="sidebar-submenu-item">
+                                        <button id="sidebar-submenu-item-text" onclick="changeSubMenu('{{ list_of_submenu.permalink }}')">{{list_of_submenu.submenu_name}}</button>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="content-show">
+                <ul class="content-core-show" id="pengertian">
+                    <li>
+                        <h1>Pengertian</h1>
+                    </li>
+                    <li>
+                        <div>
+                            {% if content_pengertian %}
+                                {{ content_pengertian.content|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="6-area-perubahan">
+                    <li>
+                        <h1>6 Area Perubahan</h1>
+                    </li>
+                    <li>
+                        <div>
+                            {% if content_6_area_perbahan %}
+                                {{ content_6_area_perbahan.content|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="dokumentasi-kegiatan-pzi">
+                    <li>
+                        <h1>Dokumentasi Kegiatan PZI</h1>
+                    </li>
+                    <li>
+                        <div class="foto-zona-integritas-wrapper">
+                        {% if content_dokumentasi_kegiatan_pzi %}
+                            {% for foto in content_dokumentasi_kegiatan_pzi %}
+                                    <img src="{{ foto.galeri_image_file.url }}" alt="">
+                            {% endfor %}
+                        {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="jingle-kantor-imigrasi-kelas-ii-tpi-cilegon">
+                    <li>
+                        <h1>Jingle Kantor Imigrasi Kelas II TPI Cilegon</h1>
+                    </li>
+                    <li>
+                        {% if content_jingle_kantor_imigrasi_kelas_ii_tpi_cilegon %}
+                            {% for video in content_jingle_kantor_imigrasi_kelas_ii_tpi_cilegon %}
+                                <div class="youtube-container-zona-integritas">
+                                    <iframe src="https://www.youtube.com/embed/{{ video.url|cut:"https://www.youtube.com/watch?v=" }}" title="YouTube video player" frameborder="0"></iframe>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="paparan-wbk-2022">
+                    <li>
+                        <h1>Paparan WBK (Zona Integritas) Tahun 2022</h1>
+                    </li>
+                    <li>
+                        {% if content_paparan_wbk_2023 %}
+                            {% for video in content_paparan_wbk_2023 %}
+                                <div class="youtube-container-zona-integritas">
+                                    <iframe src="https://www.youtube.com/embed/{{ video.url|cut:"https://www.youtube.com/watch?v=" }}" title="YouTube video player" frameborder="0"></iframe>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% include 'layouts/jam-layanan.html' %}
+{% endblock %}

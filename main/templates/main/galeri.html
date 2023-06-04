@@ -1,0 +1,31 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    {% include 'layouts/content-header.html' with content_name="Galeri" subcontent_name="Galeri"%}
+    <div class="main-content-galeri">
+        <div class="content-galeri-wrapper">
+            <div class="content-galeri-tab-wrapper">
+                <button id="content-galeri-foto-tab-button" autofocus onclick="galeri('foto')">Foto</button>
+                <button id="content-galeri-video-tab-button" onclick="galeri('video')">Video</button>
+            </div>
+            <div class="galeri-foto-grid-wrapper">
+                {% if fotos %}
+                    {% for foto in fotos %}
+                        <img src="{{ foto.galeri_image_file.url }}" id="content-galeri-item" alt="">
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="galeri-video-grid-wrapper">
+                {% if videos %}
+                    {% for video in videos %}
+                        <iframe src="https://www.youtube.com/embed/{{ video.url|cut:"https://www.youtube.com/watch?v=" }}" title="YouTube video player" frameborder="0"></iframe>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% include 'layouts/jam-layanan.html' %}
+{% endblock %}

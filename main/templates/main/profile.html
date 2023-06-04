@@ -1,0 +1,567 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    {% include 'layouts/content-header.html' with content_name="Profile" subcontent_name="Profile"%}
+    <div class="main-content">
+        <div class="content-wrapper">
+            <div class="content-sidebar-container">
+                <div class="content-sidebar-menu-list-wrapper">
+                    <div class="sidebar-menu-title">
+                        <span id="sidebar-menu-title-text"> Warga Negara Indonesia</span>
+                    </div>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            {% if list_of_submenu_profile %}
+                                {% for list_of_submenu in list_of_submenu_profile %}
+                                    <li class="sidebar-submenu-item">
+                                        <button id="sidebar-submenu-item-text" onclick="changeSubMenu('{{ list_of_submenu.permalink }}')">{{list_of_submenu.submenu_name}}</button>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="content-show">
+                <ul class="content-core-show" id="sejarah-imigrasi">
+                    <li>
+                        <h1>Sejarah Imigrasi</h1>
+                    </li>
+                    <li>
+                        <div>
+                            {% if content_sejarah_imigrasi %}
+                                {{ content_sejarah_imigrasi.content|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="sejarah-kantor">
+                    <li>
+                        <h1>Sejarah Kantor</h1>
+                    </li>
+                    <li>
+                        <div>
+                            {% if content_sejarah_kantor %}
+                                {{ content_sejarah_kantor.content|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="visi-dan-misi">
+                    <li>
+                        <h1>Visi dan Misi</h1>
+                    </li>
+                    <li>
+                        <div class="visi-dan-misi-container">
+                            {% if content_visi_dan_misi %}
+                            <div class="visi-dan-misi-wrapper">
+                                <div class="misi">
+                                    <div class="misi-text">
+                                        <span id="misi-title">Visi</span>
+                                        <span id="misi-description">{{ content_visi_dan_misi.visi}}</span>
+                                    </div>
+                                </div>
+                                <div class="visi">
+                                    <div class="visi-text">
+                                        <span id="visi-title">Misi</span>
+                                        <span id="visi-description">
+                                            {{ content_visi_dan_misi.misi|safe}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="moto-wrapper">
+                                <div class="moto-text">
+                                    <span id="moto-title">Moto</span>
+                                    <div class="moto-text-3-poin">
+                                        <span id="moto-pertama-text">{{ content_visi_dan_misi.moto_1}}</span>
+                                        <span id="moto-kedua-text">{{ content_visi_dan_misi.moto_2}}</span>
+                                        <span id="moto-ketiga-text">{{ content_visi_dan_misi.moto_3}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tata-nilai-wrapper">
+                                <div class="tata-nilai-header">
+                                    <span class="tata-nilai-title">Tata Nilai</span>
+                                    <span class="tata-nilai-subtitle">Kementerian Hukum dan HAM menjunjung tinggi tata nilai kami "P-A-S-T-I"</span>
+                                </div>
+                                <img class="tata-nilali-image" src="{% static 'main/img/tata-nilai-logo.png' %}">
+                                <div class="pasti-detail-wrapper">
+                                    <div class="profesional-akuntabel-wrapper">
+                                        <div class="profesional-wrapper">
+                                            <span class="tata-nilai-content-title">Profesional</span>
+                                            <span class="tata-nilia-content-description">{{ content_visi_dan_misi.tata_nilai_profesional }}</span>
+                                        </div>
+                                        <div class="akuntabel-wrapper">
+                                            <span class="tata-nilai-content-title">Akuntabel</span>
+                                            <span class="tata-nilia-content-description">{{ content_visi_dan_misi.tata_nilai_akuntabel }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="sinergi-transparan-wrapper">
+                                        <div class="sinergi-wrapper">
+                                            <span class="tata-nilai-content-title">Sinergi</span>
+                                            <span class="tata-nilia-content-description">{{ content_visi_dan_misi.tata_nilai_sinergi }}</span>
+                                        </div>
+                                        <div class="transparan-wrapper">
+                                            <span class="tata-nilai-content-title">Transparan</span>
+                                            <span class="tata-nilia-content-description">{{ content_visi_dan_misi.tata_nilai_transparan }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="inovatif-wrapper">
+                                        <div class="inovatif-content-wrapper">
+                                            <span class="tata-nilai-content-title">Inovatif</span>
+                                            <span class="tata-nilia-content-description">{{ content_visi_dan_misi.tata_nilai_inovarif }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="struktur-organisasi">
+                    <li>
+                        <h1>Struktur Organisasi</h1>
+                    </li>
+                    <li>
+                        <div class="struktur-organisasi-wrapper">
+                            <div class="pejabat-wrapper">
+                                <img src="{% static '' %}" class="pejabat-image">
+                                <div class="nama-dan-jabatan-wrapper">
+                                    <span class="nama-pejabat">
+                                        {% if content_jabatan_kepala_kantor %}
+                                            {{ content_jabatan_kepala_kantor.name }}
+                                        {% endif %} 
+                                    </span>
+                                    <span class="jabatan-pejabat">Kepala Kantor</span>
+                                </div>
+                                <div class="tmt-dan-tanggal-wrapper">
+                                    <span class="tmt-jabatan">TMT</span>
+                                    <span class="tanggal-jabatan">
+                                        {% if content_jabatan_kepala_kantor %}
+                                            {{ content_jabatan_kepala_kantor.TMT }}
+                                        {% endif %} 
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="pejabat-wrapper">
+                                <img src="{% static '' %}" class="pejabat-image">
+                                <div class="nama-dan-jabatan-wrapper">
+                                    <span class="nama-pejabat">
+                                        {% if content_jabatan_kasubag_tata_usaha %}
+                                            {{ content_jabatan_kasubag_tata_usaha.name }}
+                                        {% endif %} 
+                                    </span>
+                                    <span class="jabatan-pejabat">Kasubag Tata Usaha</span>
+                                </div>
+                                <div class="tmt-dan-tanggal-wrapper">
+                                    <span class="tmt-jabatan">TMT</span>
+                                    <span class="tanggal-jabatan">
+                                        {% if content_jabatan_kasubag_tata_usaha %}
+                                            {{ content_jabatan_kasubag_tata_usaha.TMT }}
+                                        {% endif %} 
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="pejabat-wrapper">
+                                <img src="{% static '' %}" class="pejabat-image">
+                                <div class="nama-dan-jabatan-wrapper">
+                                    <span class="nama-pejabat">
+                                        {% if content_jabatan_kasi_lalu_lintas %}
+                                            {{ content_jabatan_kasi_lalu_lintas.name }}
+                                        {% endif %} 
+                                    </span>
+                                    <span class="jabatan-pejabat">Kasi Lalu Lintas dan Izin Tinggal Keimigrasian</span>
+                                </div>
+                                <div class="tmt-dan-tanggal-wrapper">
+                                    <span class="tmt-jabatan">TMT</span>
+                                    <span class="tanggal-jabatan">
+                                        {% if content_jabatan_kasi_lalu_lintas %}
+                                            {{ content_jabatan_kasi_lalu_lintas.TMT }}
+                                        {% endif %} 
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="pejabat-wrapper">
+                                <img src="{% static '' %}" class="pejabat-image">
+                                <div class="nama-dan-jabatan-wrapper">
+                                    <span class="nama-pejabat">
+                                        {% if content_jabatan_kasi_teknologi %}
+                                            {{ content_jabatan_kasi_teknologi.name }}
+                                        {% endif %} 
+                                    </span>
+                                    <span class="jabatan-pejabat">Kasi teknologi dan Informasi Keimigrasian</span>
+                                </div>
+                                <div class="tmt-dan-tanggal-wrapper">
+                                    <span class="tmt-jabatan">TMT</span>
+                                    <span class="tanggal-jabatan">
+                                        {% if content_jabatan_kasi_teknologi %}
+                                            {{ content_jabatan_kasi_teknologi.TMT }}
+                                        {% endif %} 
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="pejabat-wrapper">
+                                <img src="{% static '' %}" class="pejabat-image">
+                                <div class="nama-dan-jabatan-wrapper">
+                                    <span class="nama-pejabat">
+                                        {% if content_jabatan_kasi_intelijen %}
+                                            {{ content_jabatan_kasi_intelijen.name }}
+                                        {% endif %} 
+                                    </span>
+                                    <span class="jabatan-pejabat">Kasi Intelijen dan Penindakan Keimigrasian</span>
+                                </div>
+                                <div class="tmt-dan-tanggal-wrapper">
+                                    <span class="tmt-jabatan">TMT</span>
+                                    <span class="tanggal-jabatan">
+                                        {% if content_jabatan_kasi_intelijen %}
+                                            {{ content_jabatan_kasi_intelijen.TMT }}
+                                        {% endif %} 
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="pejabat-wrapper">
+                                <img src="{% static '' %}" class="pejabat-image">
+                                <div class="nama-dan-jabatan-wrapper">
+                                    <span class="nama-pejabat">
+                                        {% if content_jabatan_kaur_kepegawaian %}
+                                            {{ content_jabatan_kaur_kepegawaian.name }}
+                                        {% endif %} 
+                                    </span>
+                                    <span class="jabatan-pejabat">Kaur Kepegawaian</span>
+                                </div>
+                                <div class="tmt-dan-tanggal-wrapper">
+                                    <span class="tmt-jabatan">TMT</span>
+                                    <span class="tanggal-jabatan">
+                                        {% if content_jabatan_kaur_kepegawaian %}
+                                            {{ content_jabatan_kaur_kepegawaian.TMT }}
+                                        {% endif %} 
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="pejabat-wrapper">
+                                <img src="{% static '' %}" class="pejabat-image">
+                                <div class="nama-dan-jabatan-wrapper">
+                                    <span class="nama-pejabat">
+                                        {% if content_jabatan_kasubi_lalu_lintas %}
+                                            {{ content_jabatan_kasubi_lalu_lintas.name }}
+                                        {% endif %} 
+                                    </span>
+                                    <span class="jabatan-pejabat">Kasubi Lalu Lintas Keimigrasian</span>
+                                </div>
+                                <div class="tmt-dan-tanggal-wrapper">
+                                    <span class="tmt-jabatan">TMT</span>
+                                    <span class="tanggal-jabatan">
+                                        {% if content_jabatan_kasubi_lalu_lintas %}
+                                            {{ content_jabatan_kasubi_lalu_lintas.TMT }}
+                                        {% endif %} 
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="pejabat-wrapper">
+                                <img src="{% static '' %}" class="pejabat-image">
+                                <div class="nama-dan-jabatan-wrapper">
+                                    <span class="nama-pejabat">
+                                        {% if content_jabatan_kasubi_izin %}
+                                            {{ content_jabatan_kasubi_izin.name }}
+                                        {% endif %} 
+                                    </span>
+                                    <span class="jabatan-pejabat">Kasubi Izin Tinggal Keimigrasian</span>
+                                </div>
+                                <div class="tmt-dan-tanggal-wrapper">
+                                    <span class="tmt-jabatan">TMT</span>
+                                    <span class="tanggal-jabatan">
+                                        {% if content_jabatan_kasubi_izin %}
+                                            {{ content_jabatan_kasubi_izin.TMT }}
+                                        {% endif %} 
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="pejabat-wrapper">
+                                <img src="{% static '' %}" class="pejabat-image">
+                                <div class="nama-dan-jabatan-wrapper">
+                                    <span class="nama-pejabat">
+                                        {% if content_jabatan_kasubi_teknologi %}
+                                            {{ content_jabatan_kasubi_teknologi.name }}
+                                        {% endif %} 
+                                    </span>
+                                    <span class="jabatan-pejabat">Kasubi Teknologi Infomasi Keimigrasian</span>
+                                </div>
+                                <div class="tmt-dan-tanggal-wrapper">
+                                    <span class="tmt-jabatan">TMT</span>
+                                    <span class="tanggal-jabatan">
+                                        {% if content_jabatan_kasubi_teknologi %}
+                                            {{ content_jabatan_kasubi_teknologi.TMT }}
+                                        {% endif %} 
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="pejabat-wrapper">
+                                <img src="{% static '' %}" class="pejabat-image">
+                                <div class="nama-dan-jabatan-wrapper">
+                                    <span class="nama-pejabat">
+                                        {% if content_jabatan_kasubi_informasi %}
+                                            {{ content_jabatan_kasubi_informasi.name }}
+                                        {% endif %} 
+                                    </span>
+                                    <span class="jabatan-pejabat">Kasubi Informasi dan Komunikasi Keimigrasian</span>
+                                </div>
+                                <div class="tmt-dan-tanggal-wrapper">
+                                    <span class="tmt-jabatan">TMT</span>
+                                    <span class="tanggal-jabatan">
+                                        {% if content_jabatan_kasubi_informasi %}
+                                            {{ content_jabatan_kasubi_informasi.TMT }}
+                                        {% endif %} 
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="pejabat-wrapper">
+                                <img src="{% static '' %}" class="pejabat-image">
+                                <div class="nama-dan-jabatan-wrapper">
+                                    <span class="nama-pejabat">
+                                        {% if content_jabatan_kasubi_intelijen %}
+                                            {{ content_jabatan_kasubi_intelijen.name }}
+                                        {% endif %} 
+                                    </span>
+                                    <span class="jabatan-pejabat">Kasubi Intelijen Keimigrasian</span>
+                                </div>
+                                <div class="tmt-dan-tanggal-wrapper">
+                                    <span class="tmt-jabatan">TMT</span>
+                                    <span class="tanggal-jabatan">
+                                        {% if content_jabatan_kasubi_intelijen %}
+                                            {{ content_jabatan_kasubi_intelijen.TMT }}
+                                        {% endif %} 
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="pejabat-wrapper">
+                                <img src="{% static '' %}" class="pejabat-image">
+                                <div class="nama-dan-jabatan-wrapper">
+                                    <span class="nama-pejabat">
+                                        {% if content_jabatan_kasubi_penindakan %}
+                                            {{ content_jabatan_kasubi_penindakan.name }}
+                                        {% endif %} 
+                                    </span>
+                                    <span class="jabatan-pejabat">Kasubi Penindakan Keimigrasian</span>
+                                </div>
+                                <div class="tmt-dan-tanggal-wrapper">
+                                    <span class="tmt-jabatan">TMT</span>
+                                    <span class="tanggal-jabatan">
+                                        {% if content_jabatan_kasubi_penindakan %}
+                                            {{ content_jabatan_kasubi_penindakan.TMT }}
+                                        {% endif %} 
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="tugas-dan-funsi">
+                    <li>
+                        <h1>Tugas dan Fungsi</h1>
+                    </li>
+                    <li>
+                        <div>
+                            {% if content_tugas_dan_fungsi %}
+                                {{ content_tugas_dan_fungsi.content|safe }}
+                            {{ else }}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="wilayah-kerja">
+                    <li>
+                        <h1>Wilayah Kerja</h1>
+                    </li>
+                    <li style="display:inline-block; width:919px;">
+                        <span class="subtitle-wilaya-kerja">Kantor Imigrasi Kelas II TPI Cilegon memiliki wilayah kerja yang meliputi 9 kecamatan dan 1 Kota .berdasarkan Surat Keputusan Menteri Hukum dan Hak Asasi Manusia Nomor : M.HH-03.OT.01.03 Tahun 2018 tentang Perubahan Wilayah Kerja Kantor Imigrasi.</span>
+
+                    </li>
+                    <li style="display: flex; gap: 45px">
+                        <div id="map"></div>
+                        {% if list_of_perusahaan_penginapan_bojonegara %}
+                            <div class="list-of-pt hidden" id="list-{{ list_of_perusahaan_penginapan_bojonegara.wilayah_kerja }}">
+                                <span id="title-wilayah">{{ list_of_perusahaan_penginapan_bojonegara.wilayah_kerja }}</span>
+                                <div>
+                                    {{ list_of_perusahaan_penginapan_bojonegara.list_of_perusahaan_penginapan|safe }}
+                                </div>
+
+                            </div>
+                        {% endif %}
+                        {% if list_of_perusahaan_penginapan_cibeber %}
+                                <div class="list-of-pt hidden" id="list-{{ list_of_perusahaan_penginapan_cibeber.wilayah_kerja }}">
+                                    <span id="title-wilayah">{{ list_of_perusahaan_penginapan_cibeber.wilayah_kerja }}</span>
+                                    <div>
+                                        {{ list_of_perusahaan_penginapan_cibeber.list_of_perusahaan_penginapan|safe }}
+                                    </div>
+
+                                </div>
+                            {% endif %}
+                        {% if list_of_perusahaan_penginapan_cilegon %}
+                                <div class="list-of-pt hidden" id="list-{{ list_of_perusahaan_penginapan_cilegon.wilayah_kerja }}">
+                                    <span id="title-wilayah">{{ list_of_perusahaan_penginapan_cilegon.wilayah_kerja }}</span>
+                                    <div>
+                                        {{ list_of_perusahaan_penginapan_cilegon.list_of_perusahaan_penginapan|safe }}
+                                    </div>
+
+                                </div>
+                            {% endif %}
+                        {% if list_of_perusahaan_penginapan_citangkil %}
+                                <div class="list-of-pt hidden" id="list-{{ list_of_perusahaan_penginapan_citangkil.wilayah_kerja }}">
+                                    <span id="title-wilayah">{{ list_of_perusahaan_penginapan_citangkil.wilayah_kerja }}</span>
+                                    <div>
+                                        {{ list_of_perusahaan_penginapan_citangkil.list_of_perusahaan_penginapan|safe }}
+                                    </div>
+
+                                </div>
+                            {% endif %}
+                        {% if list_of_perusahaan_penginapan_ciwandan %}
+                                <div class="list-of-pt hidden" id="list-{{ list_of_perusahaan_penginapan_ciwandan.wilayah_kerja }}">
+                                    <span id="title-wilayah">{{ list_of_perusahaan_penginapan_ciwandan.wilayah_kerja }}</span>
+                                    <div>
+                                        {{ list_of_perusahaan_penginapan_ciwandan.list_of_perusahaan_penginapan|safe }}
+                                    </div>
+
+                                </div>
+                            {% endif %}
+                        {% if list_of_perusahaan_penginapan_gerogol %}
+                                <div class="list-of-pt hidden" id="list-{{ list_of_perusahaan_penginapan_gerogol.wilayah_kerja }}">
+                                    <span id="title-wilayah">{{ list_of_perusahaan_penginapan_gerogol.wilayah_kerja }}</span>
+                                    <div>
+                                        {{ list_of_perusahaan_penginapan_gerogol.list_of_perusahaan_penginapan|safe }}
+                                    </div>
+
+                                </div>
+                            {% endif %}
+                        {% if list_of_perusahaan_penginapan_jombang %}
+                                <div class="list-of-pt hidden" id="list-{{ list_of_perusahaan_penginapan_jombang.wilayah_kerja }}">
+                                    <span id="title-wilayah">{{ list_of_perusahaan_penginapan_jombang.wilayah_kerja }}</span>
+                                    <div>
+                                        {{ list_of_perusahaan_penginapan_jombang.list_of_perusahaan_penginapan|safe }}
+                                    </div>
+
+                                </div>
+                            {% endif %}
+                        {% if list_of_perusahaan_penginapan_puloampel %}
+                                <div class="list-of-pt hidden" id="list-{{ list_of_perusahaan_penginapan_puloampel.wilayah_kerja }}">
+                                    <span id="title-wilayah">{{ list_of_perusahaan_penginapan_puloampel.wilayah_kerja }}</span>
+                                    <div>
+                                        {{ list_of_perusahaan_penginapan_puloampel.list_of_perusahaan_penginapan|safe }}
+                                    </div>
+
+                                </div>
+                            {% endif %}
+                        {% if list_of_perusahaan_penginapan_pulomerak %}
+                                <div class="list-of-pt hidden" id="list-{{ list_of_perusahaan_penginapan_pulomerak.wilayah_kerja }}">
+                                    <span id="title-wilayah">{{ list_of_perusahaan_penginapan_pulomerak.wilayah_kerja }}</span>
+                                    <div>
+                                        {{ list_of_perusahaan_penginapan_pulomerak.list_of_perusahaan_penginapan|safe }}
+                                    </div>
+
+                                </div>
+                            {% endif %}
+                        {% if list_of_perusahaan_penginapan_purwakarta %}
+                            <div class="list-of-pt hidden" id="list-{{ list_of_perusahaan_penginapan_purwakarta.wilayah_kerja }}">
+                                <span id="title-wilayah">{{ list_of_perusahaan_penginapan_purwakarta.wilayah_kerja }}</span>
+                                <div>
+                                    {{ list_of_perusahaan_penginapan_purwakarta.list_of_perusahaan_penginapan|safe }}
+                                </div>
+
+                            </div>
+                        {% endif %}
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="kakanim-dari-waktu">
+                    <li>
+                        <h1>Kakanim dari Waktu Ke Waktu</h1>
+                    </li>
+                    <li>
+                        <div class="kakanim-dari-waktu-wrapper">
+                            {% if content_kakanim_dari_waktu %}
+                                {% for kakanim in content_kakanim_dari_waktu %}
+                                    <div class="kakanim-wrapper">
+                                        <img src="{{ kakanim.foto.url }}" class="kakanim-foto">
+                                        <div class="profile-kakanim">
+                                            <span class="nama-kakanim">{{ kakanim.name }}</span>
+                                            <span class="masa-jabatan-kakanim">{{ kakanim.masa_jabatan }}</span>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% include 'layouts/jam-layanan.html' %}
+    <link rel="stylesheet" href="{% static 'main/leaflet/leaflet.css' %}">
+    <script src="{% static 'main/leaflet/leaflet-src.js' %}"></script>
+    <script>
+
+        window.onload = function () {
+            setSubMenuOnLoad();
+        }
+        var map = L.map('map',{
+                center: [-5.9615086, 106.0027855],
+                zoom: 11
+        });
+
+        const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        const bojonegara = L.marker([-5.971277428702725, 106.0876585263186]).on("click", onClickMarker).addTo(map);
+        bojonegara.bindPopup("Bojonegara")
+
+        const jombang = L.marker([-6.009028574625096, 106.06603510718728]).on("click", onClickMarker).addTo(map);
+        jombang.bindPopup("Jombang")
+
+        const gerogol = L.marker([-5.966842494395461, 106.02078046914093]).on("click", onClickMarker).addTo(map);
+        gerogol.bindPopup("Gerogol")
+
+        const cibeber = L.marker([-6.0442148705217615, 106.05897339753817]).on("click", onClickMarker).addTo(map);
+        cibeber.bindPopup("Cibeber")
+
+        const cilegon = L.marker([-6.018106115531103, 106.05555057726383]).on("click", onClickMarker).addTo(map);
+        cilegon.bindPopup("Cilegon")
+
+        const citangkil = L.marker([-6.014708092189279, 106.03574230965297]).on("click", onClickMarker).addTo(map);
+        citangkil.bindPopup("Citangkil")
+
+        const ciwandan = L.marker([-6.031210415965187, 105.96359426793427]).on("click", onClickMarker).addTo(map);
+        ciwandan.bindPopup("Ciwandan")
+
+        const purwakarta = L.marker([-5.982544605030664, 106.04800625216802]).on("click", onClickMarker).addTo(map);
+        purwakarta.bindPopup("Purwakarta")
+
+        const puloampel = L.marker([-5.90999482221812, 106.07497579491044]).on("click", onClickMarker).addTo(map);
+        puloampel.bindPopup("Puloampel")
+
+        const pulomerak = L.marker([-5.916117428135817, 106.01820816966655]).on("click", onClickMarker).addTo(map);
+        pulomerak.bindPopup("Pulomerak")
+
+        setInterval(function () {
+            map.invalidateSize();
+        }, 100);
+
+        function onClickMarker(e) {
+            let marker = e.target.getPopup().getContent();
+            let listOfPT = document.getElementsByClassName("list-of-pt")
+
+            for (let i = 0; i < listOfPT.length; i++) {
+                document.getElementsByClassName("list-of-pt")[i].className = "list-of-pt hidden";
+            }
+
+            document.getElementById("list-"+marker.toUpperCase()).classList.remove("hidden");
+
+        }
+    </script>
+{% endblock %}
