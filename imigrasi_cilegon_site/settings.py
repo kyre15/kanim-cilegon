@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'imigrasi_cilegon_site.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'kanim-cilegon',
+        'NAME': 'kanimcilegon',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',
@@ -139,7 +139,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/home/kanim-cilegon/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/'),
 )
