@@ -27,7 +27,9 @@ SECRET_KEY = 'django-insecure-@esjw$l^^&#8sc1!j&az^xsfw*5yqny8^8_-(xppoj-3@6#cqp
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', 'kanimcilegon.drop.id']
+
+CSRF_TRUSTED_ORIGINS = ['https://kanimcilegon.drop.id']
 
 
 # Application definition

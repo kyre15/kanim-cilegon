@@ -492,7 +492,7 @@ li.footer-menu-item:not(:last-child) {
 #beranda-header {
   height: 720px;
   width: 100%;
-  background: linear-gradient(0deg, #1E293B, #1E293B), url('/static/main/img/header-background.jpg');
+  background: linear-gradient(0deg, #1E293B, #1E293B), url('/home/kanim-cilegon/static/main/img/header-background.jpg');
   background-blend-mode: multiply, normal;
   background-size: 100%;
   background-position-y: center;
@@ -1704,7 +1704,7 @@ a #izin-tinggal-online-button {
 }
 
 .content-header-container {
-  background: linear-gradient(0deg, #1E293B, #1E293B), url('/static/main/img/header-background.jpg');
+  background: linear-gradient(0deg, #1E293B, #1E293B), url('/home/kanim-cilegon/static/main/img/header-background.jpg');
   background-blend-mode: multiply, normal;
   display: flex;
   position: relative;
@@ -1967,7 +1967,7 @@ a #izin-tinggal-online-button {
 .berita-header-container {
   height: 524px;
   width: 100%;
-  background: linear-gradient(0deg, #1E293B, #1E293B), url('/static/main/img/header-background.jpg');
+  background: linear-gradient(0deg, #1E293B, #1E293B), url('/home/kanim-cilegon/static/main/img/header-background.jpg');
   background-blend-mode: multiply, normal;
   position: relative;
 }
