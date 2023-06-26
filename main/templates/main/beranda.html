@@ -6,10 +6,12 @@
 {% block content %}
     <div class="overlay">
         <div class="maklumat-wrapper">
-            <img src="{% static 'main/img/maklumat-pelayanan.png' %}" id="maklumat-image">
-            <button onclick="overlayMaklumatOff()">
-                <img src="{% static 'main/img/x-circle.png' %}" id="button-exit-overlay">
-            </button>
+            <div class="maklumat-container">
+                <img src="{% static 'main/img/maklumat-pelayanan.png' %}" id="maklumat-image">
+                <button onclick="overlayMaklumatOff()">
+                    <img src="{% static 'main/img/x-circle.png' %}" id="button-exit-overlay">
+                </button>
+            </div>
         </div>
     </div>
     <div id="beranda-header">

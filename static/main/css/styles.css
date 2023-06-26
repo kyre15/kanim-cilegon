@@ -3584,3 +3584,9 @@ ol li {
 #title-wilayah {
   margin-bottom: 8px;
 }
+
+.maklumat-container {
+  display: flex;
+  position: relative;
+  margin: auto 0px auto 0px;
+}

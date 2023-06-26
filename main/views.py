@@ -33,8 +33,8 @@ def home(response):
         })
 
 def fetch_instagram():
-    subprocess.run(["python", "fetch_image_script.py"])
-    subprocess.run(["python", "delete_unnecessary_instagram_file.py"])
+    subprocess.run(["python3", "fetch_image_script.py"])
+    subprocess.run(["python3", "delete_unnecessary_instagram_file.py"])
 
 def layanan_imigrasi(response):
     return render(response, "main/layanan-imigrasi.html", {
@@ -279,10 +279,6 @@ def get_struktur_organisasi(jabatan):
         return StrukturOrganisasi.objects.get(jabatan=jabatan)
     else:
         return StrukturOrganisasi.objects.none()
-
-def get_instagram_post():
-    subprocess.run(["python", "fetch_image_script.py"])
-    subprocess.run(["python", "delete_unnecessary_instagram_file.py"])
 
 def get_list_of_instagram():
     current_path = os.getcwd() + "/images/imigrasi_cilegon/"
