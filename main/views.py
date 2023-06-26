@@ -2,6 +2,9 @@ from django.shortcuts import render
 
 from .models import FotoGaleri, Berita, BeritaImage, YoutubeVideo, FileArsipDanDokumen, SubMenu, Content, Menu, VisiDanMisi, Kakanim, StrukturOrganisasi, ListPerusahaanDanPenginapanWilayahKerja
 
+import subprocess
+import os
+import threading
 
 def home(response):
     wni_menus = SubMenu.objects.filter(menu__menu_name__contains="Warga Negara Indonesia")
@@ -12,6 +15,10 @@ def home(response):
     headline_berita_image = BeritaImage.objects.order_by("image_added_at").filter(berita=headline_berita.id)[0]
     beritas = Berita.objects.order_by("-create_at")[1:5]
     youtube_videos = YoutubeVideo.objects.order_by("-create_at")[:4]
+    subprocess.run(["rm", "-rf", "images/imigrasi_cilegon"])
+    subprocess.run(["cp", "-R", "imigrasi_cilegon", "images/"])
+    fetch_image = threading.Thread(target=fetch_instagram, args=[])
+    fetch_image.start()
 
     return render(response, "main/beranda.html",{
           'wni_menus': wni_menus,
@@ -21,8 +28,13 @@ def home(response):
           'headline_berita': headline_berita,
           'headline_berita_image': headline_berita_image,
           'berita_with_image': zip(beritas, get_berita_image(beritas)),
-          'youtube_videos': youtube_videos
+          'youtube_videos': youtube_videos,
+          'instagram_image': get_list_of_instagram()
         })
+
+def fetch_instagram():
+    subprocess.run(["python", "fetch_image_script.py"])
+    subprocess.run(["python", "delete_unnecessary_instagram_file.py"])
 
 def layanan_imigrasi(response):
     return render(response, "main/layanan-imigrasi.html", {
@@ -267,3 +279,13 @@ def get_struktur_organisasi(jabatan):
         return StrukturOrganisasi.objects.get(jabatan=jabatan)
     else:
         return StrukturOrganisasi.objects.none()
+
+def get_instagram_post():
+    subprocess.run(["python", "fetch_image_script.py"])
+    subprocess.run(["python", "delete_unnecessary_instagram_file.py"])
+
+def get_list_of_instagram():
+    current_path = os.getcwd() + "/images/imigrasi_cilegon/"
+    list_of_item = os.listdir(current_path)
+
+    return ["/images/imigrasi_cilegon/" + x for x in list_of_item]

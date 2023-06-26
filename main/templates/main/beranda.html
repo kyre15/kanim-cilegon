@@ -39,16 +39,16 @@
             {% endif %}
         </div>
         <div id="beranda-header-social-media">
-            <a class="social-media-icon mr-10" href="https://www.facebook.com/v4.0/dialog/oauth?client_id=1910417302379768&display=popup&redirect_uri=https%3A%2F%2Fdash.callbell.eu%2Fusers%2Fauth%2Ffacebook%2Fcallback&response_type=code&scope=email%2Cpublic_profile%2Cmanage_pages%2Cpages_show_list%2Cpages_messaging%2Cads_read&state=5404ea28bdc02157ed43e0ec615e6449c93b630b72aeb6a8">
+            <a class="social-media-icon mr-10" href="https://www.facebook.com/v4.0/dialog/oauth?client_id=1910417302379768&display=popup&redirect_uri=https%3A%2F%2Fdash.callbell.eu%2Fusers%2Fauth%2Ffacebook%2Fcallback&response_type=code&scope=email%2Cpublic_profile%2Cmanage_pages%2Cpages_show_list%2Cpages_messaging%2Cads_read&state=5404ea28bdc02157ed43e0ec615e6449c93b630b72aeb6a8" target="_blank">
                 <img src="{% static 'main/img/icon/facebook-icon.png' %}">
             </a>  
-            <a class="social-media-icon mr-10" href="#">
+            <a class="social-media-icon mr-10" href="https://www.instagram.com/imigrasi_cilegon/?hl=en" target="_blank">
                 <img src="{% static 'main/img/icon/instagram-icon.png' %}">
             </a>
-            <a class="social-media-icon mr-10" href="#">
+            <a class="social-media-icon mr-10" href="https://twitter.com/kanim_cilegon" target="_blank">
                 <img src="{% static 'main/img/icon/twitter-icon.png' %}">
             </a>
-            <a class="social-media-icon mr-10" href="#">
+            <a class="social-media-icon mr-10" href="https://www.youtube.com/@kantorimigrasikelasiitpici5025" target="_blank">
                 <img src="{% static 'main/img/icon/youtube-icon.png' %}">
             </a>
         </div>
@@ -185,21 +185,15 @@
                 <div class="instagram-header-wrapper">
                     <span id="instagram-title">Dari Instagram</span>
                     <span class="berita-terkini-vertical-line"></span>
-                    <a href="#" id="lihat-di-instagram-button">Lihat di Instagram</a>
+                    <a href="https://www.instagram.com/imigrasi_cilegon/?hl=en" id="lihat-di-instagram-button" target="_blank">Lihat di Instagram</a>
                 </div>
                 <div class="instagram-item-wrapper">
-                    <img src="{% static '' %}" id="instagram-picture">
-                    <img src="{% static '' %}" id="instagram-picture">
-                    <img src="{% static '' %}" id="instagram-picture">
-                    <img src="{% static '' %}" id="instagram-picture">
-                    <img src="{% static '' %}" id="instagram-picture">
-                    <img src="{% static '' %}" id="instagram-picture">
-                    <img src="{% static '' %}" id="instagram-picture">
-                    <img src="{% static '' %}" id="instagram-picture">
-                    <img src="{% static '' %}" id="instagram-picture">
-                    <img src="{% static '' %}" id="instagram-picture">
-                    <img src="{% static '' %}" id="instagram-picture">
-                    <img src="{% static '' %}" id="instagram-picture">
+                    {% if instagram_image %}
+                        {% for image in instagram_image %}
+                            <img src='{{ image }}' id="instagram-picture">
+                        {% endfor %}
+
+                    {% endif %}
                 </div>
             </div>
             <div class="twitter-wrapper">
