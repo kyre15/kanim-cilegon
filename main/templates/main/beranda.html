@@ -4,7 +4,9 @@
 {% block title %}{% endblock %}
 
 {% block content %}
+    <div class="full-screen" id="overlay" onclick="overlayOff()"></div>
     <div class="overlay">
+        <div class="full-screen" id="overlay" onclick="overlayMaklumatOff()"></div>
         <div class="maklumat-wrapper">
             <div class="maklumat-container">
                 <img src="{% static 'main/img/maklumat-pelayanan.png' %}" id="maklumat-image">

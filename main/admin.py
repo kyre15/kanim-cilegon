@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django import forms
 
-from main.models import MainMenu, SubMenu, Content, Menu, YoutubeVideo, Berita, BeritaImage, FotoGaleri, FileArsipDanDokumen, Kakanim, StrukturOrganisasi, VisiDanMisi, ListPerusahaanDanPenginapanWilayahKerja
+from main.models import MainMenu, SubMenu, Content, Menu, YoutubeVideo, Berita, BeritaImage, FotoGaleri, FileArsipDanDokumen, Kakanim, StrukturOrganisasi, VisiDanMisi, ListPerusahaanDanPenginapanWilayahKerja, LaporanPelayananWNA, LaporanPelayananWNI, IndexPersepsiKorupsi, IndexKepuasanMasyarakat
 
 # class MainMenuField(admin.ModelAdmin):
 #     list_display = ('main_menu_name', 'create_at')
@@ -17,7 +17,6 @@ from main.models import MainMenu, SubMenu, Content, Menu, YoutubeVideo, Berita, 
 #     list_display = ('submenu_name', 'create_at', 'permalink', 'menu')
 #     search_fields = ['submenu_name']
 # admin.site.register(SubMenu, SubMenuField)
-
 
 class ContentForm(forms.ModelForm):
     pass
@@ -71,3 +70,43 @@ admin.site.register(VisiDanMisi, VisiMisiField)
 class ListPerusahaanDanPenginapanWilayahKerjaField(admin.ModelAdmin):
     list_display = ('wilayah_kerja', 'list_of_perusahaan_penginapan', 'create_at')
 admin.site.register(ListPerusahaanDanPenginapanWilayahKerja, ListPerusahaanDanPenginapanWilayahKerjaField)
+
+class LaporanPelayanWNIField(admin.ModelAdmin):
+    list_display = (
+        'date',
+        'total_paspor_baru',
+        'total_pergantian_paspor',
+        'total_pergantian_paspor_hilang_rusak',
+        'total_penyerahan_paspor'
+    )
+admin.site.register(LaporanPelayananWNI, LaporanPelayanWNIField)
+
+class LaporanPelayanWNAField(admin.ModelAdmin):
+    list_display = (
+        'date',
+        'total_ijin_tinggal_kunjungan',
+        'total_izin_tinggal_terbatas'
+    )
+admin.site.register(LaporanPelayananWNA, LaporanPelayanWNAField)
+
+class IndexPersepsiKorupsiField(admin.ModelAdmin):
+    list_display = (
+        'date',
+        'total_sangat_baik',
+        'total_baik',
+        'total_kurang_baik',
+        'total_tidak_baik',
+        'p'
+    )
+admin.site.register(IndexPersepsiKorupsi, IndexPersepsiKorupsiField)
+
+class IndexKepuasanMasyarakatField(admin.ModelAdmin):
+    list_display = (
+        'date',
+        'total_sangat_baik',
+        'total_baik',
+        'total_kurang_baik',
+        'total_tidak_baik',
+        'p'
+    )
+admin.site.register(IndexKepuasanMasyarakat, IndexKepuasanMasyarakatField)

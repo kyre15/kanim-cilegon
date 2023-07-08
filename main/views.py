@@ -1,6 +1,9 @@
 from django.shortcuts import render
 
-from .models import FotoGaleri, Berita, BeritaImage, YoutubeVideo, FileArsipDanDokumen, SubMenu, Content, Menu, VisiDanMisi, Kakanim, StrukturOrganisasi, ListPerusahaanDanPenginapanWilayahKerja
+from .models import FotoGaleri, Berita, BeritaImage, YoutubeVideo, FileArsipDanDokumen, SubMenu, Content, Menu, \
+    VisiDanMisi, Kakanim, StrukturOrganisasi, ListPerusahaanDanPenginapanWilayahKerja, LaporanPelayananWNI, \
+    LaporanPelayananWNA, IndexPersepsiKorupsi, IndexKepuasanMasyarakat
+from datetime import datetime, timedelta
 
 import subprocess
 import os
@@ -223,9 +226,28 @@ def berita_detail(request, pk):
     })
 
 def dasbor_publik(response):
+    one_week_ago = datetime.today() - timedelta(days=7)
+
+    this_week_laporan_pelayanan_wni = LaporanPelayananWNI.objects.filter(date__gte=one_week_ago)
+    this_month_laporan_pelayanan_wni = LaporanPelayananWNI.objects.filter(date__month=str(datetime.today().month))
+    this_year_laporan_pelayanan_wni = LaporanPelayananWNI.objects.filter(date__year=str(datetime.today().year))
+    this_week_laporan_pelayanan_wna = LaporanPelayananWNA.objects.filter(date__gte=one_week_ago)
+    this_month_laporan_pelayanan_wna = LaporanPelayananWNA.objects.filter(date__month=str(datetime.today().month))
+    this_year_laporan_pelayanan_wna = LaporanPelayananWNA.objects.filter(date__year=str(datetime.today().year))
+    this_month_ipk = IndexPersepsiKorupsi.objects.filter(date__month=str(datetime.today().month))
+    this_year_ipk = IndexPersepsiKorupsi.objects.filter(date__year=str(datetime.today().year))
+    this_month_ikm = IndexKepuasanMasyarakat.objects.filter(date__month=str(datetime.today().month))
+    this_year_ikm = IndexKepuasanMasyarakat.objects.filter(date__year=str(datetime.today().year))
+    print(this_week_laporan_pelayanan_wni)
+    print(this_month_laporan_pelayanan_wni)
+    print(this_year_laporan_pelayanan_wni)
+
     return render(response, "main/dasbor-publik.html", {
 
     })
+
+def total_pelayanan(total_sangat_baik, total_baik, total_kurang_baik, total_tidak_baik):
+    return (total_sangat_baik + total_baik + total_kurang_baik + total_tidak_baik)
 
 def get_berita_image(beritas):
     list_of_berita_image = []
