@@ -176,3 +176,31 @@ class ListPerusahaanDanPenginapanWilayahKerja(models.Model):
     wilayah_kerja = models.CharField(max_length=20, choices=WILAYAH_KERJA)
     list_of_perusahaan_penginapan = RichTextUploadingField()
     create_at = models.DateTimeField(auto_now_add=True)
+
+class LaporanPelayananWNI(models.Model):
+    date = models.DateTimeField()
+    total_paspor_baru = models.IntegerField()
+    total_pergantian_paspor = models.IntegerField()
+    total_pergantian_paspor_hilang_rusak = models.IntegerField()
+    total_penyerahan_paspor = models.IntegerField()
+
+class LaporanPelayananWNA(models.Model):
+    date = models.DateTimeField()
+    total_ijin_tinggal_kunjungan = models.IntegerField()
+    total_izin_tinggal_terbatas = models.IntegerField()
+
+class IndexPersepsiKorupsi(models.Model):
+    date = models.DateTimeField()
+    total_sangat_baik = models.IntegerField()
+    total_baik = models.IntegerField()
+    total_kurang_baik = models.IntegerField()
+    total_tidak_baik = models.IntegerField()
+    p = models.CharField(max_length=5)
+
+class IndexKepuasanMasyarakat(models.Model):
+    date = models.DateTimeField()
+    total_sangat_baik = models.IntegerField()
+    total_baik = models.IntegerField()
+    total_kurang_baik = models.IntegerField()
+    total_tidak_baik = models.IntegerField()
+    p = models.CharField(max_length=5)
