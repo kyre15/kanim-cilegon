@@ -1967,7 +1967,7 @@ a #izin-tinggal-online-button {
 .berita-header-container {
   height: 524px;
   width: 100%;
-  background: linear-gradient(0deg, #1E293B, #1E293B), url('../static/main/img/header-background.jpg');
+  background: linear-gradient(0deg, #1E293B, #1E293B), url('/static/main/img/header-background.jpg');
   background-blend-mode: multiply, normal;
   position: relative;
 }
@@ -2478,7 +2478,7 @@ a #izin-tinggal-online-button {
 
 #rinci-pelayanan-mingguan-title {
   position: absolute;
-  width: 63px;
+  width: 80px;
   height: 24px;
   left: 24px;
   top: 24px;
@@ -2750,6 +2750,7 @@ a #izin-tinggal-online-button {
   font-weight: 700;
   font-size: 14px;
   line-height: 20px;
+  justify-content: flex-end;
 }
 
 .file-wrapper {
@@ -3588,5 +3589,24 @@ ol li {
 .maklumat-container {
   display: flex;
   position: relative;
-  margin: auto 0px auto 0px;
+  margin: auto;
+}
+
+.laporan-tahun-ini,
+.laporan-minggu-ini {
+  display: none;
+}
+
+.ipk-dan-ikm-container {
+  background-color: white;
+  position: relative;
+  display: none;
+}
+
+.ipk-dan-ikm-wrapper {
+  width: 1232px;
+  height: fit-content;
+  margin: auto auto 120px auto;
+  position: relative;
+  display: grid;
 }

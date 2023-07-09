@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db.models import Sum, F
 
 from .models import FotoGaleri, Berita, BeritaImage, YoutubeVideo, FileArsipDanDokumen, SubMenu, Content, Menu, \
     VisiDanMisi, Kakanim, StrukturOrganisasi, ListPerusahaanDanPenginapanWilayahKerja, LaporanPelayananWNI, \
@@ -228,6 +229,16 @@ def berita_detail(request, pk):
 def dasbor_publik(response):
     one_week_ago = datetime.today() - timedelta(days=7)
 
+    total_laporan_pelayanan_wni = LaporanPelayananWNI.objects.all().aggregate(total=Sum(
+        F('total_paspor_baru') +
+        F('total_pergantian_paspor') +
+        F('total_pergantian_paspor_hilang_rusak') +
+        F('total_penyerahan_paspor')
+    ))['total']
+    total_laporan_pelayanan_wna = LaporanPelayananWNA.objects.all().aggregate(total=Sum(
+        F('total_ijin_tinggal_kunjungan') +
+        F('total_izin_tinggal_terbatas')
+    ))['total']
     this_week_laporan_pelayanan_wni = LaporanPelayananWNI.objects.filter(date__gte=one_week_ago)
     this_month_laporan_pelayanan_wni = LaporanPelayananWNI.objects.filter(date__month=str(datetime.today().month))
     this_year_laporan_pelayanan_wni = LaporanPelayananWNI.objects.filter(date__year=str(datetime.today().year))
@@ -238,16 +249,130 @@ def dasbor_publik(response):
     this_year_ipk = IndexPersepsiKorupsi.objects.filter(date__year=str(datetime.today().year))
     this_month_ikm = IndexKepuasanMasyarakat.objects.filter(date__month=str(datetime.today().month))
     this_year_ikm = IndexKepuasanMasyarakat.objects.filter(date__year=str(datetime.today().year))
-    print(this_week_laporan_pelayanan_wni)
-    print(this_month_laporan_pelayanan_wni)
-    print(this_year_laporan_pelayanan_wni)
+
 
     return render(response, "main/dasbor-publik.html", {
-
+        'total_all_pelayanan': total_laporan_pelayanan_wni + total_laporan_pelayanan_wna,
+        'total_all_this_week_pelayanan':
+            this_week_laporan_pelayanan_wni.aggregate(total=Sum(
+                F('total_paspor_baru') +
+                F('total_pergantian_paspor') +
+                F('total_pergantian_paspor_hilang_rusak') +
+                F('total_penyerahan_paspor')
+            ))['total'] +
+            this_week_laporan_pelayanan_wna.aggregate(total=Sum(
+                F('total_ijin_tinggal_kunjungan') +
+                F('total_izin_tinggal_terbatas')
+            ))['total'],
+        'total_all_this_month_pelayanan':
+            this_month_laporan_pelayanan_wni.aggregate(total=Sum(
+                F('total_paspor_baru') +
+                F('total_pergantian_paspor') +
+                F('total_pergantian_paspor_hilang_rusak') +
+                F('total_penyerahan_paspor')
+            ))['total'] +
+            this_month_laporan_pelayanan_wna.aggregate(total=Sum(
+                F('total_ijin_tinggal_kunjungan') +
+                F('total_izin_tinggal_terbatas')
+            ))['total'],
+        'total_all_this_year_pelayanan':
+            this_year_laporan_pelayanan_wni.aggregate(total=Sum(
+                F('total_paspor_baru') +
+                F('total_pergantian_paspor') +
+                F('total_pergantian_paspor_hilang_rusak') +
+                F('total_penyerahan_paspor')
+            ))['total'] +
+            this_year_laporan_pelayanan_wna.aggregate(total=Sum(
+                F('total_ijin_tinggal_kunjungan') +
+                F('total_izin_tinggal_terbatas')
+            ))['total'],
+        'total_this_month_wni': this_month_laporan_pelayanan_wni.aggregate(total=Sum(
+                F('total_paspor_baru') +
+                F('total_pergantian_paspor') +
+                F('total_pergantian_paspor_hilang_rusak') +
+                F('total_penyerahan_paspor')
+            ))['total'],
+        'total_this_month_paspor_baru_wni': aggregateSpecificField(
+            this_month_laporan_pelayanan_wni, 'total_paspor_baru'),
+        'total_this_month_total_pergantian_paspor_wni': aggregateSpecificField(
+            this_month_laporan_pelayanan_wni, 'total_pergantian_paspor'),
+        'total_this_month_total_pergantian_paspor_hilang_rusak_wni': aggregateSpecificField(
+            this_month_laporan_pelayanan_wni, 'total_pergantian_paspor_hilang_rusak'),
+        'total_this_month_total_penyerahan_paspor_wni': aggregateSpecificField(
+            this_month_laporan_pelayanan_wni, 'total_penyerahan_paspor'),
+        'total_this_month_wna': this_month_laporan_pelayanan_wna.aggregate(total=Sum(
+                F('total_ijin_tinggal_kunjungan') +
+                F('total_izin_tinggal_terbatas')
+            ))['total'],
+        'total_this_month_total_ijin_tinggal_kunjungan_wna': aggregateSpecificField(
+            this_month_laporan_pelayanan_wna, 'total_ijin_tinggal_kunjungan'),
+        'total_this_month_total_izin_tinggal_terbatas_paspor_wna': aggregateSpecificField(
+            this_month_laporan_pelayanan_wna, 'total_izin_tinggal_terbatas'),
+        'total_this_week_wni': this_week_laporan_pelayanan_wni.aggregate(total=Sum(
+            F('total_paspor_baru') +
+            F('total_pergantian_paspor') +
+            F('total_pergantian_paspor_hilang_rusak') +
+            F('total_penyerahan_paspor')
+        ))['total'],
+        'total_this_week_paspor_baru_wni': aggregateSpecificField(
+            this_week_laporan_pelayanan_wni, 'total_paspor_baru'),
+        'total_this_week_total_pergantian_paspor_wni': aggregateSpecificField(
+            this_week_laporan_pelayanan_wni, 'total_pergantian_paspor'),
+        'total_this_week_total_pergantian_paspor_hilang_rusak_wni': aggregateSpecificField(
+            this_week_laporan_pelayanan_wni, 'total_pergantian_paspor_hilang_rusak'),
+        'total_this_week_total_penyerahan_paspor_wni': aggregateSpecificField(
+            this_week_laporan_pelayanan_wni, 'total_penyerahan_paspor'),
+        'total_this_week_wna': this_week_laporan_pelayanan_wna.aggregate(total=Sum(
+            F('total_ijin_tinggal_kunjungan') +
+            F('total_izin_tinggal_terbatas')
+        ))['total'],
+        'total_this_week_total_ijin_tinggal_kunjungan_wna': aggregateSpecificField(
+            this_week_laporan_pelayanan_wna, 'total_ijin_tinggal_kunjungan'),
+        'total_this_week_total_izin_tinggal_terbatas_paspor_wna': aggregateSpecificField(
+            this_week_laporan_pelayanan_wna, 'total_izin_tinggal_terbatas'),
+        'total_this_year_wni': this_year_laporan_pelayanan_wni.aggregate(total=Sum(
+            F('total_paspor_baru') +
+            F('total_pergantian_paspor') +
+            F('total_pergantian_paspor_hilang_rusak') +
+            F('total_penyerahan_paspor')
+        ))['total'],
+        'total_this_year_paspor_baru_wni': aggregateSpecificField(
+            this_year_laporan_pelayanan_wni, 'total_paspor_baru'),
+        'total_this_year_total_pergantian_paspor_wni': aggregateSpecificField(
+            this_year_laporan_pelayanan_wni, 'total_pergantian_paspor'),
+        'total_this_year_total_pergantian_paspor_hilang_rusak_wni': aggregateSpecificField(
+            this_year_laporan_pelayanan_wni, 'total_pergantian_paspor_hilang_rusak'),
+        'total_this_year_total_penyerahan_paspor_wni': aggregateSpecificField(
+            this_year_laporan_pelayanan_wni, 'total_penyerahan_paspor'),
+        'total_this_year_wna': this_year_laporan_pelayanan_wna.aggregate(total=Sum(
+            F('total_ijin_tinggal_kunjungan') +
+            F('total_izin_tinggal_terbatas')
+        ))['total'],
+        'total_this_year_total_ijin_tinggal_kunjungan_wna': aggregateSpecificField(
+            this_year_laporan_pelayanan_wna, 'total_ijin_tinggal_kunjungan'),
+        'total_this_year_total_izin_tinggal_terbatas_paspor_wna': aggregateSpecificField(
+            this_year_laporan_pelayanan_wna, 'total_izin_tinggal_terbatas'),
+        'this_year_ipk': this_year_ipk,
+        'this_year_ikm': this_year_ikm
     })
 
-def total_pelayanan(total_sangat_baik, total_baik, total_kurang_baik, total_tidak_baik):
-    return (total_sangat_baik + total_baik + total_kurang_baik + total_tidak_baik)
+def aggregateSpecificField(table, field):
+    total = 0
+    for i in table:
+        if field == 'total_paspor_baru':
+            total = total + i.total_paspor_baru
+        elif field == 'total_pergantian_paspor':
+            total = total + i.total_pergantian_paspor
+        elif field == 'total_pergantian_paspor_hilang_rusak':
+            total = total + i.total_pergantian_paspor_hilang_rusak
+        elif field == 'total_penyerahan_paspor':
+            total = total + i.total_penyerahan_paspor
+        elif field == 'total_ijin_tinggal_kunjungan':
+            total = total + i.total_ijin_tinggal_kunjungan
+        elif field == 'total_izin_tinggal_terbatas':
+            total = total + i.total_izin_tinggal_terbatas
+
+    return total
 
 def get_berita_image(beritas):
     list_of_berita_image = []

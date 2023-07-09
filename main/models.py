@@ -204,3 +204,6 @@ class IndexKepuasanMasyarakat(models.Model):
     total_kurang_baik = models.IntegerField()
     total_tidak_baik = models.IntegerField()
     p = models.CharField(max_length=5)
+
+class IPKandIKM(models.Model):
+    date = models.DateTimeField()

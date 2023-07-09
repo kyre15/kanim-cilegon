@@ -8,6 +8,44 @@ function setSubMenuOnLoad() {
     document.getElementById(selectedSubMenu).classList.add("content-core-show");
 }
 
+    function chartGenerator(id, sangatBaik, baik, kurangBaik, tidakBaik) {
+          new Chart(document.getElementById('myChart'+id.toString()), {
+            type: 'bar',
+            data: {
+              labels: ['P1'],
+              datasets: [
+                  {
+                      label: 'Sangat Baik',
+                      data: [sangatBaik],
+                      borderWidth: 1
+                  },
+                  {
+                      label: 'Baik',
+                      data: [baik],
+                      borderWidth: 1
+                  },
+                  {
+                      label: 'Kurang Baik',
+                      data: [kurangBaik],
+                      borderWidth: 1
+                  },
+                  {
+                      label: 'Tidak Baik',
+                      data: [tidakBaik],
+                      borderWidth: 1
+                  },
+              ]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+    }
+
 function showFirstSlide() {
     let slide = document.getElementsByClassName("mySlides")[0];
     slide.style.display = "block";
@@ -261,6 +299,22 @@ function galeri(tab){
     }
 }
 
+function dasbor(tab){
+  var laporanTabElement = document.getElementsByClassName('rinci-pelayanan-container')[0];
+  var ipkdanikmTabElement = document.getElementsByClassName('ipk-dan-ikm-container')[0];
+
+  switch (tab) {
+    case 'laporan':
+        laporanTabElement.style.display = "flex";
+        ipkdanikmTabElement.style.display = "none";
+        break;
+    case 'ipkdanikm':
+        laporanTabElement.style.display = "none";
+        ipkdanikmTabElement.style.display = "flex";
+        break;
+    }
+}
+
 function berita(tab) {
     var kantorImigrasiCilegonEle = document.getElementsByClassName('berita-grid-kantor-imigrasi-cilegon')[0];
     var kemenkumhamRepublikIndonesiaEle = document.getElementsByClassName('berita-grid-kemenkumham-republik-indonesia')[0];
@@ -299,4 +353,31 @@ function berita(tab) {
             kemenkumhamKanwilBanten.classList.add("show");
             break;
     }
-  }
+}
+
+function dropDownPelayanan() {
+    var selectBox = document.getElementById("laporan-dropdown");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+
+    let bulanIniDropdown = document.getElementsByClassName('laporan-bulan-ini')[0];
+    let tahunIniDropdown = document.getElementsByClassName('laporan-tahun-ini')[0];
+    let mingguIniDropdown = document.getElementsByClassName('laporan-minggu-ini')[0];
+
+    switch (selectedValue) {
+        case 'bulan-ini':
+            bulanIniDropdown.style.display = "flex";
+            tahunIniDropdown.style.display = "none";
+            mingguIniDropdown.style.display = "none";
+            break;
+        case 'tahun-ini':
+            bulanIniDropdown.style.display = "none";
+            tahunIniDropdown.style.display = "flex";
+            mingguIniDropdown.style.display = "none";
+            break;
+        case 'minggu-ini':
+            bulanIniDropdown.style.display = "none";
+            tahunIniDropdown.style.display = "none";
+            mingguIniDropdown.style.display = "flex";
+            break;
+    }
+}

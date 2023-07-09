@@ -8,85 +8,244 @@
     <div class="main-content-galeri">
         <div class="content-galeri-wrapper">
             <div class="content-galeri-tab-wrapper">
-                <button id="content-galeri-foto-tab-button" autofocus onclick="">Laporan Pelayanan</button>
-                <button id="content-galeri-video-tab-button" onclick="">IPK dan IKM</button>
+                <button id="content-galeri-foto-tab-button" autofocus onclick="dasbor('laporan')">Laporan Pelayanan</button>
+                <button id="content-galeri-video-tab-button" onclick="dasbor('ipkdanikm')">IPK dan IKM</button>
             </div>
         </div>
     </div>
     <div class="rinci-pelayanan-container">
         <div class="pelayanan-wrapper">
             <div class="rinci-pelayanan-table-wrapper">
-                <span id="rinci-pelayanan-title">6.840 Pelayanan</span>
+                {% if total_all_pelayanan %}
+                    <span id="rinci-pelayanan-title">{{ total_all_pelayanan }} Pelayanan</span>
+                {% endif %}
                 <span id="rinci-pelayanan-subtitle">Total keseluruhan pelayanan di Kantor Imigrasi Kelas II TPI Cilegon</span>
                 <div class="rinci-pelayanan-wrapper">
                     <div class="rinci-pelayanan-tahunan">
                         <span id="rinci-pelayanan-tahunan-title">Tahun ini</span>
-                        <span id="rinci-pelayannan-tahunan-jumlah">4.233 Pelayanan</span>
+                        {% if total_all_this_year_pelayanan %}
+                            <span id="rinci-pelayannan-tahunan-jumlah">{{ total_all_this_year_pelayanan }} Pelayanan</span>
+                        {% endif %}
                     </div>
                     <div class="rinci-pelayanan-bulanana">
                         <span id="rinci-pelayanan-bulanana-title">Bulan ini</span>
-                        <span id="rinci-pelayannan-bulanana-jumlah">4.233 Pelayanan</span>
+                        {% if total_all_this_month_pelayanan %}
+                            <span id="rinci-pelayannan-bulanana-jumlah">{{ total_all_this_month_pelayanan }} Pelayanan</span>
+                        {% endif %}
                     </div>
                     <div class="rinci-pelayanan-mingguan">
                         <span id="rinci-pelayanan-mingguan-title">Minggu ini</span>
-                        <span id="rinci-pelayannan-mingguan-jumlah">4.233 Pelayanan</span>
+                        {% if total_all_this_week_pelayanan %}
+                            <span id="rinci-pelayannan-bulanana-jumlah">{{ total_all_this_week_pelayanan }} Pelayanan</span>
+                        {% endif %}
                     </div>
                 </div>
             </div>
             <div class="laporan-detail-pelayanan-wrapper">
                 <span id="laporan-detail-pelayanan-title">Laporan Detail Pelayanan</span>
-                <button class="dropdown">
-                    <span class="dropdown-text">Bulan Ini</span>
-                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                </button>
-                <div class="dropdown-list" style="display: none;">
-                    <button id="tahun-button">Tahun ini</button>
-                    <button id="bulan-button">Bulan ini</button>
-                    <button id="minggu-button">Minggu ini</button>
-                    <button id="custom-button">Custom</button>
-                </div>
-                <div class="jenis-pelayanan-table-wrapper">
+                <select name="laporan-dropdown" id="laporan-dropdown" class="dropdown" onchange="dropDownPelayanan()">
+                    <option value="bulan-ini">Bulan Ini</option>
+                    <option value="tahun-ini">Tahun Ini</option>
+                    <option value="minggu-ini">Minggu Ini</option>
+{#                    <option value="custom">Custom</option>#}
+                </select>
+                <div class="jenis-pelayanan-table-wrapper laporan-bulan-ini">
                     <div class="jenis-pelayanan-wni-wrapper">
                         <span class="jenis-pelayanan-wni-title">Jenis Pelayannan Warna Negara Indonesia</span>
                         <div class="jenis-pelayanan-wni-item">
-                            <span class="jenis-pelayanan-wni-item-number">1</span>
-                            <span class="jenis-pelayanan-wni-jenis">Paspor Baru</span>
-                            <span class="jenis-pelayanan-wni-jumlah">152</span>
+                            {% if total_this_month_paspor_baru_wni %}
+                                <span class="jenis-pelayanan-wni-item-number">1</span>
+                                <span class="jenis-pelayanan-wni-jenis">Paspor Baru</span>
+                                <span class="jenis-pelayanan-wni-jumlah">{{ total_this_month_paspor_baru_wni }}</span>
+                            {% endif %}
                         </div>
                         <div class="jenis-pelayanan-wni-item">
-                            <span class="jenis-pelayanan-wni-item-number">2</span>
-                            <span class="jenis-pelayanan-wni-jenis">Pergantian Paspor</span>
-                            <span class="jenis-pelayanan-wni-jumlah">227</span>
+                            {% if total_this_month_total_pergantian_paspor_wni %}
+                                <span class="jenis-pelayanan-wni-item-number">2</span>
+                                <span class="jenis-pelayanan-wni-jenis">Pergantian Paspor</span>
+                                <span class="jenis-pelayanan-wni-jumlah">{{ total_this_month_total_pergantian_paspor_wni }}</span>
+                            {% endif %}
                         </div>
-                        <span id="jenis-pelayanan-wni-jumlah-keseluruhan">1123</span>
+                        <div class="jenis-pelayanan-wni-item">
+                            {% if total_this_month_total_pergantian_paspor_hilang_rusak_wni %}
+                                <span class="jenis-pelayanan-wni-item-number">3</span>
+                                <span class="jenis-pelayanan-wni-jenis">Pergantian paspor Hilang Rusak</span>
+                                <span class="jenis-pelayanan-wni-jumlah">{{ total_this_month_total_pergantian_paspor_hilang_rusak_wni }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="jenis-pelayanan-wni-item">
+                            {% if total_this_month_total_penyerahan_paspor_wni %}
+                                <span class="jenis-pelayanan-wni-item-number">4</span>
+                                <span class="jenis-pelayanan-wni-jenis">Penyerahan Paspor</span>
+                                <span class="jenis-pelayanan-wni-jumlah">{{ total_this_month_total_penyerahan_paspor_wni }}</span>
+                            {% endif %}
+                        </div>
+                    {% if total_this_month_wni %}
+                        <span id="jenis-pelayanan-wni-jumlah-keseluruhan">{{ total_this_month_wni }}</span>
+                    {% endif %}
                     </div>
                     <div class="jenis-pelayanan-wna-wrapper">
                         <span class="jenis-pelayanan-wna-title">Jenis Pelayannan Warna Negara Asing</span>
                         <div class="jenis-pelayanan-wna-item">
-                            <span class="jenis-pelayanan-wna-item-number">1</span>
-                            <span class="jenis-pelayanan-wna-jenis">Ijin Tinggal Kunjungan</span>
-                            <span class="jenis-pelayanan-wna-jumlah">24</span>
+                            {% if total_this_month_total_ijin_tinggal_kunjungan_wna %}
+                                <span class="jenis-pelayanan-wna-item-number">1</span>
+                                <span class="jenis-pelayanan-wna-jenis">Ijin Tinggal Kunjungan</span>
+                                <span class="jenis-pelayanan-wna-jumlah">{{ total_this_month_total_ijin_tinggal_kunjungan_wna }}</span>
+                            {% endif %}
                         </div>
                         <div class="jenis-pelayanan-wna-item">
-                            <span class="jenis-pelayanan-wna-item-number">2</span>
-                            <span class="jenis-pelayanan-wna-jenis">Izin Tinggal Terbatas</span>
-                            <span class="jenis-pelayanan-wna-jumlah">46</span>
+                            {% if total_this_month_total_izin_tinggal_terbatas_paspor_wna %}
+                                <span class="jenis-pelayanan-wna-item-number">2</span>
+                                <span class="jenis-pelayanan-wna-jenis">Izin Tinggal Terbatas</span>
+                                <span class="jenis-pelayanan-wna-jumlah">{{ total_this_month_total_izin_tinggal_terbatas_paspor_wna }}</span>
+                            {% endif %}
                         </div>
-                        <span id="jenis-pelayanan-wna-jumlah-keseluruhan">120</span>
+                    {% if total_this_month_wna %}
+                        <span id="jenis-pelayanan-wna-jumlah-keseluruhan">{{ total_this_month_wna }}</span>
+                    {% endif %}
+                    </div>
+                </div>
+                <div class="jenis-pelayanan-table-wrapper laporan-tahun-ini">
+                    <div class="jenis-pelayanan-wni-wrapper">
+                        <span class="jenis-pelayanan-wni-title">Jenis Pelayannan Warna Negara Indonesia</span>
+                        <div class="jenis-pelayanan-wni-item">
+                            {% if total_this_year_paspor_baru_wni %}
+                                <span class="jenis-pelayanan-wni-item-number">1</span>
+                                <span class="jenis-pelayanan-wni-jenis">Paspor Baru</span>
+                                <span class="jenis-pelayanan-wni-jumlah">{{ total_this_year_paspor_baru_wni }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="jenis-pelayanan-wni-item">
+                            {% if total_this_year_total_pergantian_paspor_wni %}
+                                <span class="jenis-pelayanan-wni-item-number">2</span>
+                                <span class="jenis-pelayanan-wni-jenis">Pergantian Paspor</span>
+                                <span class="jenis-pelayanan-wni-jumlah">{{ total_this_year_total_pergantian_paspor_wni }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="jenis-pelayanan-wni-item">
+                            {% if total_this_year_total_pergantian_paspor_hilang_rusak_wni %}
+                                <span class="jenis-pelayanan-wni-item-number">3</span>
+                                <span class="jenis-pelayanan-wni-jenis">Pergantian paspor Hilang Rusak</span>
+                                <span class="jenis-pelayanan-wni-jumlah">{{ total_this_year_total_pergantian_paspor_hilang_rusak_wni }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="jenis-pelayanan-wni-item">
+                            {% if total_this_year_total_penyerahan_paspor_wni %}
+                                <span class="jenis-pelayanan-wni-item-number">4</span>
+                                <span class="jenis-pelayanan-wni-jenis">Penyerahan Paspor</span>
+                                <span class="jenis-pelayanan-wni-jumlah">{{ total_this_year_total_penyerahan_paspor_wni }}</span>
+                            {% endif %}
+                        </div>
+                    {% if total_this_year_wni %}
+                        <span id="jenis-pelayanan-wni-jumlah-keseluruhan">{{ total_this_year_wni }}</span>
+                    {% endif %}
+                    </div>
+                    <div class="jenis-pelayanan-wna-wrapper">
+                        <span class="jenis-pelayanan-wna-title">Jenis Pelayannan Warna Negara Asing</span>
+                        <div class="jenis-pelayanan-wna-item">
+                            {% if total_this_year_total_ijin_tinggal_kunjungan_wna %}
+                                <span class="jenis-pelayanan-wna-item-number">1</span>
+                                <span class="jenis-pelayanan-wna-jenis">Ijin Tinggal Kunjungan</span>
+                                <span class="jenis-pelayanan-wna-jumlah">{{ total_this_year_total_ijin_tinggal_kunjungan_wna }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="jenis-pelayanan-wna-item">
+                            {% if total_this_year_total_izin_tinggal_terbatas_paspor_wna %}
+                                <span class="jenis-pelayanan-wna-item-number">2</span>
+                                <span class="jenis-pelayanan-wna-jenis">Izin Tinggal Terbatas</span>
+                                <span class="jenis-pelayanan-wna-jumlah">{{ total_this_year_total_izin_tinggal_terbatas_paspor_wna }}</span>
+                            {% endif %}
+                        </div>
+                    {% if total_this_year_wna %}
+                        <span id="jenis-pelayanan-wna-jumlah-keseluruhan">{{ total_this_year_wna }}</span>
+                    {% endif %}
+                    </div>
+                </div>
+                <div class="jenis-pelayanan-table-wrapper laporan-minggu-ini">
+                    <div class="jenis-pelayanan-wni-wrapper">
+                        <span class="jenis-pelayanan-wni-title">Jenis Pelayannan Warna Negara Indonesia</span>
+                        <div class="jenis-pelayanan-wni-item">
+                            {% if total_this_week_paspor_baru_wni %}
+                                <span class="jenis-pelayanan-wni-item-number">1</span>
+                                <span class="jenis-pelayanan-wni-jenis">Paspor Baru</span>
+                                <span class="jenis-pelayanan-wni-jumlah">{{ total_this_week_paspor_baru_wni }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="jenis-pelayanan-wni-item">
+                            {% if total_this_week_total_pergantian_paspor_wni %}
+                                <span class="jenis-pelayanan-wni-item-number">2</span>
+                                <span class="jenis-pelayanan-wni-jenis">Pergantian Paspor</span>
+                                <span class="jenis-pelayanan-wni-jumlah">{{ total_this_week_total_pergantian_paspor_wni }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="jenis-pelayanan-wni-item">
+                            {% if total_this_week_total_pergantian_paspor_hilang_rusak_wni %}
+                                <span class="jenis-pelayanan-wni-item-number">3</span>
+                                <span class="jenis-pelayanan-wni-jenis">Pergantian paspor Hilang Rusak</span>
+                                <span class="jenis-pelayanan-wni-jumlah">{{ total_this_week_total_pergantian_paspor_hilang_rusak_wni }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="jenis-pelayanan-wni-item">
+                            {% if total_this_week_total_penyerahan_paspor_wni %}
+                                <span class="jenis-pelayanan-wni-item-number">4</span>
+                                <span class="jenis-pelayanan-wni-jenis">Penyerahan Paspor</span>
+                                <span class="jenis-pelayanan-wni-jumlah">{{ total_this_week_total_penyerahan_paspor_wni }}</span>
+                            {% endif %}
+                        </div>
+                    {% if total_this_week_wni %}
+                        <span id="jenis-pelayanan-wni-jumlah-keseluruhan">{{ total_this_week_wni }}</span>
+                    {% endif %}
+                    </div>
+                    <div class="jenis-pelayanan-wna-wrapper">
+                        <span class="jenis-pelayanan-wna-title">Jenis Pelayannan Warna Negara Asing</span>
+                        <div class="jenis-pelayanan-wna-item">
+                            {% if total_this_week_total_ijin_tinggal_kunjungan_wna %}
+                                <span class="jenis-pelayanan-wna-item-number">1</span>
+                                <span class="jenis-pelayanan-wna-jenis">Ijin Tinggal Kunjungan</span>
+                                <span class="jenis-pelayanan-wna-jumlah">{{ total_this_week_total_ijin_tinggal_kunjungan_wna }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="jenis-pelayanan-wna-item">
+                            {% if total_this_week_total_izin_tinggal_terbatas_paspor_wna %}
+                                <span class="jenis-pelayanan-wna-item-number">2</span>
+                                <span class="jenis-pelayanan-wna-jenis">Izin Tinggal Terbatas</span>
+                                <span class="jenis-pelayanan-wna-jumlah">{{ total_this_week_total_izin_tinggal_terbatas_paspor_wna }}</span>
+                            {% endif %}
+                        </div>
+                    {% if total_this_week_wna %}
+                        <span id="jenis-pelayanan-wna-jumlah-keseluruhan">{{ total_this_week_wna }}</span>
+                    {% endif %}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-     <div class="ipk-dan-ikm-container">
+    <div class="ipk-dan-ikm-container">
         <div class="ipk-dan-ikm-wrapper">
-
+            <div class="row">
+                {% if this_year_ikm %}
+                    {% for ikm in this_year_ikm %}
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <canvas id="myChart{{ ikm.id }}"></canvas>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
         </div>
     </div>
     {% include 'layouts/jam-layanan.html' %}
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
     window.onload = function () {
         setSubMenuOnLoad();
     }
+    {% for ipk in this_year_ipk %}
+        chartGenerator({{ ipk.id }},
+            {{ ipk.total_sangat_baik }},
+            {{ ipk.total_baik }},
+            {{ ipk.total_kurang_baik }},
+            {{ ipk.total_tidak_baik }});
+    {% endfor %}
     </script>
 {% endblock %}
