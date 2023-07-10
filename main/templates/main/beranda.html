@@ -95,7 +95,9 @@
     </div>
     <div class="laporan-pelayanan-container">
         <div class="total-pelayanan-container">
-            <b id="total-keseluruhan-pelayanan" align="left">6.840</b>
+            {% if total_all_pelayanan %}
+                <b id="total-keseluruhan-pelayanan" align="left">{{ total_all_pelayanan }}</b>
+            {% endif %}
             <p align="left">Total keseluruhan pelayanan di Kantor Imigrasi Kelas II TPI Cilegon</p>
             <span id="terakhir-update" align="left">Update Terakhir: 13 Mei 2023</span>
             <a href="{% url 'dasbor-publik' %}"><button>Laporan Pelayanan Selengkapnya</button></a>
@@ -103,15 +105,21 @@
         <div class="card-container">
             <div class="pelayanan-minggu-ini card">
                 <p id="pelayanan-minggu-ini-title" align="left">Minggu ini</p>
-                <p id="pelayanan-minggu-ini-total" align="left">776 Pelayanan</p>
+                {% if total_all_this_week_pelayanan %}
+                    <p id="pelayanan-minggu-ini-total" align="left">{{ total_all_this_week_pelayanan }} Pelayanan</p>
+                {% endif %}
             </div>
         <div class="pelayanan-bulan-ini card">
             <p id="pelayanan-bulan-ini-title" align="left">bulan ini</p>
-            <p id="pelayanan-bulan-ini-total" align="left">2.104 Pelayanan</p>
+            {% if total_all_this_month_pelayanan %}
+                <p id="pelayanan-bulan-ini-total" align="left">{{ total_all_this_month_pelayanan }} Pelayanan</p>
+            {% endif %}
         </div>
         <div class="pelayanan-tahun-ini card">
             <p id="pelayanan-tahun-ini-title" align="left">tahun ini</p>
-            <p id="pelayanan-tahun-ini-total" align="left">4.233 Pelayanan</p>
+            {% if total_all_this_year_pelayanan %}
+                <p id="pelayanan-tahun-ini-total" align="left">{{ total_all_this_year_pelayanan }} Pelayanan</p>
+            {% endif %}
         </div>
         </div>
     </div>
@@ -192,15 +200,14 @@
                 </div>
                 <div class="instagram-item-wrapper">
                     {% if instagram_image %}
-                        {% for image in instagram_image %}
+                        {% for image in instagram_image|slice:":12" %}
                             <img src='{{ image }}' id="instagram-picture">
                         {% endfor %}
-
                     {% endif %}
                 </div>
             </div>
             <div class="twitter-wrapper">
-                <a class="twitter-timeline" data-width="397" data-height="654" href="https://twitter.com/kanim_cilegon?ref_src=twsrc%5Etfw">Tweets by kanim_cilegon</a>
+                <a class="twitter-timeline" data-width="397" data-height="654" href="https://twitter.com/kanim_cilegon">Tweets by kanim_cilegon</a>
                 <div class="view-more-twitter-wrapper">
                     <a href="https://twitter.com/kanim_cilegon" id="view-more-twitter" target="_blank">View more on Twitter</a>
                 </div>

@@ -11,6 +11,7 @@ import os
 import threading
 
 def home(response):
+    one_week_ago = datetime.today() - timedelta(days=7)
     wni_menus = SubMenu.objects.filter(menu__menu_name__contains="Warga Negara Indonesia")
     wna_menus = SubMenu.objects.filter(menu__menu_name__contains="Warga Negara Asing")
     highlight_foto = FotoGaleri.objects.order_by("-image_added_at")[0]
@@ -23,6 +24,22 @@ def home(response):
     subprocess.run(["cp", "-R", "imigrasi_cilegon", "images/"])
     fetch_image = threading.Thread(target=fetch_instagram, args=[])
     fetch_image.start()
+    total_laporan_pelayanan_wni = LaporanPelayananWNI.objects.all().aggregate(total=Sum(
+        F('total_paspor_baru') +
+        F('total_pergantian_paspor') +
+        F('total_pergantian_paspor_hilang_rusak') +
+        F('total_penyerahan_paspor')
+    ))['total']
+    total_laporan_pelayanan_wna = LaporanPelayananWNA.objects.all().aggregate(total=Sum(
+        F('total_ijin_tinggal_kunjungan') +
+        F('total_izin_tinggal_terbatas')
+    ))['total']
+    this_week_laporan_pelayanan_wni = LaporanPelayananWNI.objects.filter(date__gte=one_week_ago)
+    this_month_laporan_pelayanan_wni = LaporanPelayananWNI.objects.filter(date__month=str(datetime.today().month))
+    this_year_laporan_pelayanan_wni = LaporanPelayananWNI.objects.filter(date__year=str(datetime.today().year))
+    this_week_laporan_pelayanan_wna = LaporanPelayananWNA.objects.filter(date__gte=one_week_ago)
+    this_month_laporan_pelayanan_wna = LaporanPelayananWNA.objects.filter(date__month=str(datetime.today().month))
+    this_year_laporan_pelayanan_wna = LaporanPelayananWNA.objects.filter(date__year=str(datetime.today().year))
 
     return render(response, "main/beranda.html",{
           'wni_menus': wni_menus,
@@ -33,7 +50,47 @@ def home(response):
           'headline_berita_image': headline_berita_image,
           'berita_with_image': zip(beritas, get_berita_image(beritas)),
           'youtube_videos': youtube_videos,
-          'instagram_image': get_list_of_instagram()
+          'instagram_image': get_list_of_instagram(),
+        'total_all_pelayanan': total_laporan_pelayanan_wni + total_laporan_pelayanan_wna,
+        'total_all_this_week_pelayanan':
+            this_week_laporan_pelayanan_wni.aggregate(total=Sum(
+                F('total_paspor_baru') +
+                F('total_pergantian_paspor') +
+                F('total_pergantian_paspor_hilang_rusak') +
+                F('total_penyerahan_paspor')
+            ))['total'] +
+            this_week_laporan_pelayanan_wna.aggregate(total=Sum(
+                F('total_ijin_tinggal_kunjungan') +
+                F('total_izin_tinggal_terbatas')
+            ))['total'],
+        'total_all_this_month_pelayanan':
+            this_month_laporan_pelayanan_wni.aggregate(total=Sum(
+                F('total_paspor_baru') +
+                F('total_pergantian_paspor') +
+                F('total_pergantian_paspor_hilang_rusak') +
+                F('total_penyerahan_paspor')
+            ))['total'] +
+            this_month_laporan_pelayanan_wna.aggregate(total=Sum(
+                F('total_ijin_tinggal_kunjungan') +
+                F('total_izin_tinggal_terbatas')
+            ))['total'],
+        'total_all_this_year_pelayanan':
+            this_year_laporan_pelayanan_wni.aggregate(total=Sum(
+                F('total_paspor_baru') +
+                F('total_pergantian_paspor') +
+                F('total_pergantian_paspor_hilang_rusak') +
+                F('total_penyerahan_paspor')
+            ))['total'] +
+            this_year_laporan_pelayanan_wna.aggregate(total=Sum(
+                F('total_ijin_tinggal_kunjungan') +
+                F('total_izin_tinggal_terbatas')
+            ))['total'],
+        'total_this_month_wni': this_month_laporan_pelayanan_wni.aggregate(total=Sum(
+            F('total_paspor_baru') +
+            F('total_pergantian_paspor') +
+            F('total_pergantian_paspor_hilang_rusak') +
+            F('total_penyerahan_paspor')
+        ))['total']
         })
 
 def fetch_instagram():
