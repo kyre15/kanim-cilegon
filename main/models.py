@@ -146,6 +146,7 @@ class StrukturOrganisasi(models.Model):
     name = models.CharField(max_length=50)
     jabatan = models.CharField(max_length=100, choices=JABATAN)
     TMT = models.DateTimeField()
+    foto = models.ImageField(upload_to='photo_pejabat/')
 
 class VisiDanMisi(models.Model):
     visi = models.CharField(max_length=200)

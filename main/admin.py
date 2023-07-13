@@ -58,7 +58,7 @@ class KanimField(admin.ModelAdmin):
 admin.site.register(Kakanim, KanimField)
 
 class StrukturOrganisasiField(admin.ModelAdmin):
-    list_display = ('name', 'jabatan', 'TMT')
+    list_display = ('name', 'jabatan', 'TMT', 'foto')
     search_fields = ['name', 'jabatan']
 admin.site.register(StrukturOrganisasi, StrukturOrganisasiField)
 

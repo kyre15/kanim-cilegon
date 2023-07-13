@@ -494,6 +494,8 @@ li.footer-menu-item:not(:last-child) {
   width: 100%;
   background: linear-gradient(0deg, #1E293B, #1E293B), url('/static/main/img/header-background.jpg');
   background-blend-mode: multiply, normal;
+  background-size: 100%;
+  background-position-y: center;
 }
 
 #beranda-header-title {
@@ -990,7 +992,7 @@ a:focus {
 
 .berita-terkini-highlight {
   width: 606px;
-  height: 608px;
+  height: fit-content;
   display: block;
   gap: 16px;
 }
@@ -1018,7 +1020,7 @@ a:focus {
 
 .highlight-text-container {
   width: 606px;
-  height: 138px;
+  height: fit-content;
 }
 
 #highlight-title {
@@ -1034,7 +1036,7 @@ a:focus {
 
 #highlight-subtitle {
   width: 606px;
-  height: 40px;
+  height: fit-content;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
@@ -1045,6 +1047,7 @@ a:focus {
   order: 1;
   align-self: stretch;
   flex-grow: 0;
+  padding-bottom: 16px;
 }
 
 #highlight-date {
@@ -1707,6 +1710,8 @@ a #izin-tinggal-online-button {
   position: relative;
   height: 240px;
   width: 100%;
+  background-size: 100%;
+  background-position-y: center;
 }
 
 .content-header-wrapper {
@@ -2182,9 +2187,9 @@ a #izin-tinggal-online-button {
   font-size: 14px;
   line-height: 20px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   color: #475569;
-  margin-bottom: 8px;
+  margin-bottom: 25px;
 }
 
 #berita-item-date {
@@ -2322,7 +2327,7 @@ a #izin-tinggal-online-button {
 
 #berita-detail-terkini-item-date {
   width: 326px;
-  height: 18px;
+  height: fit-content;
   font-weight: 400;
   font-size: 12px;
   line-height: 150%;
@@ -2473,7 +2478,7 @@ a #izin-tinggal-online-button {
 
 #rinci-pelayanan-mingguan-title {
   position: absolute;
-  width: 63px;
+  width: 80px;
   height: 24px;
   left: 24px;
   top: 24px;
@@ -2745,6 +2750,7 @@ a #izin-tinggal-online-button {
   font-weight: 700;
   font-size: 14px;
   line-height: 20px;
+  justify-content: flex-end;
 }
 
 .file-wrapper {
@@ -3504,8 +3510,103 @@ table:not(:only-child) {
 }
 
 #map {
-  height: 400px;
-  width: 600px;
+  width: 552px;
+  height: 594px;
   max-width: 100%;
   max-height: 100%;
+}
+
+#maklumat-image {
+  width: 637px;
+  height: 760px;
+  position: relative;
+  display: flex;
+  margin: 100px 0px auto auto;
+}
+
+.overlay {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+#button-exit-overlay {
+  width: 40px;
+  height: 40px;
+}
+
+.overlay button:focus {
+  border: none;
+  outline: none;
+}
+
+.overlay button {
+  background: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  margin: 100px auto auto 20px;
+}
+
+.subtitle-wilaya-kerja {
+  width: 919px;
+  height: 72px;
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 150%;
+  display: flex;
+  align-items: center;
+  color: #1E293B;
+  margin-bottom: 16px;
+}
+
+.maklumat-wrapper {
+  display: flex;
+}
+
+ol li {
+  list-style-type: decimal;
+}
+
+.list-of-pt {
+  width: 311px;
+  height: fit-content;
+  position: relative;
+}
+
+#title-wilayah {
+  margin-bottom: 8px;
+}
+
+.maklumat-container {
+  display: flex;
+  position: relative;
+  margin: auto;
+}
+
+.laporan-tahun-ini,
+.laporan-minggu-ini {
+  display: none;
+}
+
+.ipk-dan-ikm-container {
+  background-color: white;
+  position: relative;
+  display: none;
+}
+
+.ipk-dan-ikm-wrapper {
+  width: 1232px;
+  height: fit-content;
+  margin: auto auto 120px auto;
+  position: relative;
+  display: grid;
 }

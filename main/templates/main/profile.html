@@ -132,12 +132,14 @@
                     <li>
                         <div class="struktur-organisasi-wrapper">
                             <div class="pejabat-wrapper">
-                                <img src="{% static '' %}" class="pejabat-image">
+                            {% if content_jabatan_kepala_kantor %}
+                                <img src="{% get_media_prefix %}{{ content_jabatan_kepala_kantor.foto }}" class="pejabat-image">
+                            {% endif %}
                                 <div class="nama-dan-jabatan-wrapper">
                                     <span class="nama-pejabat">
                                         {% if content_jabatan_kepala_kantor %}
                                             {{ content_jabatan_kepala_kantor.name }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                     <span class="jabatan-pejabat">Kepala Kantor</span>
                                 </div>
@@ -146,17 +148,19 @@
                                     <span class="tanggal-jabatan">
                                         {% if content_jabatan_kepala_kantor %}
                                             {{ content_jabatan_kepala_kantor.TMT }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                 </div>
                             </div>
                             <div class="pejabat-wrapper">
-                                <img src="{% static '' %}" class="pejabat-image">
+                                {% if content_jabatan_kasubag_tata_usaha %}
+                                    <img src="{% get_media_prefix %}{{ content_jabatan_kasubag_tata_usaha.foto }}" class="pejabat-image">
+                                {% endif %}
                                 <div class="nama-dan-jabatan-wrapper">
                                     <span class="nama-pejabat">
                                         {% if content_jabatan_kasubag_tata_usaha %}
                                             {{ content_jabatan_kasubag_tata_usaha.name }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                     <span class="jabatan-pejabat">Kasubag Tata Usaha</span>
                                 </div>
@@ -165,17 +169,19 @@
                                     <span class="tanggal-jabatan">
                                         {% if content_jabatan_kasubag_tata_usaha %}
                                             {{ content_jabatan_kasubag_tata_usaha.TMT }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                 </div>
                             </div>
                             <div class="pejabat-wrapper">
-                                <img src="{% static '' %}" class="pejabat-image">
+                                {% if content_jabatan_kasi_lalu_lintas %}
+                                    <img src="{% get_media_prefix %}{{ content_jabatan_kasi_lalu_lintas.foto }}" class="pejabat-image">
+                                {% endif %}
                                 <div class="nama-dan-jabatan-wrapper">
                                     <span class="nama-pejabat">
                                         {% if content_jabatan_kasi_lalu_lintas %}
                                             {{ content_jabatan_kasi_lalu_lintas.name }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                     <span class="jabatan-pejabat">Kasi Lalu Lintas dan Izin Tinggal Keimigrasian</span>
                                 </div>
@@ -184,17 +190,19 @@
                                     <span class="tanggal-jabatan">
                                         {% if content_jabatan_kasi_lalu_lintas %}
                                             {{ content_jabatan_kasi_lalu_lintas.TMT }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                 </div>
                             </div>
                             <div class="pejabat-wrapper">
-                                <img src="{% static '' %}" class="pejabat-image">
+                                {% if content_jabatan_kasi_teknologi %}
+                                    <img src="{% get_media_prefix %}{{ content_jabatan_kasi_teknologi.foto }}" class="pejabat-image">
+                                {% endif %}
                                 <div class="nama-dan-jabatan-wrapper">
                                     <span class="nama-pejabat">
                                         {% if content_jabatan_kasi_teknologi %}
                                             {{ content_jabatan_kasi_teknologi.name }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                     <span class="jabatan-pejabat">Kasi teknologi dan Informasi Keimigrasian</span>
                                 </div>
@@ -203,17 +211,19 @@
                                     <span class="tanggal-jabatan">
                                         {% if content_jabatan_kasi_teknologi %}
                                             {{ content_jabatan_kasi_teknologi.TMT }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                 </div>
                             </div>
                             <div class="pejabat-wrapper">
-                                <img src="{% static '' %}" class="pejabat-image">
+                                {% if content_jabatan_kasi_intelijen %}
+                                    <img src="{% get_media_prefix %}{{ content_jabatan_kasi_intelijen.foto }}" class="pejabat-image">
+                                {% endif %}
                                 <div class="nama-dan-jabatan-wrapper">
                                     <span class="nama-pejabat">
                                         {% if content_jabatan_kasi_intelijen %}
                                             {{ content_jabatan_kasi_intelijen.name }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                     <span class="jabatan-pejabat">Kasi Intelijen dan Penindakan Keimigrasian</span>
                                 </div>
@@ -222,17 +232,19 @@
                                     <span class="tanggal-jabatan">
                                         {% if content_jabatan_kasi_intelijen %}
                                             {{ content_jabatan_kasi_intelijen.TMT }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                 </div>
                             </div>
                             <div class="pejabat-wrapper">
-                                <img src="{% static '' %}" class="pejabat-image">
+                                {% if content_jabatan_kaur_kepegawaian %}
+                                    <img src="{% get_media_prefix %}{{ content_jabatan_kaur_kepegawaian.foto }}" class="pejabat-image">
+                                {% endif %}
                                 <div class="nama-dan-jabatan-wrapper">
                                     <span class="nama-pejabat">
                                         {% if content_jabatan_kaur_kepegawaian %}
                                             {{ content_jabatan_kaur_kepegawaian.name }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                     <span class="jabatan-pejabat">Kaur Kepegawaian</span>
                                 </div>
@@ -241,17 +253,19 @@
                                     <span class="tanggal-jabatan">
                                         {% if content_jabatan_kaur_kepegawaian %}
                                             {{ content_jabatan_kaur_kepegawaian.TMT }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                 </div>
                             </div>
                             <div class="pejabat-wrapper">
-                                <img src="{% static '' %}" class="pejabat-image">
+                                {% if content_jabatan_kasubi_lalu_lintas %}
+                                    <img src="{% get_media_prefix %}{{ content_jabatan_kasubi_lalu_lintas.foto }}" class="pejabat-image">
+                                {% endif %}
                                 <div class="nama-dan-jabatan-wrapper">
                                     <span class="nama-pejabat">
                                         {% if content_jabatan_kasubi_lalu_lintas %}
                                             {{ content_jabatan_kasubi_lalu_lintas.name }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                     <span class="jabatan-pejabat">Kasubi Lalu Lintas Keimigrasian</span>
                                 </div>
@@ -260,17 +274,19 @@
                                     <span class="tanggal-jabatan">
                                         {% if content_jabatan_kasubi_lalu_lintas %}
                                             {{ content_jabatan_kasubi_lalu_lintas.TMT }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                 </div>
                             </div>
                             <div class="pejabat-wrapper">
-                                <img src="{% static '' %}" class="pejabat-image">
+                                {% if content_jabatan_kasubi_izin %}
+                                    <img src="{% get_media_prefix %}{{ content_jabatan_kasubi_izin.foto }}" class="pejabat-image">
+                                {% endif %}
                                 <div class="nama-dan-jabatan-wrapper">
                                     <span class="nama-pejabat">
                                         {% if content_jabatan_kasubi_izin %}
                                             {{ content_jabatan_kasubi_izin.name }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                     <span class="jabatan-pejabat">Kasubi Izin Tinggal Keimigrasian</span>
                                 </div>
@@ -279,17 +295,19 @@
                                     <span class="tanggal-jabatan">
                                         {% if content_jabatan_kasubi_izin %}
                                             {{ content_jabatan_kasubi_izin.TMT }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                 </div>
                             </div>
                             <div class="pejabat-wrapper">
-                                <img src="{% static '' %}" class="pejabat-image">
+                                {% if content_jabatan_kasubi_teknologi %}
+                                    <img src="{% get_media_prefix %}{{ content_jabatan_kasubi_teknologi.foto }}" class="pejabat-image">
+                                {% endif %}
                                 <div class="nama-dan-jabatan-wrapper">
                                     <span class="nama-pejabat">
                                         {% if content_jabatan_kasubi_teknologi %}
                                             {{ content_jabatan_kasubi_teknologi.name }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                     <span class="jabatan-pejabat">Kasubi Teknologi Infomasi Keimigrasian</span>
                                 </div>
@@ -298,17 +316,19 @@
                                     <span class="tanggal-jabatan">
                                         {% if content_jabatan_kasubi_teknologi %}
                                             {{ content_jabatan_kasubi_teknologi.TMT }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                 </div>
                             </div>
                             <div class="pejabat-wrapper">
-                                <img src="{% static '' %}" class="pejabat-image">
+                                {% if content_jabatan_kasubi_informasi %}
+                                    <img src="{% get_media_prefix %}{{ content_jabatan_kasubi_informasi.foto }}" class="pejabat-image">
+                                {% endif %}
                                 <div class="nama-dan-jabatan-wrapper">
                                     <span class="nama-pejabat">
                                         {% if content_jabatan_kasubi_informasi %}
                                             {{ content_jabatan_kasubi_informasi.name }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                     <span class="jabatan-pejabat">Kasubi Informasi dan Komunikasi Keimigrasian</span>
                                 </div>
@@ -317,17 +337,19 @@
                                     <span class="tanggal-jabatan">
                                         {% if content_jabatan_kasubi_informasi %}
                                             {{ content_jabatan_kasubi_informasi.TMT }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                 </div>
                             </div>
                             <div class="pejabat-wrapper">
-                                <img src="{% static '' %}" class="pejabat-image">
+                                {% if content_jabatan_kasubi_intelijen %}
+                                    <img src="{% get_media_prefix %}{{ content_jabatan_kasubi_intelijen.foto }}" class="pejabat-image">
+                                {% endif %}
                                 <div class="nama-dan-jabatan-wrapper">
                                     <span class="nama-pejabat">
                                         {% if content_jabatan_kasubi_intelijen %}
                                             {{ content_jabatan_kasubi_intelijen.name }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                     <span class="jabatan-pejabat">Kasubi Intelijen Keimigrasian</span>
                                 </div>
@@ -336,12 +358,14 @@
                                     <span class="tanggal-jabatan">
                                         {% if content_jabatan_kasubi_intelijen %}
                                             {{ content_jabatan_kasubi_intelijen.TMT }}
-                                        {% endif %} 
+                                        {% endif %}
                                     </span>
                                 </div>
                             </div>
                             <div class="pejabat-wrapper">
-                                <img src="{% static '' %}" class="pejabat-image">
+                                {% if content_jabatan_kasubi_penindakan %}
+                                    <img src="{% get_media_prefix %}{{ content_jabatan_kasubi_penindakan.foto }}" class="pejabat-image">
+                                {% endif %}
                                 <div class="nama-dan-jabatan-wrapper">
                                     <span class="nama-pejabat">
                                         {% if content_jabatan_kasubi_penindakan %}

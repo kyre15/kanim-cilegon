@@ -1,3 +1,4 @@
+from django.db.models.functions import Coalesce
 from django.shortcuts import render
 from django.db.models import Sum, F
 
@@ -14,26 +15,26 @@ def home(response):
     one_week_ago = datetime.today() - timedelta(days=7)
     wni_menus = SubMenu.objects.filter(menu__menu_name__contains="Warga Negara Indonesia")
     wna_menus = SubMenu.objects.filter(menu__menu_name__contains="Warga Negara Asing")
-    highlight_foto = FotoGaleri.objects.order_by("-image_added_at")[0]
+    highlight_foto = get_foto_galeri()
     fotos = FotoGaleri.objects.order_by("-image_added_at")[:8]
-    headline_berita = Berita.objects.order_by("-create_at")[0]
-    headline_berita_image = BeritaImage.objects.order_by("image_added_at").filter(berita=headline_berita.id)[0]
+    headline_berita = get_single_berita()
+    headline_berita_image = get_berita_image_single()
     beritas = Berita.objects.order_by("-create_at")[1:5]
     youtube_videos = YoutubeVideo.objects.order_by("-create_at")[:4]
     subprocess.run(["rm", "-rf", "images/imigrasi_cilegon"])
     subprocess.run(["cp", "-R", "imigrasi_cilegon", "images/"])
     fetch_image = threading.Thread(target=fetch_instagram, args=[])
     fetch_image.start()
-    total_laporan_pelayanan_wni = LaporanPelayananWNI.objects.all().aggregate(total=Sum(
+    total_laporan_pelayanan_wni = LaporanPelayananWNI.objects.all().aggregate(total=Coalesce(Sum(
         F('total_paspor_baru') +
         F('total_pergantian_paspor') +
         F('total_pergantian_paspor_hilang_rusak') +
         F('total_penyerahan_paspor')
-    ))['total']
-    total_laporan_pelayanan_wna = LaporanPelayananWNA.objects.all().aggregate(total=Sum(
+    ), 0))['total']
+    total_laporan_pelayanan_wna = LaporanPelayananWNA.objects.all().aggregate(total=Coalesce(Sum(
         F('total_ijin_tinggal_kunjungan') +
         F('total_izin_tinggal_terbatas')
-    ))['total']
+    ), 0))['total']
     this_week_laporan_pelayanan_wni = LaporanPelayananWNI.objects.filter(date__gte=one_week_ago)
     this_month_laporan_pelayanan_wni = LaporanPelayananWNI.objects.filter(date__month=str(datetime.today().month))
     this_year_laporan_pelayanan_wni = LaporanPelayananWNI.objects.filter(date__year=str(datetime.today().year))
@@ -53,45 +54,74 @@ def home(response):
           'instagram_image': get_list_of_instagram(),
         'total_all_pelayanan': total_laporan_pelayanan_wni + total_laporan_pelayanan_wna,
         'total_all_this_week_pelayanan':
-            this_week_laporan_pelayanan_wni.aggregate(total=Sum(
+            this_week_laporan_pelayanan_wni.aggregate(total=Coalesce(Sum(
                 F('total_paspor_baru') +
                 F('total_pergantian_paspor') +
                 F('total_pergantian_paspor_hilang_rusak') +
                 F('total_penyerahan_paspor')
-            ))['total'] +
-            this_week_laporan_pelayanan_wna.aggregate(total=Sum(
+            ), 0))['total'] +
+            this_week_laporan_pelayanan_wna.aggregate(total=Coalesce(Sum(
                 F('total_ijin_tinggal_kunjungan') +
                 F('total_izin_tinggal_terbatas')
-            ))['total'],
+            ), 0))['total'],
         'total_all_this_month_pelayanan':
-            this_month_laporan_pelayanan_wni.aggregate(total=Sum(
+            this_month_laporan_pelayanan_wni.aggregate(total=Coalesce(Sum(
                 F('total_paspor_baru') +
                 F('total_pergantian_paspor') +
                 F('total_pergantian_paspor_hilang_rusak') +
                 F('total_penyerahan_paspor')
-            ))['total'] +
-            this_month_laporan_pelayanan_wna.aggregate(total=Sum(
+            ), 0))['total'] +
+            this_month_laporan_pelayanan_wna.aggregate(total=Coalesce(Sum(
                 F('total_ijin_tinggal_kunjungan') +
                 F('total_izin_tinggal_terbatas')
-            ))['total'],
+            ), 0))['total'],
         'total_all_this_year_pelayanan':
-            this_year_laporan_pelayanan_wni.aggregate(total=Sum(
+            this_year_laporan_pelayanan_wni.aggregate(total=Coalesce(Sum(
                 F('total_paspor_baru') +
                 F('total_pergantian_paspor') +
                 F('total_pergantian_paspor_hilang_rusak') +
                 F('total_penyerahan_paspor')
-            ))['total'] +
-            this_year_laporan_pelayanan_wna.aggregate(total=Sum(
+            ), 0))['total'] +
+            this_year_laporan_pelayanan_wna.aggregate(total=Coalesce(Sum(
                 F('total_ijin_tinggal_kunjungan') +
                 F('total_izin_tinggal_terbatas')
-            ))['total'],
-        'total_this_month_wni': this_month_laporan_pelayanan_wni.aggregate(total=Sum(
+            ), 0))['total'],
+        'total_this_month_wni': this_month_laporan_pelayanan_wni.aggregate(total=Coalesce(Sum(
             F('total_paspor_baru') +
             F('total_pergantian_paspor') +
             F('total_pergantian_paspor_hilang_rusak') +
             F('total_penyerahan_paspor')
-        ))['total']
+        ), 0))['total']
         })
+
+def get_foto_galeri():
+    querySet = FotoGaleri.objects.order_by("-image_added_at")
+    if querySet.exists():
+        return FotoGaleri.objects.order_by("-image_added_at")[0]
+    else:
+        return ""
+def get_single_berita():
+    querySet = Berita.objects.all()
+
+    if querySet.exists():
+        return Berita.objects.order_by("-create_at")[0]
+    else:
+        return ""
+
+def get_berita_image_single():
+    query_set = Berita.objects.all()
+
+    if query_set.exists():
+        headline_berita = Berita.objects.order_by("-create_at")[0]
+        query_set2 = BeritaImage.objects.order_by("image_added_at").filter(berita=headline_berita.id)
+        if query_set2.exists():
+            return query_set2[0]
+        else:
+            return ""
+    else:
+        return ""
+
+
 
 def fetch_instagram():
     subprocess.run(["python3", "fetch_image_script.py"])
@@ -231,12 +261,9 @@ def timpora(response):
     })
 
 def berita(response):
-    berita_header_from_kemenkumham_kanwil_banten = \
-        Berita.objects.order_by('-create_at').filter(category_berita='KEMENKUMHAM_KANWIL_BANTEN')[0]
-    berita_header_from_kemenkumham_republik_indonesia = \
-        Berita.objects.order_by('-create_at').filter(category_berita='KEMENKUMHAM_REPUBLIK_INDONESIA')[0]
-    berita_header_from_kantor_imigrasi_cilegon = \
-        Berita.objects.order_by('-create_at').filter(category_berita='KANTOR_IMIGRASI_CILEGON')[0]
+    berita_header_from_kemenkumham_kanwil_banten = get_header_berita('KEMENKUMHAM_KANWIL_BANTEN')
+    berita_header_from_kemenkumham_republik_indonesia = get_header_berita('KEMENKUMHAM_REPUBLIK_INDONESIA')
+    berita_header_from_kantor_imigrasi_cilegon = get_header_berita('KANTOR_IMIGRASI_CILEGON')
     berita_from_kemenkumham_kanwil_banten = \
         Berita.objects.order_by('-create_at').filter(category_berita='KEMENKUMHAM_KANWIL_BANTEN')[1:10]
     berita_from_kemenkumham_republik_indonesia = \
@@ -248,13 +275,9 @@ def berita(response):
         'berita_header_from_kemenkumham_kanwil_banten': berita_header_from_kemenkumham_kanwil_banten,
         'berita_header_from_kemenkumham_republik_indonesia': berita_header_from_kemenkumham_republik_indonesia,
         'berita_header_from_kantor_imigrasi_cilegon': berita_header_from_kantor_imigrasi_cilegon,
-        'berita_header_image_from_kantor_imigrasi_cilegon':
-            BeritaImage.objects.filter(berita__berita_title=berita_header_from_kantor_imigrasi_cilegon.berita_title)[0],
-        'berita_header_image_from_kemenkumham_republik_indonesia':
-            BeritaImage.objects.filter(berita__berita_title=berita_header_from_kemenkumham_republik_indonesia.berita_title)[0],
-        'berita_header_image_from_kemenkumham_kanwil_banten':
-            BeritaImage.objects.filter(berita__berita_title=berita_header_from_kemenkumham_kanwil_banten.berita_title)[0],
-
+        'berita_header_image_from_kantor_imigrasi_cilegon': get_berita_detail_image('KANTOR_IMIGRASI_CILEGON'),
+        'berita_header_image_from_kemenkumham_republik_indonesia': get_berita_detail_image('KEMENKUMHAM_REPUBLIK_INDONESIA'),
+        'berita_header_image_from_kemenkumham_kanwil_banten': get_berita_detail_image('KEMENKUMHAM_KANWIL_BANTEN'),
         'berita_image_from_kantor_imigrasi_cilegon': zip(berita_from_kantor_imigrasi_cilegon,
                                                          get_berita_image(berita_from_kantor_imigrasi_cilegon)),
         'berita_image_from_kemenkumham_republik_indonesia': zip(berita_from_kemenkumham_republik_indonesia,
@@ -262,6 +285,27 @@ def berita(response):
         'berita_image_from_kemenkumham_kanwil_banten': zip(berita_from_kemenkumham_kanwil_banten,
                                                                 get_berita_image(berita_from_kemenkumham_kanwil_banten))
     })
+
+def get_header_berita(category_berita):
+    querySet = Berita.objects.order_by('-create_at').filter(category_berita=category_berita)
+
+    if querySet.exists():
+        return querySet[0]
+    else:
+        return Berita.objects.none()
+
+def get_berita_detail_image(berita_header_from):
+    query_set = Berita.objects.order_by('-create_at').filter(category_berita=berita_header_from)
+    query_set_image = BeritaImage.objects.all()
+
+    if query_set.exists():
+        if query_set_image.exists():
+            filter = Berita.objects.order_by('-create_at').filter(category_berita=berita_header_from)[0]
+            return BeritaImage.objects.filter(berita__berita_title=filter.berita_title)
+        else:
+            return BeritaImage.objects.none()
+    else:
+        pass
 
 def galeri(response):
     return render(response, "main/galeri.html", {
@@ -286,16 +330,16 @@ def berita_detail(request, pk):
 def dasbor_publik(response):
     one_week_ago = datetime.today() - timedelta(days=7)
 
-    total_laporan_pelayanan_wni = LaporanPelayananWNI.objects.all().aggregate(total=Sum(
+    total_laporan_pelayanan_wni = LaporanPelayananWNI.objects.all().aggregate(total=Coalesce(Sum(
         F('total_paspor_baru') +
         F('total_pergantian_paspor') +
         F('total_pergantian_paspor_hilang_rusak') +
         F('total_penyerahan_paspor')
-    ))['total']
-    total_laporan_pelayanan_wna = LaporanPelayananWNA.objects.all().aggregate(total=Sum(
+    ), 0))['total']
+    total_laporan_pelayanan_wna = LaporanPelayananWNA.objects.all().aggregate(total=Coalesce(Sum(
         F('total_ijin_tinggal_kunjungan') +
         F('total_izin_tinggal_terbatas')
-    ))['total']
+    ), 0))['total']
     this_week_laporan_pelayanan_wni = LaporanPelayananWNI.objects.filter(date__gte=one_week_ago)
     this_month_laporan_pelayanan_wni = LaporanPelayananWNI.objects.filter(date__month=str(datetime.today().month))
     this_year_laporan_pelayanan_wni = LaporanPelayananWNI.objects.filter(date__year=str(datetime.today().year))
@@ -307,48 +351,47 @@ def dasbor_publik(response):
     this_month_ikm = IndexKepuasanMasyarakat.objects.filter(date__month=str(datetime.today().month))
     this_year_ikm = IndexKepuasanMasyarakat.objects.filter(date__year=str(datetime.today().year))
 
-
     return render(response, "main/dasbor-publik.html", {
         'total_all_pelayanan': total_laporan_pelayanan_wni + total_laporan_pelayanan_wna,
         'total_all_this_week_pelayanan':
-            this_week_laporan_pelayanan_wni.aggregate(total=Sum(
+            this_week_laporan_pelayanan_wni.aggregate(total=Coalesce(Sum(
                 F('total_paspor_baru') +
                 F('total_pergantian_paspor') +
                 F('total_pergantian_paspor_hilang_rusak') +
                 F('total_penyerahan_paspor')
-            ))['total'] +
-            this_week_laporan_pelayanan_wna.aggregate(total=Sum(
+            ), 0))['total'] +
+            this_week_laporan_pelayanan_wna.aggregate(total=Coalesce(Sum(
                 F('total_ijin_tinggal_kunjungan') +
                 F('total_izin_tinggal_terbatas')
-            ))['total'],
+            ), 0))['total'],
         'total_all_this_month_pelayanan':
-            this_month_laporan_pelayanan_wni.aggregate(total=Sum(
+            this_month_laporan_pelayanan_wni.aggregate(total=Coalesce(Sum(
                 F('total_paspor_baru') +
                 F('total_pergantian_paspor') +
                 F('total_pergantian_paspor_hilang_rusak') +
                 F('total_penyerahan_paspor')
-            ))['total'] +
-            this_month_laporan_pelayanan_wna.aggregate(total=Sum(
+            ), 0))['total'] +
+            this_month_laporan_pelayanan_wna.aggregate(total=Coalesce(Sum(
                 F('total_ijin_tinggal_kunjungan') +
                 F('total_izin_tinggal_terbatas')
-            ))['total'],
+            ), 0))['total'],
         'total_all_this_year_pelayanan':
-            this_year_laporan_pelayanan_wni.aggregate(total=Sum(
+            this_year_laporan_pelayanan_wni.aggregate(total=Coalesce(Sum(
                 F('total_paspor_baru') +
                 F('total_pergantian_paspor') +
                 F('total_pergantian_paspor_hilang_rusak') +
                 F('total_penyerahan_paspor')
-            ))['total'] +
-            this_year_laporan_pelayanan_wna.aggregate(total=Sum(
+            ), 0))['total'] +
+            this_year_laporan_pelayanan_wna.aggregate(total=Coalesce(Sum(
                 F('total_ijin_tinggal_kunjungan') +
                 F('total_izin_tinggal_terbatas')
-            ))['total'],
-        'total_this_month_wni': this_month_laporan_pelayanan_wni.aggregate(total=Sum(
+            ), 0))['total'],
+        'total_this_month_wni': this_month_laporan_pelayanan_wni.aggregate(total=Coalesce(Sum(
                 F('total_paspor_baru') +
                 F('total_pergantian_paspor') +
                 F('total_pergantian_paspor_hilang_rusak') +
                 F('total_penyerahan_paspor')
-            ))['total'],
+            ), 0))['total'],
         'total_this_month_paspor_baru_wni': aggregateSpecificField(
             this_month_laporan_pelayanan_wni, 'total_paspor_baru'),
         'total_this_month_total_pergantian_paspor_wni': aggregateSpecificField(
@@ -357,20 +400,20 @@ def dasbor_publik(response):
             this_month_laporan_pelayanan_wni, 'total_pergantian_paspor_hilang_rusak'),
         'total_this_month_total_penyerahan_paspor_wni': aggregateSpecificField(
             this_month_laporan_pelayanan_wni, 'total_penyerahan_paspor'),
-        'total_this_month_wna': this_month_laporan_pelayanan_wna.aggregate(total=Sum(
+        'total_this_month_wna': this_month_laporan_pelayanan_wna.aggregate(total=Coalesce(Sum(
                 F('total_ijin_tinggal_kunjungan') +
                 F('total_izin_tinggal_terbatas')
-            ))['total'],
+            ), 0))['total'],
         'total_this_month_total_ijin_tinggal_kunjungan_wna': aggregateSpecificField(
             this_month_laporan_pelayanan_wna, 'total_ijin_tinggal_kunjungan'),
         'total_this_month_total_izin_tinggal_terbatas_paspor_wna': aggregateSpecificField(
             this_month_laporan_pelayanan_wna, 'total_izin_tinggal_terbatas'),
-        'total_this_week_wni': this_week_laporan_pelayanan_wni.aggregate(total=Sum(
+        'total_this_week_wni': this_week_laporan_pelayanan_wni.aggregate(total=Coalesce(Sum(
             F('total_paspor_baru') +
             F('total_pergantian_paspor') +
             F('total_pergantian_paspor_hilang_rusak') +
             F('total_penyerahan_paspor')
-        ))['total'],
+        ), 0))['total'],
         'total_this_week_paspor_baru_wni': aggregateSpecificField(
             this_week_laporan_pelayanan_wni, 'total_paspor_baru'),
         'total_this_week_total_pergantian_paspor_wni': aggregateSpecificField(
@@ -379,20 +422,20 @@ def dasbor_publik(response):
             this_week_laporan_pelayanan_wni, 'total_pergantian_paspor_hilang_rusak'),
         'total_this_week_total_penyerahan_paspor_wni': aggregateSpecificField(
             this_week_laporan_pelayanan_wni, 'total_penyerahan_paspor'),
-        'total_this_week_wna': this_week_laporan_pelayanan_wna.aggregate(total=Sum(
+        'total_this_week_wna': this_week_laporan_pelayanan_wna.aggregate(total=Coalesce(Sum(
             F('total_ijin_tinggal_kunjungan') +
             F('total_izin_tinggal_terbatas')
-        ))['total'],
+        ), 0))['total'],
         'total_this_week_total_ijin_tinggal_kunjungan_wna': aggregateSpecificField(
             this_week_laporan_pelayanan_wna, 'total_ijin_tinggal_kunjungan'),
         'total_this_week_total_izin_tinggal_terbatas_paspor_wna': aggregateSpecificField(
             this_week_laporan_pelayanan_wna, 'total_izin_tinggal_terbatas'),
-        'total_this_year_wni': this_year_laporan_pelayanan_wni.aggregate(total=Sum(
+        'total_this_year_wni': this_year_laporan_pelayanan_wni.aggregate(total=Coalesce(Sum(
             F('total_paspor_baru') +
             F('total_pergantian_paspor') +
             F('total_pergantian_paspor_hilang_rusak') +
             F('total_penyerahan_paspor')
-        ))['total'],
+        ), 0))['total'],
         'total_this_year_paspor_baru_wni': aggregateSpecificField(
             this_year_laporan_pelayanan_wni, 'total_paspor_baru'),
         'total_this_year_total_pergantian_paspor_wni': aggregateSpecificField(
@@ -401,10 +444,10 @@ def dasbor_publik(response):
             this_year_laporan_pelayanan_wni, 'total_pergantian_paspor_hilang_rusak'),
         'total_this_year_total_penyerahan_paspor_wni': aggregateSpecificField(
             this_year_laporan_pelayanan_wni, 'total_penyerahan_paspor'),
-        'total_this_year_wna': this_year_laporan_pelayanan_wna.aggregate(total=Sum(
+        'total_this_year_wna': this_year_laporan_pelayanan_wna.aggregate(total=Coalesce(Sum(
             F('total_ijin_tinggal_kunjungan') +
             F('total_izin_tinggal_terbatas')
-        ))['total'],
+        ), 0))['total'],
         'total_this_year_total_ijin_tinggal_kunjungan_wna': aggregateSpecificField(
             this_year_laporan_pelayanan_wna, 'total_ijin_tinggal_kunjungan'),
         'total_this_year_total_izin_tinggal_terbatas_paspor_wna': aggregateSpecificField(
@@ -433,9 +476,13 @@ def aggregateSpecificField(table, field):
 
 def get_berita_image(beritas):
     list_of_berita_image = []
+    querySet = BeritaImage.objects.all()
 
-    for berita in beritas:
-        list_of_berita_image.append(BeritaImage.objects.filter(berita=berita.id)[0])
+    if querySet.exists():
+        for berita in beritas:
+            list_of_berita_image.append(BeritaImage.objects.filter(berita=berita.id)[0])
+    else:
+        pass
 
     return list_of_berita_image
 
@@ -480,7 +527,7 @@ def get_all_kakanim():
 def get_struktur_organisasi(jabatan):
     queryset = StrukturOrganisasi.objects.filter(jabatan=jabatan).exists()
     if queryset:
-        return StrukturOrganisasi.objects.get(jabatan=jabatan)
+        return StrukturOrganisasi.objects.filter(jabatan=jabatan).order_by('-id')[0]
     else:
         return StrukturOrganisasi.objects.none()
 
