@@ -62,41 +62,56 @@
                 <button id="content-kemenkumham-republik-indonesia-tab-button" onclick="berita('kemenkumham-republik-indonesia')">Kemenkumham Republik Indonesia</button>
                 <button id="content-grid-kemenkumham-kanwil-banten-tab-button" onclick="berita('kemenkumham-kanwil-banten')">Kemenkumham Kanwil Banten</button>
             </div>
-            <div class="berita-grid-wrapper berita-grid-kantor-imigrasi-cilegon">
-                {% if berita_image_from_kantor_imigrasi_cilegon %}
-                    {% for berita, image in berita_image_from_kantor_imigrasi_cilegon %}
-                        <a class="berita-item" href="{% url 'berita-detail' berita.id %}">
-                            <img src="{{ image.berita_image_file.url }}" alt="" id="berita-item-image">
-                            <span id="berita-item-title">{{ berita.berita_title|slice:":30" }}... </span>
-                            <span id="berita-item-description">{{ berita.berita_descrition|slice:":200" }}...</span>
-                            <span id="berita-item-date">{{ berita.create_at }}</span>
-                        </a>
-                    {% endfor %}
-                {% endif %}
+            <div class="berita-grid-kantor-imigrasi-cilegon" style="flex-direction: column;">
+                <div class="berita-grid-wrapper berita-grid-kantor-imigrasi-cilegon">
+                    {% if berita_image_from_kantor_imigrasi_cilegon %}
+                        {% for berita, image in berita_image_from_kantor_imigrasi_cilegon %}
+                            <a class="berita-item" href="{% url 'berita-detail' berita.id %}">
+                                <img src="{{ image.berita_image_file.url }}" alt="" id="berita-item-image">
+                                <span id="berita-item-title">{{ berita.berita_title|slice:":30" }}... </span>
+                                <span id="berita-item-description">{{ berita.berita_descrition|slice:":200" }}...</span>
+                                <span id="berita-item-date">{{ berita.create_at }}</span>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="load-more__btn mt-3" id="btn-load-more" style="margin-bottom: 16px" >
+                    <button type="button" class="btn btn-success">Load More Berita</button>
+                </div>
             </div>
-            <div class="berita-grid-wrapper berita-grid-kemenkumham-republik-indonesia">
-                {% if berita_image_from_kemenkumham_republik_indonesia %}
-                    {% for berita, image in berita_image_from_kemenkumham_republik_indonesia %}
-                        <a class="berita-item" href="{% url 'berita-detail' berita.id %}">
-                            <img src="{{ image.berita_image_file.url }}" alt="" id="berita-item-image">
-                            <span id="berita-item-title">{{ berita.berita_title|slice:":30" }}... </span>
-                            <span id="berita-item-description">{{ berita.berita_descrition|slice:":200" }}...</span>
-                            <span id="berita-item-date">{{ berita.create_at }}</span>
-                        </a>
-                    {% endfor %}
-                {% endif %}
+            <div class="berita-grid-kemenkumham-republik-indonesia" style="flex-direction: column;">
+                <div class="berita-grid-wrapper berita-grid-kemenkumham-republik-indonesia">
+                    {% if berita_image_from_kemenkumham_republik_indonesia %}
+                        {% for berita, image in berita_image_from_kemenkumham_republik_indonesia %}
+                            <a class="berita-item" href="{% url 'berita-detail' berita.id %}">
+                                <img src="{{ image.berita_image_file.url }}" alt="" id="berita-item-image">
+                                <span id="berita-item-title">{{ berita.berita_title|slice:":30" }}... </span>
+                                <span id="berita-item-description">{{ berita.berita_descrition|slice:":200" }}...</span>
+                                <span id="berita-item-date">{{ berita.create_at }}</span>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="load-more__btn mt-3" id="btn-load-more" style="margin-bottom: 16px;">
+                    <button type="button" class="btn btn-success">Load More Berita</button>
+                </div>
             </div>
-            <div class="berita-grid-wrapper berita-grid-kemenkumham-kanwil-banten">
-                {% if berita_image_from_kemenkumham_kanwil_banten %}
-                    {% for berita, image in berita_image_from_kemenkumham_kanwil_banten %}
-                        <a class="berita-item" href="{% url 'berita-detail' berita.id %}">
-                            <img src="{{ image.berita_image_file.url }}" alt="" id="berita-item-image">
-                            <span id="berita-item-title">{{ berita.berita_title|slice:":30" }}... </span>
-                            <span id="berita-item-description">{{ berita.berita_descrition|slice:":200" }}...</span>
-                            <span id="berita-item-date">{{ berita.create_at }}</span>
-                        </a>
-                    {% endfor %}
-                {% endif %}
+            <div class="berita-grid-kemenkumham-kanwil-banten" style="flex-direction: column;">
+                <div class="berita-grid-wrapper berita-grid-kemenkumham-kanwil-banten">
+                    {% if berita_image_from_kemenkumham_kanwil_banten %}
+                        {% for berita, image in berita_image_from_kemenkumham_kanwil_banten %}
+                            <a class="berita-item" href="{% url 'berita-detail' berita.id %}">
+                                <img src="{{ image.berita_image_file.url }}" alt="" id="berita-item-image">
+                                <span id="berita-item-title">{{ berita.berita_title|slice:":30" }}... </span>
+                                <span id="berita-item-description">{{ berita.berita_descrition|slice:":200" }}...</span>
+                                <span id="berita-item-date">{{ berita.create_at }}</span>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="load-more__btn mt-3" id="btn-load-more" style="margin-bottom: 16px;">
+                    <button type="button" class="btn btn-success">Load More Berita</button>
+                </div>
             </div>
         </div>
     </div>

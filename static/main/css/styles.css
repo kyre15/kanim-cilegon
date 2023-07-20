@@ -1105,7 +1105,7 @@ a:focus {
 }
 #berita-terkini-item-title {
   width: 386px;
-  height: 48px;
+  height: auto;
   font-weight: 700;
   font-size: 16px;
   line-height: 150%;
@@ -1131,6 +1131,7 @@ a:focus {
   order: 1;
   align-self: stretch;
   flex-grow: 0;
+  margin-top: 8px;
 }
 
 #berita-terkini-item-image {

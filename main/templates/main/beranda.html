@@ -136,7 +136,7 @@
                         <img src="{{ headline_berita_image.berita_image_file.url }}" id="berita-terkini-highlight-image">
                         <div class="highlight-text-container">
                             <span id="highlight-title">{{ headline_berita.berita_title }}</span>
-                            <span id="highlight-subtitle">{{ headline_berita.berita_descrition }}</span>
+                            <span id="highlight-subtitle">{{ headline_berita.berita_descrition|slice:"500" }} </span>
                             <span id="highlight-date">{{ headline_berita.create_at }} · Kantor Imigrasi Cilegon</span>
                         </div>
 
@@ -148,7 +148,7 @@
                         {% for berita, berita_image in berita_with_image %}
                             <a class="berita-terkini-item" href="{% url 'berita-detail' berita.id %}">
                             <div class="item-text-container">
-                                <span id="berita-terkini-item-title">{{ berita.berita_title }}</span>
+                                <span id="berita-terkini-item-title">{{ berita.berita_title|slice:"300" }} </span>
                                 <span id="berita-terkini-item-date">{{ berita.create_at }} · Kantor Imigrasi Cilegon</span>
                             </div>
                             <img src="{{ berita_image.berita_image_file.url }}" id="berita-terkini-item-image">

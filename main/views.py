@@ -182,7 +182,7 @@ def profile(response):
         'content_jabatan_kasi_intelijen': get_struktur_organisasi("KASI_INTELEJEN_DAN_PENINDAKAN_KEIMIGRASIAN"),
         'content_jabatan_kaur_kepegawaian': get_struktur_organisasi("KAUR_KEPEGAWAIAN"),
         'content_jabatan_kasubi_lalu_lintas': get_struktur_organisasi("KASUBSI_LALU_LINTAS_KEIMIGRASIAN"),
-        'content_jabatan_kasubi_izin': get_struktur_organisasi("KASUBI_IZIN_TINGGAL_KEIMIGRASIAN"),
+        'content_jabatan_kasubi_izin': get_struktur_organisasi("KASUBSI_IZIN_TINGGAL_KEIMIGRASIAN"),
         'content_jabatan_kasubi_teknologi': get_struktur_organisasi("KASUBSI_TEKNOLOGI_INFORMASI_KEIMIGRASIAN"),
         'content_jabatan_kasubi_informasi': get_struktur_organisasi("KASUBSI_INFORMASI_DAN_KOMUNIKASI_KEIMIGRASIAN"),
         'content_jabatan_kasubi_intelijen': get_struktur_organisasi("KASUBSI_INTELIJEN_KEIMIGRASIAN"),
@@ -266,21 +266,30 @@ def berita(response):
     berita_header_from_kantor_imigrasi_cilegon = get_header_berita('KANTOR_IMIGRASI_CILEGON')
     berita_from_kemenkumham_kanwil_banten = \
         Berita.objects.order_by('-create_at').filter(category_berita='KEMENKUMHAM_KANWIL_BANTEN')[1:10]
+    total_berita_from_kemenkumham_kanwil_banten = \
+        Berita.objects.order_by('-create_at').filter(category_berita='KEMENKUMHAM_KANWIL_BANTEN').count()
     berita_from_kemenkumham_republik_indonesia = \
         Berita.objects.order_by('-create_at').filter(category_berita='KEMENKUMHAM_REPUBLIK_INDONESIA')[1:10]
+    total_berita_from_kemenkumham_republik_indonesia = \
+        Berita.objects.order_by('-create_at').filter(category_berita='KEMENKUMHAM_REPUBLIK_INDONESIA').count()
     berita_from_kantor_imigrasi_cilegon = \
         Berita.objects.order_by('-create_at').filter(category_berita='KANTOR_IMIGRASI_CILEGON')[1:10]
+    total_berita_from_kantor_imigrasi_cilegon = \
+        Berita.objects.order_by('-create_at').filter(category_berita='KANTOR_IMIGRASI_CILEGON').count()
 
     return render(response, "main/berita.html", {
         'berita_header_from_kemenkumham_kanwil_banten': berita_header_from_kemenkumham_kanwil_banten,
         'berita_header_from_kemenkumham_republik_indonesia': berita_header_from_kemenkumham_republik_indonesia,
         'berita_header_from_kantor_imigrasi_cilegon': berita_header_from_kantor_imigrasi_cilegon,
-        'berita_header_image_from_kantor_imigrasi_cilegon': get_berita_detail_image('KANTOR_IMIGRASI_CILEGON'),
-        'berita_header_image_from_kemenkumham_republik_indonesia': get_berita_detail_image('KEMENKUMHAM_REPUBLIK_INDONESIA'),
-        'berita_header_image_from_kemenkumham_kanwil_banten': get_berita_detail_image('KEMENKUMHAM_KANWIL_BANTEN'),
+        'berita_header_image_from_kantor_imigrasi_cilegon': get_berita_detail_image(
+            'KANTOR_IMIGRASI_CILEGON', berita_header_from_kantor_imigrasi_cilegon),
+        'berita_header_image_from_kemenkumham_republik_indonesia': get_berita_detail_image(
+            'KEMENKUMHAM_REPUBLIK_INDONESIA', berita_header_from_kemenkumham_republik_indonesia),
+        'berita_header_image_from_kemenkumham_kanwil_banten': get_berita_detail_image(
+            'KEMENKUMHAM_KANWIL_BANTEN', berita_header_from_kemenkumham_kanwil_banten),
         'berita_image_from_kantor_imigrasi_cilegon': zip(berita_from_kantor_imigrasi_cilegon,
                                                          get_berita_image(berita_from_kantor_imigrasi_cilegon)),
-        'berita_image_from_kemenkumham_republik_indonesia': zip(berita_from_kemenkumham_republik_indonesia,
+        'berita_image_from_kemenkumham_republik_indonesia': zip(    berita_from_kemenkumham_republik_indonesia,
                                                                 get_berita_image(berita_from_kemenkumham_republik_indonesia)),
         'berita_image_from_kemenkumham_kanwil_banten': zip(berita_from_kemenkumham_kanwil_banten,
                                                                 get_berita_image(berita_from_kemenkumham_kanwil_banten))
@@ -294,14 +303,13 @@ def get_header_berita(category_berita):
     else:
         return Berita.objects.none()
 
-def get_berita_detail_image(berita_header_from):
+def get_berita_detail_image(berita_header_from, header):
     query_set = Berita.objects.order_by('-create_at').filter(category_berita=berita_header_from)
     query_set_image = BeritaImage.objects.all()
 
     if query_set.exists():
         if query_set_image.exists():
-            filter = Berita.objects.order_by('-create_at').filter(category_berita=berita_header_from)[0]
-            return BeritaImage.objects.filter(berita__berita_title=filter.berita_title)
+            return BeritaImage.objects.filter(berita__berita_title=header.berita_title).first()
         else:
             return BeritaImage.objects.none()
     else:
@@ -315,7 +323,7 @@ def galeri(response):
 
 def berita_detail(request, pk):
     berita = Berita.objects.get(id=pk)
-    berita_image_header = BeritaImage.objects.filter(berita=berita.id)[0]
+    berita_image_header = get_berita_image_header(berita)
     berita_image_content = BeritaImage.objects.filter(berita=berita.id)
     berita_terkini = Berita.objects.order_by('-create_at').all()[:4]
     berita_terkini_image = get_berita_image(berita_terkini)
@@ -326,6 +334,14 @@ def berita_detail(request, pk):
         'berita_image_content': berita_image_content,
         'berita_terkini': zip(berita_terkini, berita_terkini_image)
     })
+
+def get_berita_image_header(berita):
+    query_set = BeritaImage.objects.filter(berita=berita.id)
+
+    if query_set.exists():
+        return BeritaImage.objects.filter(berita=berita.id).first()
+    else:
+        BeritaImage.objects.none()
 
 def dasbor_publik(response):
     one_week_ago = datetime.today() - timedelta(days=7)
@@ -480,7 +496,7 @@ def get_berita_image(beritas):
 
     if querySet.exists():
         for berita in beritas:
-            list_of_berita_image.append(BeritaImage.objects.filter(berita=berita.id)[0])
+            list_of_berita_image.append(BeritaImage.objects.filter(berita=berita.id).first())
     else:
         pass
 
