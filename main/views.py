@@ -265,15 +265,15 @@ def berita(response):
     berita_header_from_kemenkumham_republik_indonesia = get_header_berita('KEMENKUMHAM_REPUBLIK_INDONESIA')
     berita_header_from_kantor_imigrasi_cilegon = get_header_berita('KANTOR_IMIGRASI_CILEGON')
     berita_from_kemenkumham_kanwil_banten = \
-        Berita.objects.order_by('-create_at').filter(category_berita='KEMENKUMHAM_KANWIL_BANTEN')[1:10]
+        Berita.objects.order_by('-create_at').filter(category_berita='KEMENKUMHAM_KANWIL_BANTEN')[1:]
     total_berita_from_kemenkumham_kanwil_banten = \
         Berita.objects.order_by('-create_at').filter(category_berita='KEMENKUMHAM_KANWIL_BANTEN').count()
     berita_from_kemenkumham_republik_indonesia = \
-        Berita.objects.order_by('-create_at').filter(category_berita='KEMENKUMHAM_REPUBLIK_INDONESIA')[1:10]
+        Berita.objects.order_by('-create_at').filter(category_berita='KEMENKUMHAM_REPUBLIK_INDONESIA')[1:]
     total_berita_from_kemenkumham_republik_indonesia = \
         Berita.objects.order_by('-create_at').filter(category_berita='KEMENKUMHAM_REPUBLIK_INDONESIA').count()
     berita_from_kantor_imigrasi_cilegon = \
-        Berita.objects.order_by('-create_at').filter(category_berita='KANTOR_IMIGRASI_CILEGON')[1:10]
+        Berita.objects.order_by('-create_at').filter(category_berita='KANTOR_IMIGRASI_CILEGON')[1:]
     total_berita_from_kantor_imigrasi_cilegon = \
         Berita.objects.order_by('-create_at').filter(category_berita='KANTOR_IMIGRASI_CILEGON').count()
 
