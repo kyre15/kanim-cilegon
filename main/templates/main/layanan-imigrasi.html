@@ -17,9 +17,15 @@
                         <ul>
                             {% if list_of_submenu_wni %}
                                 {% for list_of_submenu in list_of_submenu_wni %}
+                                    {% if list_of_submenu.submenu_name == 'Penyerahan Paspor' %}
+                                    <li class="sidebar-submenu-item hide">
+                                        <button id="sidebar-submenu-item-text" onclick="changeSubMenu('{{ list_of_submenu.permalink }}')">{{list_of_submenu.submenu_name}}</button>
+                                    </li>
+                                    {% else %}
                                     <li class="sidebar-submenu-item">
                                         <button id="sidebar-submenu-item-text" onclick="changeSubMenu('{{ list_of_submenu.permalink }}')">{{list_of_submenu.submenu_name}}</button>
                                     </li>
+                                    {% endif %}
                                 {% endfor %}
                             {% endif %}
                         </ul>

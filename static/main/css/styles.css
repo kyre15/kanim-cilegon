@@ -2346,7 +2346,7 @@ a #izin-tinggal-online-button {
 .rinci-pelayanan-container {
   background-color: white;
   position: relative;
-  display: flex;
+  display: none;
 }
 
 .pelayanan-wrapper {
@@ -3602,7 +3602,7 @@ ol li {
 .ipk-dan-ikm-container {
   background-color: white;
   position: relative;
-  display: none;
+  display: flex;
 }
 
 .ipk-dan-ikm-wrapper {
