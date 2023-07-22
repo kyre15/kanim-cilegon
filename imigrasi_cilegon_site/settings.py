@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'imigrasi_cilegon_site.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'kanimcilegon',
+        'NAME': 'kanimcilegonnew',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': 'localhost',
