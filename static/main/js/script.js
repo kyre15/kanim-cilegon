@@ -1,5 +1,28 @@
 var slideIndex = 1;
 
+function setSubMenuBeritaOnLoad() {
+    let selectedSubMenu = localStorage.getItem("subMenuBeritaSelected");
+
+    switch (selectedSubMenu) {
+        case 'berita-kantor-imigrasi':
+            document.getElementById('content-kantor-imigrasi-cilegon-tab-button').focus();
+            break;
+        case 'berita-kemenkumham':
+            document.getElementById('content-kemenkumham-republik-indonesia-tab-button').focus();
+            break;
+        case 'berita-kanwil':
+            document.getElementById('content-grid-kemenkumham-kanwil-banten-tab-button').focus();
+            break;
+    }
+
+    document.getElementById(selectedSubMenu).classList.remove("content-core-hide");
+    document.getElementById(selectedSubMenu).classList.add("content-core-show");
+}
+
+function selectSubMenuBerita(clickedSubMenu) {
+    localStorage.setItem("subMenuBeritaSelected", clickedSubMenu);
+}
+
 function setSubMenuOnLoad() {
     let selectedSubMenu = localStorage.getItem("subMenuSelected");
 
@@ -8,43 +31,43 @@ function setSubMenuOnLoad() {
     document.getElementById(selectedSubMenu).classList.add("content-core-show");
 }
 
-    function chartGenerator(id, sangatBaik, baik, kurangBaik, tidakBaik) {
-          new Chart(document.getElementById('myChart'+id.toString()), {
-            type: 'bar',
-            data: {
-              labels: ['P1'],
-              datasets: [
-                  {
-                      label: 'Sangat Baik',
-                      data: [sangatBaik],
-                      borderWidth: 1
-                  },
-                  {
-                      label: 'Baik',
-                      data: [baik],
-                      borderWidth: 1
-                  },
-                  {
-                      label: 'Kurang Baik',
-                      data: [kurangBaik],
-                      borderWidth: 1
-                  },
-                  {
-                      label: 'Tidak Baik',
-                      data: [tidakBaik],
-                      borderWidth: 1
-                  },
-              ]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
+function chartGenerator(id, sangatBaik, baik, kurangBaik, tidakBaik) {
+      new Chart(document.getElementById('myChart'+id.toString()), {
+        type: 'bar',
+        data: {
+          labels: ['P1'],
+          datasets: [
+              {
+                  label: 'Sangat Baik',
+                  data: [sangatBaik],
+                  borderWidth: 1
+              },
+              {
+                  label: 'Baik',
+                  data: [baik],
+                  borderWidth: 1
+              },
+              {
+                  label: 'Kurang Baik',
+                  data: [kurangBaik],
+                  borderWidth: 1
+              },
+              {
+                  label: 'Tidak Baik',
+                  data: [tidakBaik],
+                  borderWidth: 1
+              },
+          ]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
             }
-          });
-    }
+          }
+        }
+      });
+}
 
 function showFirstSlide() {
     let slide = document.getElementsByClassName("mySlides")[0];

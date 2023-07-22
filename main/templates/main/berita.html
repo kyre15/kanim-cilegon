@@ -62,10 +62,10 @@
                 <button id="content-kemenkumham-republik-indonesia-tab-button" onclick="berita('kemenkumham-republik-indonesia')">Kemenkumham Republik Indonesia</button>
                 <button id="content-grid-kemenkumham-kanwil-banten-tab-button" onclick="berita('kemenkumham-kanwil-banten')">Kemenkumham Kanwil Banten</button>
             </div>
-            <div class="berita-grid-kantor-imigrasi-cilegon" style="flex-direction: column;">
+            <div class="berita-grid-kantor-imigrasi-cilegon content-core-hide" style="flex-direction: column;" id="berita-kantor-imigrasi">
                 <div class="berita-grid-wrapper berita-grid-kantor-imigrasi-cilegon">
-                    {% if berita_image_from_kantor_imigrasi_cilegon %}
-                        {% for berita, image in berita_image_from_kantor_imigrasi_cilegon %}
+                    {% if page_berita_kantor_imigrasi_cilegon %}
+                        {% for berita, image in page_berita_kantor_imigrasi_cilegon %}
                             <a class="berita-item" href="{% url 'berita-detail' berita.id %}">
                                 <img src="{{ image.berita_image_file.url }}" alt="" id="berita-item-image">
                                 <span id="berita-item-title">{{ berita.berita_title|slice:":30" }}... </span>
@@ -75,14 +75,27 @@
                         {% endfor %}
                     {% endif %}
                 </div>
-                <div class="load-more__btn mt-3" id="btn-load-more" style="margin-bottom: 16px" >
-                    <button type="button" class="btn btn-success">Load More Berita</button>
-                </div>
+{#                <div class="load-more__btn mt-3" id="btn-load-more" style="margin-bottom: 16px" >#}
+{#                    <button type="button" class="btn btn-success">Load More Berita</button>#}
+{#                </div>#}
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination" style="justify-content: center;">
+                      {% if page_kantor_imigrasi_cilegon.has_previous %}
+                        <li class="page-item"><a class="page-link" href="{% url 'berita' %}?page_kantor_imigrasi_cilegon={{ page_kantor_imigrasi_cilegon.previous_page_number }}" onclick="selectSubMenuBerita('berita-kantor-imigrasi')">Previous</a></li>
+                      {% endif %}
+                  {% for num_page in page_kantor_imigrasi_cilegon.paginator.page_range %}
+                    <li class="page-item"><a class="page-link" href="{% url 'berita' %}?page_kantor_imigrasi_cilegon={{ num_page }}" onclick="selectSubMenuBerita('berita-kantor-imigrasi')">{{ num_page }}</a></li>
+                  {% endfor %}
+                    {% if page_kantor_imigrasi_cilegon.has_next %}
+                         <li class="page-item"><a class="page-link" href="{% url 'berita' %}?page_kantor_imigrasi_cilegon={{ page_kantor_imigrasi_cilegon.next_page_number }}" onclick="selectSubMenuBerita('berita-kantor-imigrasi')">Next</a></li>
+                      {% endif %}
+                  </ul>
+                </nav>
             </div>
-            <div class="berita-grid-kemenkumham-republik-indonesia" style="flex-direction: column;">
-                <div class="berita-grid-wrapper berita-grid-kemenkumham-republik-indonesia">
-                    {% if berita_image_from_kemenkumham_republik_indonesia %}
-                        {% for berita, image in berita_image_from_kemenkumham_republik_indonesia %}
+            <div class="berita-grid-kemenkumham-republik-indonesia content-core-hide" style="flex-direction: column;" id="berita-kemenkumham">
+                <div class="berita-grid-wrapper berita-grid-kemenkumham-republik-indonesia1">
+                    {% if page_berita_kemenkumham_republik_indonesia %}
+                        {% for berita, image in page_berita_kemenkumham_republik_indonesia %}
                             <a class="berita-item" href="{% url 'berita-detail' berita.id %}">
                                 <img src="{{ image.berita_image_file.url }}" alt="" id="berita-item-image">
                                 <span id="berita-item-title">{{ berita.berita_title|slice:":30" }}... </span>
@@ -92,14 +105,27 @@
                         {% endfor %}
                     {% endif %}
                 </div>
-                <div class="load-more__btn mt-3" id="btn-load-more" style="margin-bottom: 16px;">
-                    <button type="button" class="btn btn-success">Load More Berita</button>
-                </div>
+{#                <div class="load-more__btn mt-3" id="btn-load-more" style="margin-bottom: 16px;">#}
+{#                    <button type="button" class="btn btn-success">Load More Berita</button>#}
+{#                </div>#}
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination" style="justify-content: center;">
+                      {% if page_kantor_kemenkumham_republik_indonesia.has_previous %}
+                        <li class="page-item"><a class="page-link" href="{% url 'berita' %}?page_kemenkumham_republik_indonesia={{ page_kantor_kemenkumham_republik_indonesia.previous_page_number }}" onclick="selectSubMenuBerita('berita-kemenkumham')">Previous</a></li>
+                      {% endif %}
+                  {% for num_page in page_kantor_kemenkumham_republik_indonesia.paginator.page_range %}
+                    <li class="page-item"><a class="page-link" href="{% url 'berita' %}?page_kemenkumham_republik_indonesia={{ num_page }}" onclick="selectSubMenuBerita('berita-kemenkumham')">{{ num_page }}</a></li>
+                  {% endfor %}
+                    {% if page_kantor_kemenkumham_republik_indonesia.has_next %}
+                         <li class="page-item"><a class="page-link" href="{% url 'berita' %}?page_kemenkumham_republik_indonesia={{ page_kantor_kemenkumham_republik_indonesia.next_page_number }}" onclick="selectSubMenuBerita('berita-kemenkumham')">Next</a></li>
+                    {% endif %}
+                  </ul>
+                </nav>
             </div>
-            <div class="berita-grid-kemenkumham-kanwil-banten" style="flex-direction: column;">
-                <div class="berita-grid-wrapper berita-grid-kemenkumham-kanwil-banten">
-                    {% if berita_image_from_kemenkumham_kanwil_banten %}
-                        {% for berita, image in berita_image_from_kemenkumham_kanwil_banten %}
+            <div class="berita-grid-kemenkumham-kanwil-banten content-core-hide" style="flex-direction: column;"  id="berita-kanwil">
+                <div class="berita-grid-wrapper berita-grid-kemenkumham-kanwil-banten1">
+                    {% if page_berita_kemenkumham_kanwil_banten %}
+                        {% for berita, image in page_berita_kemenkumham_kanwil_banten %}
                             <a class="berita-item" href="{% url 'berita-detail' berita.id %}">
                                 <img src="{{ image.berita_image_file.url }}" alt="" id="berita-item-image">
                                 <span id="berita-item-title">{{ berita.berita_title|slice:":30" }}... </span>
@@ -109,13 +135,28 @@
                         {% endfor %}
                     {% endif %}
                 </div>
-                <div class="load-more__btn mt-3" id="btn-load-more" style="margin-bottom: 16px;">
-                    <button type="button" class="btn btn-success">Load More Berita</button>
-                </div>
+{#                <div class="load-more__btn mt-3" id="btn-load-more" style="margin-bottom: 16px;">#}
+{#                    <button type="button" class="btn btn-success">Load More Berita</button>#}
+{#                </div>#}
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination" style="justify-content: center;">
+                      {% if page_kantor_kemenkumham_kanwil_banten.has_previous %}
+                        <li class="page-item"><a class="page-link" href="{% url 'berita' %}?page_kemenkumham_kanwil_banten={{ page_kantor_kemenkumham_kanwil_banten.previous_page_number }}" onclick="selectSubMenuBerita('berita-kanwil')">Previous</a></li>
+                      {% endif %}
+                  {% for num_page in page_kantor_kemenkumham_kanwil_banten.paginator.page_range %}
+                    <li class="page-item"><a class="page-link" href="{% url 'berita' %}?page_kemenkumham_kanwil_banten={{ num_page }}" onclick="selectSubMenuBerita('berita-kanwil')">{{ num_page }}</a></li>
+                  {% endfor %}
+                    {% if page_kantor_kemenkumham_kanwil_banten.has_next %}
+                         <li class="page-item"><a class="page-link" href="{% url 'berita' %}?page_kemenkumham_kanwil_banten={{ page_kantor_kemenkumham_kanwil_banten.next_page_number }}" onclick="selectSubMenuBerita('berita-kanwil')">Next</a></li>
+                      {% endif %}
+                  </ul>
+                </nav>
             </div>
         </div>
     </div>
     <script>
-           
+    window.onload = function () {
+        setSubMenuBeritaOnLoad();
+    }
     </script>
 {% endblock %}

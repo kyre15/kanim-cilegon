@@ -1,6 +1,7 @@
 from django.db.models.functions import Coalesce
 from django.shortcuts import render
 from django.db.models import Sum, F
+from django.core.paginator import Paginator
 
 from .models import FotoGaleri, Berita, BeritaImage, YoutubeVideo, FileArsipDanDokumen, SubMenu, Content, Menu, \
     VisiDanMisi, Kakanim, StrukturOrganisasi, ListPerusahaanDanPenginapanWilayahKerja, LaporanPelayananWNI, \
@@ -260,24 +261,36 @@ def timpora(response):
         'file_timpora': FileArsipDanDokumen.objects.filter(category='TIMPORA').order_by("-file_added_at")[:5]
     })
 
-def berita(response):
+def berita(request):
     berita_header_from_kemenkumham_kanwil_banten = get_header_berita('KEMENKUMHAM_KANWIL_BANTEN')
     berita_header_from_kemenkumham_republik_indonesia = get_header_berita('KEMENKUMHAM_REPUBLIK_INDONESIA')
     berita_header_from_kantor_imigrasi_cilegon = get_header_berita('KANTOR_IMIGRASI_CILEGON')
     berita_from_kemenkumham_kanwil_banten = \
         Berita.objects.order_by('-create_at').filter(category_berita='KEMENKUMHAM_KANWIL_BANTEN')[1:]
-    total_berita_from_kemenkumham_kanwil_banten = \
-        Berita.objects.order_by('-create_at').filter(category_berita='KEMENKUMHAM_KANWIL_BANTEN').count()
     berita_from_kemenkumham_republik_indonesia = \
         Berita.objects.order_by('-create_at').filter(category_berita='KEMENKUMHAM_REPUBLIK_INDONESIA')[1:]
-    total_berita_from_kemenkumham_republik_indonesia = \
-        Berita.objects.order_by('-create_at').filter(category_berita='KEMENKUMHAM_REPUBLIK_INDONESIA').count()
     berita_from_kantor_imigrasi_cilegon = \
         Berita.objects.order_by('-create_at').filter(category_berita='KANTOR_IMIGRASI_CILEGON')[1:]
-    total_berita_from_kantor_imigrasi_cilegon = \
-        Berita.objects.order_by('-create_at').filter(category_berita='KANTOR_IMIGRASI_CILEGON').count()
 
-    return render(response, "main/berita.html", {
+    pageinator_berita_from_kemenkumham_republik_indonesia = Paginator(
+        berita_from_kemenkumham_republik_indonesia, 9)
+    page_number_berita_from_kemenkumham_republik_indonesia = request.GET.get("page_kemenkumham_republik_indonesia")
+    page_object_kemenkumham_republik_indonesia = pageinator_berita_from_kemenkumham_republik_indonesia.get_page(
+        page_number_berita_from_kemenkumham_republik_indonesia)
+
+    pageinator_berita_from_kemenkumham_kanwil_banten = Paginator(
+        berita_from_kemenkumham_kanwil_banten, 9)
+    page_number_berita_from_kemenkumham_kanwil_banten = request.GET.get("page_kemenkumham_kanwil_banten")
+    page_object_kemenkumham_kanwil_banten = pageinator_berita_from_kemenkumham_kanwil_banten.get_page(
+        page_number_berita_from_kemenkumham_kanwil_banten)
+
+    pageinator_berita_from_kantor_imigrasi_cilegon = Paginator(
+        berita_from_kantor_imigrasi_cilegon, 9)
+    page_number_berita_from_kantor_imigrasi_cilegon = request.GET.get("page_kantor_imigrasi_cilegon")
+    page_object_kantor_imigrasi_cilegon = pageinator_berita_from_kantor_imigrasi_cilegon.get_page(
+        page_number_berita_from_kantor_imigrasi_cilegon)
+
+    return render(request, "main/berita.html", {
         'berita_header_from_kemenkumham_kanwil_banten': berita_header_from_kemenkumham_kanwil_banten,
         'berita_header_from_kemenkumham_republik_indonesia': berita_header_from_kemenkumham_republik_indonesia,
         'berita_header_from_kantor_imigrasi_cilegon': berita_header_from_kantor_imigrasi_cilegon,
@@ -289,10 +302,16 @@ def berita(response):
             'KEMENKUMHAM_KANWIL_BANTEN', berita_header_from_kemenkumham_kanwil_banten),
         'berita_image_from_kantor_imigrasi_cilegon': zip(berita_from_kantor_imigrasi_cilegon,
                                                          get_berita_image(berita_from_kantor_imigrasi_cilegon)),
-        'berita_image_from_kemenkumham_republik_indonesia': zip(    berita_from_kemenkumham_republik_indonesia,
+        'berita_image_from_kemenkumham_republik_indonesia': zip(berita_from_kemenkumham_republik_indonesia,
                                                                 get_berita_image(berita_from_kemenkumham_republik_indonesia)),
         'berita_image_from_kemenkumham_kanwil_banten': zip(berita_from_kemenkumham_kanwil_banten,
-                                                                get_berita_image(berita_from_kemenkumham_kanwil_banten))
+                                                                get_berita_image(berita_from_kemenkumham_kanwil_banten)),
+        'page_berita_kantor_imigrasi_cilegon': zip(page_object_kantor_imigrasi_cilegon,get_berita_image(page_object_kantor_imigrasi_cilegon)),
+        'page_berita_kemenkumham_republik_indonesia': zip(page_object_kemenkumham_republik_indonesia,get_berita_image(page_object_kemenkumham_republik_indonesia)),
+        'page_berita_kemenkumham_kanwil_banten': zip(page_object_kemenkumham_kanwil_banten,get_berita_image(page_object_kemenkumham_kanwil_banten)),
+        'page_kantor_imigrasi_cilegon': page_object_kantor_imigrasi_cilegon,
+        'page_kantor_kemenkumham_republik_indonesia': page_object_kemenkumham_republik_indonesia,
+        'page_kantor_kemenkumham_kanwil_banten': page_object_kemenkumham_kanwil_banten
     })
 
 def get_header_berita(category_berita):

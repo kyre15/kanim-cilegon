@@ -2208,9 +2208,9 @@ a #izin-tinggal-online-button {
   display: inline-flex;
 }
 
-.berita-grid-kemenkumham-republik-indonesia,
-.berita-grid-kemenkumham-kanwil-banten {
-  display: none;
+.berita-grid-kemenkumham-republik-indonesia1,
+.berita-grid-kemenkumham-kanwil-banten1 {
+  display: flex;
 }
 
 .berita-detail-container {
