@@ -72,14 +72,225 @@ body {
   font-size: 16px;
 }
 
-@media screen and (max-width:1152px) {
-  .header-menu {
+@media screen and (max-width:580px) {
+  #headcon {
     display:none;
+  }
+
+  #jam-layanan-label { 
+    display: none;
   }
 }
 
-@media screen and (max-width: 1152px) {
-  .topnav :first-child a, button, i {display: none;}
+@media screen and (max-width:1152px) {
+  #beranda-header-social-media a {
+    display:none;
+  }
+
+  .header-menu {
+    display:none;
+  }
+
+  .dropdown-text {
+    display: none;
+  }
+
+  .mouse-icon img {
+    display: none;
+  }
+
+  .berita-terkini-vertical-line { 
+    display: none;
+  }
+
+  .berita-terkini-vertical-line {
+    display: none;
+  }
+
+  .berita-terkini-container {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .berita-terkini-item-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .berita-terkini-horizontal-line {
+    display: none;
+  }
+
+  .berita-terkini-container {
+    width: 100% !important;
+  }
+
+  .berita-terkini-container {
+    width: 100% !important;
+  }
+
+  .berita-terkini-highlight {
+    width: 100% !important;
+  }
+
+  .berita-terkini-highlight img {
+    width: 100% !important;
+  }
+
+  .berita-terkini-list {
+    width: 100% !important;
+  }
+
+  .berita-terkini-list a {
+    width: 100% !important;
+  }
+
+  .berita-terkini-item {
+    flex-direction: column-reverse;
+  }
+
+  .youtube-item-container {
+    flex-direction: column;
+  }
+
+  .youtube-container {
+    height: 100% !important;
+  }
+
+  .overlay {
+    display: none;
+  }
+
+  .content-show {
+    width: 414px !important;
+  }
+
+  .content-core-show {
+    width: 414px !important;
+  }
+
+  .content-core-show li {
+    width: 414px !important;
+  }
+
+  .content-core-hide li {
+    width: 414px !important;
+  }
+
+  .content-show ul li {
+    width: 414px !important;
+  }
+
+  .content-berita-tab-wrapper {
+    flex-direction: column;
+  }
+
+  .berita-grid-kantor-imigrasi-cilegon {
+    display: inline-flex;
+    flex-direction: column;
+  }
+  
+  .berita-grid-kemenkumham-republik-indonesia1,
+  .berita-grid-kemenkumham-kanwil-banten1 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .berita-detail-wrapper {
+    flex-direction: column;
+  }
+
+  .berita-detail-wrapper{
+    width: 100% !important;
+  }
+
+  #berita-detail-preview-image {
+    width: 100% !important;
+  }
+
+  .berita-detail-thumbnail-wrapper {
+    width: 100% !important;
+  }
+
+  .subtitle-wilaya-kerja {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width:1016px) {
+  #list-image div {
+    display:none;
+  }
+
+  #image-hightlight {
+    justify-content: center;
+  }
+
+  #preview-image {
+    width: 100% !important;
+  }
+
+  #preview-image img {
+    width: 100% !important;
+  }
+
+  .content-wrapper {
+    flex-direction: column;
+  }
+
+  .layanan-imigrasi-content-tab {
+    /* flex-direction: column !important; */
+    border-bottom: 0px !important;
+  }
+}
+
+@media screen and (max-width:625px) {
+  .apps-link-wrapper {
+    width: 100% !important;
+  }
+
+  .apps-link-wrapper div {
+    width: 100% !important;
+  }
+
+  .content-wrapper {
+    width: 100% !important;
+  }
+
+  .content-show {
+    width: 414px !important;
+  }
+
+  .content-core-show {
+    width: 414px !important;
+  }
+
+  .content-core-show li {
+    width: 414px !important;
+  }
+
+  .content-core-hide li {
+    width: 414px !important;
+  }
+
+  .content-show ul li {
+    width: 414px !important;
+  }
+}
+
+@media screen and (max-width:803px) {
+  .instagram-wrapper {
+    height: 100% !important;
+  }
+
+  .instagram-item-wrapper {
+    height: 1315px !important;
+    width: fit-content !important;
+  }
+
+  .social-media-url {
+    display: none;
+  }
 }
 
 .phone {
@@ -502,7 +713,7 @@ li.footer-menu-item:not(:last-child) {
 #beranda-header-title {
   margin: auto;
   text-align: center;
-  width: 814px;
+  width: 100%;
 
   font-style: normal;
   font-weight: 700;
@@ -517,7 +728,7 @@ li.footer-menu-item:not(:last-child) {
   display: block;
   position: relative;
   height: fit-content;
-  width: 814px;
+  width: 100%;
   top: 100px;
   margin: auto;
 }
@@ -690,7 +901,9 @@ a:focus {
 
 .image-highlight-container {
   background-color: white;
-  padding: 120px 240px;
+  padding: 120px 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .image-highlight-container-bg {
@@ -796,14 +1009,6 @@ a:focus {
   height: 332px;
   display: flex;
   position: relative;
-}
-
-.laporan-pelayanan-container-bg {
-  /* background-image: url("../img/image-highlight-background.png");
-  background-size: 500px 500px;
-  background-repeat: no-repeat;
-  background-position: 836px 8px;
-  margin: auto; */
 }
 
 .total-pelayanan-container {
@@ -1079,8 +1284,9 @@ a:focus {
   order: 2;
   width: 546px;
   height: 672px;
-  display: block;
+  display: flex;
   gap: 16px;
+  flex-direction: column;
 }
 
 .berita-terkini-item:not(:last-child) {
@@ -1149,7 +1355,7 @@ a:focus {
 }
 
 .apps-link-wrapper {
-  height: 606px;
+  height: 100%;
   width: 1232px;
   position: relative;
   display: flex;
@@ -1214,6 +1420,7 @@ a:focus {
   display: flex;
   padding: 254px 167px 312px 167px;
   gap: 16px;
+  justify-content: center;
 }
 
 #m-paspor-appstore-button {
@@ -1567,7 +1774,7 @@ a #izin-tinggal-online-button {
   display: inline-flex;
   flex-wrap: wrap;
   width: 1232px;
-  height: 412px;
+  height: 100%;
   margin: 120px auto 120px auto;
   gap: 20px;
 }
