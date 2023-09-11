@@ -22,11 +22,11 @@
 </div>
 <div id= "mytopnav" class="topnav">
     <div class="full-screen hidden" id="overlay" onclick="overlayOff()"></div>
-    <div class="content-header">
+    <div class="content-header" id="content-header-id">
         <a href="{% url 'home' %}" class="header-logo">
             <img src="{% static 'main/img/header-logo.png' %}" alt="head-logo">
         </a>
-        <div class="dropdown-text">
+        <div class="dropdown-text" id="dropdown-text-id">
             <a href="{% url 'home' %}">Beranda</a>
             <button onclick="dropdownLayanan(); overlayOn()" class="tablinks Layanan" id="btnLayanan">Layanan Imigrasi
                 <i class="fa fa-chevron-down"></i>
@@ -41,7 +41,6 @@
                 <i class="fa fa-chevron-down"></i>
             </button>
         </div>
-
         <div class="dropdown-header" id="drophead">
             <div class="container-fluid-layanan" id="drop-layanan">
                 <div class="row row-cols-3">

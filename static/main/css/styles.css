@@ -83,6 +83,15 @@ body {
 }
 
 @media screen and (max-width:1152px) {
+
+  .content-header {
+    height: 120px !important;
+  }
+
+  .header-logo {
+    display:none;
+  }
+
   #beranda-header-social-media a {
     display:none;
   }
@@ -92,7 +101,7 @@ body {
   }
 
   .dropdown-text {
-    display: none;
+    display: flex;
   }
 
   .mouse-icon img {
@@ -498,7 +507,7 @@ body {
   position: absolute;
   width: 100%;
   background-color:rgb(255, 255, 255);
-  height: 252px;
+  /* height: 252px; */
   border-top: 1px solid #E2E8F0;
   box-shadow: 0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04);
   }
@@ -514,7 +523,7 @@ body {
   position: absolute;
   width: 100%;
   background-color:white;
-  height: 164px;
+  /* height: 164px; */
   border-top: 1px solid #E2E8F0;
   box-shadow: 0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04);
   }
@@ -530,7 +539,7 @@ body {
   position: absolute;
   width: 100%;
   background-color:white;
-  height: 228px;
+  /* height: 228px; */
   border-top: 1px solid #E2E8F0;
   box-shadow: 0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04);
   }
@@ -546,7 +555,7 @@ body {
   position: absolute;
   width: 100%;
   background-color:white;
-  height: 228px;
+  /* height: 228px; */
   border-top: 1px solid #E2E8F0;
   box-shadow: 0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04);
   }
@@ -1225,12 +1234,12 @@ a:focus {
 }
 
 .highlight-text-container {
-  width: 606px;
+  width: 100%;
   height: fit-content;
 }
 
 #highlight-title {
-  width: 606px;
+  width: 100%;
   height: 64px;
   font-weight: 700;
   font-size: 20px;
@@ -1241,7 +1250,7 @@ a:focus {
 }
 
 #highlight-subtitle {
-  width: 606px;
+  width: 100%;
   height: fit-content;
   font-weight: 400;
   font-size: 14px;
@@ -1257,7 +1266,7 @@ a:focus {
 }
 
 #highlight-date {
-  width: 606px;
+  width: 100%;
   height: 18px;
   font-weight: 400;
   font-size: 12px;
@@ -1301,7 +1310,7 @@ a:focus {
 
 .berita-terkini-item {
   display: flex;
-  width: 546px;
+  width: 100%;
   height: 160px;
 }
 
@@ -1311,7 +1320,7 @@ a:focus {
   width: 386px;
 }
 #berita-terkini-item-title {
-  width: 386px;
+  width: 100%;
   height: auto;
   font-weight: 700;
   font-size: 16px;
@@ -1326,7 +1335,7 @@ a:focus {
 }
 
 #berita-terkini-item-date {
-  width: 386px;
+  width: 100%;
   height: 18px;
   font-weight: 400;
   font-size: 12px;
@@ -3818,4 +3827,39 @@ ol li {
   margin: auto auto 120px auto;
   position: relative;
   display: grid;
+}
+
+@media screen and (max-width: 580px) {
+  .topnav .content-header .dropdown-text {
+    position: relative !important;
+  }
+
+  .dropdown-text a:not(:first-child) {display: none;}
+  .dropdown-text a.icon {
+    float: right;
+    display: block;
+  }
+  .content-header {
+    padding:16px 16px 16px 0px !important;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .dropdown-text.responsive {
+    position: relative !important;
+    display: flex !important;
+  }
+  .dropdown-text.responsive a.icon {
+    right: 0;
+    top: 0;
+  }
+  .dropdown-text.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+.dropdown-text .icon {
+  display: none;
 }

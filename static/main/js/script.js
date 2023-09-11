@@ -229,24 +229,6 @@ window.addEventListener("scroll", function(){
   }
 })
 
-// function dropdownItemChecker() {  for adjusting dropdown height **
-//     var getWNIid = document.querySelectorAll('.header-menu-items.header-menu-item').length;
-//     var getWNAid = document.querySelectorAll('.header-menu-items.header-menu-item').length;
-//     let getStyle = document.getElementsByClassName('.dropdown-header.container-fluid').
-
-//     if (getWNIid.length == 5) {
-//       getStyle.height(252);
-//     } else if (getWNIid.length == 4) {
-//       getStyle.height(222);
-//     } else if (getWNIid.length == 3) {
-//       getStyle.height(202);
-//     } else if (getWNIid.length == 2) {
-//       getStyle.height(182);
-//     } else if (getWNIid.length == 1) {
-//       getStyle.height(162);
-//     }
-//   }
-
 function autoScroll(element) {
     document.getElementById(element).scrollIntoView();
 }
