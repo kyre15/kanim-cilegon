@@ -83,6 +83,17 @@ body {
 }
 
 @media screen and (max-width:1152px) {
+  .galeri-foto-grid-wrapper {
+    width: 500px !important;
+  }
+
+  .galeri-video-grid-wrapper {
+    width: 500px !important;
+  }
+
+  .content-galeri-tab-wrapper {
+    flex-direction: column !important;
+  }
 
   .content-header {
     height: 120px !important;
@@ -250,6 +261,16 @@ body {
   .layanan-imigrasi-content-tab {
     /* flex-direction: column !important; */
     border-bottom: 0px !important;
+  }
+
+  .struktur-organisasi-wrapper{
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .kakanim-dari-waktu-wrapper {
+    width: 100% !important;
+    height: 100% !important;
   }
 }
 
@@ -2158,9 +2179,10 @@ a #izin-tinggal-online-button {
   width: 1232px;
   display: flex;
   gap: 8px;
-  margin: auto auto 120px auto;
+  /* margin: auto auto 120px auto; */
   position: relative;
   flex-wrap: wrap;
+  margin-bottom: 120px;
 }
 
 .galeri-foto-grid-wrapper img {
@@ -2172,9 +2194,10 @@ a #izin-tinggal-online-button {
   width: 1232px;
   display: none;
   gap: 20px;
-  margin: auto auto 120px auto;
+  /* margin: auto auto 120px auto; */
   position: relative;
   flex-wrap: wrap;
+  margin-bottom: 120px;
 }
 
 .galeri-video-grid-wrapper iframe {
