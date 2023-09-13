@@ -518,7 +518,6 @@ body {
 }
 
 .container-fluid-layanan {
-  margin-top:38px;
   z-index:100001;
   border:none;
   outline:none;
@@ -534,7 +533,6 @@ body {
   }
   
 .container-fluid-informasi {
-  margin-top:38px;
   z-index:100001;
   border:none;
   outline:none;
@@ -550,7 +548,6 @@ body {
   }
 
 .container-fluid-profil {
-  margin-top:38px;
   z-index:100001;
   border:none;
   outline:none;
@@ -566,7 +563,6 @@ body {
   }
 
 .container-fluid-ppid {
-  margin-top:38px;
   border:none;
   outline:none;
   z-index:100001;
@@ -3854,7 +3850,7 @@ ol li {
 
 @media screen and (max-width: 580px) {
   .topnav .content-header .dropdown-text {
-    position: relative !important;
+    /* position: relative !important; */
   }
 
   .dropdown-text a:not(:first-child) {display: none;}
@@ -3886,3 +3882,24 @@ ol li {
 .dropdown-text .icon {
   display: none;
 }
+
+
+/* header footer responsive start */
+.navbar{
+  height: 100px;
+}
+.navbar-toggler{
+  visibility: hidden;
+}
+.navbar-header-logo{
+  width: 200px;
+}
+.container-fluid{
+  
+}
+@media screen and (max-width: 1023px) {
+  .navbar-toggler{
+    visibility: visible;
+  }
+}
+/* header footer responsive finish */

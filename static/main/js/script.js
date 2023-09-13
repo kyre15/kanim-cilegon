@@ -140,6 +140,12 @@ function dropdownInformasi() {
   } 
 }
 
+function dropdownHeader(){
+  console.log("koko ni iru");
+  let dropdownitems = document.getElementsByClassName("container-fluid");
+  console.log(dropdownitems);
+}
+
 function dropdownProfil() {
   document.getElementById("drop-profil").classList.toggle("drop");
   document.getElementById("btnProfil").classList.add('active');
