@@ -12,6 +12,9 @@ body {
   overflow-x: hidden;
 }
 
+a{
+  text-decoration: none;
+}
 .sticky {
   position:sticky;
   top:48px
@@ -2210,7 +2213,7 @@ a #izin-tinggal-online-button {
 }
 
 .show {
-  display: flex;
+  display: block;
 }
 
 .hide {
@@ -3897,6 +3900,7 @@ ol li {
 .container-fluid{
   
 }
+
 @media screen and (max-width: 1023px) {
   .navbar-toggler{
     visibility: visible;
