@@ -76,9 +76,6 @@ a{
 }
 
 @media screen and (max-width:580px) {
-  #headcon {
-    display:none;
-  }
 
   #jam-layanan-label { 
     display: none;
@@ -3887,9 +3884,21 @@ ol li {
 }
 
 
-/* header footer responsive start */
+/* responsive start by f*/
+a{
+  text-decoration: none;
+}
+.dropdown-conntainer{
+  width: 100%;
+}
+.dropdown-content-container{
+  padding: 24px 104px 24px 104px
+}
+.dropdown-content-title{
+  margin-left:30px;
+}
 .navbar{
-  height: 100px;
+  /* height: 100px; */
 }
 .navbar-toggler{
   visibility: hidden;
@@ -3900,10 +3909,40 @@ ol li {
 .container-fluid{
   
 }
+.vertical-line-left{
+  border-left: 1px solid #eeeeee;
+  /* height: 100%; */
+}
+
 
 @media screen and (max-width: 1023px) {
+  .vertical-line-left{
+    border-left: 0px solid #eeeeee;
+    /* height: 100%; */
+  }
+
+  .dropdown-content-container{
+    padding: 0px;
+  }
+
+  .dropdown-content-title{
+    margin:10px 15px;
+  }
+
+  .header-contact{
+    padding:10px;
+  }
+
   .navbar-toggler{
     visibility: visible;
   }
+
+  .wa-contact{
+    text-align: center;
+  }
+  
+  .mail-contact{
+    text-align: center;
+  }
 }
-/* header footer responsive finish */
+/* responsive finish by f */
