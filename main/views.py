@@ -22,8 +22,8 @@ def home(response):
     headline_berita_image = get_berita_image_single()
     beritas = Berita.objects.order_by("-create_at")[1:5]
     youtube_videos = YoutubeVideo.objects.order_by("-create_at")[:4]
-    subprocess.run(["rm", "-rf", "images/imigrasi_cilegon"])
-    subprocess.run(["cp", "-R", "imigrasi_cilegon", "images/"])
+    # subprocess.run(["rm", "-rf", "images/imigrasi_cilegon"])
+    # subprocess.run(["cp", "-R", "imigrasi_cilegon", "images/"])
     fetch_image = threading.Thread(target=fetch_instagram, args=[])
     fetch_image.start()
     total_laporan_pelayanan_wni = LaporanPelayananWNI.objects.all().aggregate(total=Coalesce(Sum(

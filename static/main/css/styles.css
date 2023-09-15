@@ -12,6 +12,9 @@ body {
   overflow-x: hidden;
 }
 
+a{
+  text-decoration: none;
+}
 .sticky {
   position:sticky;
   top:48px
@@ -73,9 +76,6 @@ body {
 }
 
 @media screen and (max-width:580px) {
-  #headcon {
-    display:none;
-  }
 
   #jam-layanan-label { 
     display: none;
@@ -518,7 +518,6 @@ body {
 }
 
 .container-fluid-layanan {
-  margin-top:38px;
   z-index:100001;
   border:none;
   outline:none;
@@ -534,7 +533,6 @@ body {
   }
   
 .container-fluid-informasi {
-  margin-top:38px;
   z-index:100001;
   border:none;
   outline:none;
@@ -550,7 +548,6 @@ body {
   }
 
 .container-fluid-profil {
-  margin-top:38px;
   z-index:100001;
   border:none;
   outline:none;
@@ -566,7 +563,6 @@ body {
   }
 
 .container-fluid-ppid {
-  margin-top:38px;
   border:none;
   outline:none;
   z-index:100001;
@@ -2214,7 +2210,7 @@ a #izin-tinggal-online-button {
 }
 
 .show {
-  display: flex;
+  display: block;
 }
 
 .hide {
@@ -3854,7 +3850,7 @@ ol li {
 
 @media screen and (max-width: 580px) {
   .topnav .content-header .dropdown-text {
-    position: relative !important;
+    /* position: relative !important; */
   }
 
   .dropdown-text a:not(:first-child) {display: none;}
@@ -3886,3 +3882,67 @@ ol li {
 .dropdown-text .icon {
   display: none;
 }
+
+
+/* responsive start by f*/
+a{
+  text-decoration: none;
+}
+.dropdown-conntainer{
+  width: 100%;
+}
+.dropdown-content-container{
+  padding: 24px 104px 24px 104px
+}
+.dropdown-content-title{
+  margin-left:30px;
+}
+.navbar{
+  /* height: 100px; */
+}
+.navbar-toggler{
+  visibility: hidden;
+}
+.navbar-header-logo{
+  width: 200px;
+}
+.container-fluid{
+  
+}
+.vertical-line-left{
+  border-left: 1px solid #eeeeee;
+  /* height: 100%; */
+}
+
+
+@media screen and (max-width: 1023px) {
+  .vertical-line-left{
+    border-left: 0px solid #eeeeee;
+    /* height: 100%; */
+  }
+
+  .dropdown-content-container{
+    padding: 0px;
+  }
+
+  .dropdown-content-title{
+    margin:10px 15px;
+  }
+
+  .header-contact{
+    padding:10px;
+  }
+
+  .navbar-toggler{
+    visibility: visible;
+  }
+
+  .wa-contact{
+    text-align: center;
+  }
+  
+  .mail-contact{
+    text-align: center;
+  }
+}
+/* responsive finish by f */

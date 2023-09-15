@@ -140,6 +140,26 @@ function dropdownInformasi() {
   } 
 }
 
+function dropdownHeader(target){
+  let extendItems = document.getElementsByClassName("extend-items");
+  console.log(extendItems[0]);
+  for(let i=0;i<extendItems.length;i++){
+    console.log(extendItems[i].getAttribute("id"));
+    if(extendItems[i].getAttribute("id").indexOf(target) != -1){
+      extendItems[i].setAttribute("class","container-fluid extend-items show")
+    }else{
+      extendItems[i].setAttribute("class","container-fluid extend-items hide")
+    }
+    console.log(extendItems[i].getAttribute("class"));
+    // let style = extendItems[i].getAttribute("style");
+    
+    // style += "visibility:hidden"
+    // extendItems[i].setAttribute("style",style);
+    console.log(extendItems[i]);
+    console.log(i);
+  }
+}
+
 function dropdownProfil() {
   document.getElementById("drop-profil").classList.toggle("drop");
   document.getElementById("btnProfil").classList.add('active');
