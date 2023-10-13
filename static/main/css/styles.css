@@ -1248,6 +1248,7 @@ a:focus {
   width: 100%;
   position: relative;
   display: flex;
+  justify-content: center;
   gap: 24px;
 }
 
@@ -1293,7 +1294,7 @@ a:focus {
 }
 
 .berita-terkini-vertical-line {
-  width: 100%;
+  width: 902px;
   height: 0;
   border: 1px solid #E2E8F0;
   order: 0;
@@ -1305,6 +1306,7 @@ a:focus {
   width: 100%;
   position: relative;
   display: flex;
+  justify-content: center;
   gap: 40px;
 }
 
@@ -1471,6 +1473,7 @@ a:focus {
   width: 1232px;
   position: relative;
   display: flex;
+  justify-content: center;
   margin: 120px auto 120px auto;
   flex-direction: row;
   flex-wrap: wrap;
@@ -1795,7 +1798,7 @@ a #izin-tinggal-online-button {
   align-items: center;
   padding: 0;
   gap: 24px;
-  width: 100%;
+  width: 902px;
   height: 48px;
 }
 
@@ -1892,6 +1895,7 @@ a #izin-tinggal-online-button {
   position: relative;
   display: inline-flex;
   flex-wrap: wrap;
+  justify-content: center;
   width: 1232px;
   height: 100%;
   margin: 120px auto 120px auto;
