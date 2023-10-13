@@ -15,6 +15,10 @@ body {
 a{
   text-decoration: none;
 }
+
+#page-footer{
+  background-color: #1E293B;
+}
 .sticky {
   position:sticky;
   top:48px
