@@ -12,6 +12,13 @@ body {
   overflow-x: hidden;
 }
 
+a{
+  text-decoration: none;
+}
+
+#page-footer{
+  background-color: #1E293B;
+}
 .sticky {
   position:sticky;
   top:48px
@@ -73,9 +80,6 @@ body {
 }
 
 @media screen and (max-width:580px) {
-  #headcon {
-    display:none;
-  }
 
   #jam-layanan-label { 
     display: none;
@@ -83,6 +87,7 @@ body {
 }
 
 @media screen and (max-width:1152px) {
+
   .galeri-foto-grid-wrapper {
     width: 500px !important;
   }
@@ -198,7 +203,7 @@ body {
   }
 
   .content-show ul li {
-    width: 414px !important;
+    width: 100% !important;
   }
 
   .content-berita-tab-wrapper {
@@ -237,7 +242,23 @@ body {
   }
 }
 
+
 @media screen and (max-width:1016px) {
+  .instagram-wrapper {
+    height: 100% !important;
+  }
+
+  .instagram-item-wrapper {
+    height: 800px !important;
+    width: fit-content !important;
+  }
+  .instagram-item-wrapper img {
+    width: 195px;
+    height: 195px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+  }
   #list-image div {
     display:none;
   }
@@ -274,7 +295,18 @@ body {
   }
 }
 
-@media screen and (max-width:625px) {
+
+@media screen and (max-width:650px) {
+  .d-flex{
+    display: flex !important;
+    flex-direction: column;
+  }
+  .apoa-banner-buttons {
+    height: 40px;
+    width: 286px;
+    margin-left: auto !important;
+    margin-top: 132px;
+  }
   .apps-link-wrapper {
     width: 100% !important;
   }
@@ -292,7 +324,10 @@ body {
   }
 
   .content-core-show {
-    width: 414px !important;
+    display: grid;
+    justify-content: center;
+    justify-items: start;
+    width: 100% !important;
   }
 
   .content-core-show li {
@@ -314,12 +349,67 @@ body {
   }
 
   .instagram-item-wrapper {
-    height: 1315px !important;
+    height: 1300px !important;
     width: fit-content !important;
+  }
+  .instagram-item-wrapper img {
+    width: 195px;
+    height: 195px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
   }
 
   .social-media-url {
     display: none;
+  }
+}
+@media screen and (max-width:410px){
+  .header-contact{
+    display: inline-flex !important;
+    flex-wrap: wrap !important;
+  }
+  .berita-terkini-header{
+    width: 100%;
+    position: relative;
+    display: flex !important;
+    gap: 24px;
+    flex-wrap: wrap !important;
+  }
+  #beranda-header{
+    height: 910px !important;
+  }
+  .item-text-container{
+    width: 100% !important;
+  }
+  .instagram-header-wrapper{
+    flex-wrap: wrap !important;
+    height: fit-content !important;
+  }
+  .instagram-wrapper {
+    height: 100% !important;
+  }
+  .instagram-item-wrapper{
+    flex-wrap: nowrap !important;
+    height: 2400px !important;
+    width : fit-content !important;
+  }
+  .instagram-item-wrapper img {
+    width: 195px;
+    height: 195px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+  }
+  .twitter-wrapper{
+    width: 100% !important;
+  }
+  .view-more-twitter-wrapper{
+    width: 100% !important;
+  }
+  .m-paspor-banner-button-wrapper{
+    padding-left: 130px !important;
+    padding-right: 130px !important;
   }
 }
 
@@ -518,7 +608,6 @@ body {
 }
 
 .container-fluid-layanan {
-  margin-top:38px;
   z-index:100001;
   border:none;
   outline:none;
@@ -534,7 +623,6 @@ body {
   }
   
 .container-fluid-informasi {
-  margin-top:38px;
   z-index:100001;
   border:none;
   outline:none;
@@ -550,7 +638,6 @@ body {
   }
 
 .container-fluid-profil {
-  margin-top:38px;
   z-index:100001;
   border:none;
   outline:none;
@@ -566,7 +653,6 @@ body {
   }
 
 .container-fluid-ppid {
-  margin-top:38px;
   border:none;
   outline:none;
   z-index:100001;
@@ -1150,7 +1236,7 @@ a:focus {
 }
 
 .berita-terkini-container {
-  width: 1232px;
+  width: 100%;
   height: 768px;
   display: flex;
   position: relative;
@@ -1166,6 +1252,7 @@ a:focus {
   width: 100%;
   position: relative;
   display: flex;
+  justify-content: center;
   gap: 24px;
 }
 
@@ -1223,6 +1310,7 @@ a:focus {
   width: 100%;
   position: relative;
   display: flex;
+  justify-content: center;
   gap: 40px;
 }
 
@@ -1312,7 +1400,7 @@ a:focus {
 
 .berita-terkini-list {
   order: 2;
-  width: 546px;
+  width: 460px;
   height: 672px;
   display: flex;
   gap: 16px;
@@ -1389,6 +1477,7 @@ a:focus {
   width: 1232px;
   position: relative;
   display: flex;
+  justify-content: center;
   margin: 120px auto 120px auto;
   flex-direction: row;
   flex-wrap: wrap;
@@ -1531,9 +1620,10 @@ a #izin-tinggal-online-button {
 
 .social-media-wrapper {
   height: fit-content;
-  width: 1232px;
+  width: 100%;
   position: relative;
   display: flex;
+  justify-content: center;
   margin: 0 auto 120px auto;
   flex-direction: row;
   flex-wrap: wrap;
@@ -1543,7 +1633,8 @@ a #izin-tinggal-online-button {
 .instagram-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   padding: 0;
   gap: 24px;
   width: 795px;
@@ -1554,9 +1645,10 @@ a #izin-tinggal-online-button {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   padding: 0;
   gap: 24px;
-  width: 795px;
+  width: 100%;
   height: 48px;
 }
 
@@ -1685,7 +1777,7 @@ a #izin-tinggal-online-button {
 }
 
 .youtube-container {
-  height: 640px;
+  height: fit-content;
   width: auto;
   background: #0F172A;
   display: flex;
@@ -1693,22 +1785,24 @@ a #izin-tinggal-online-button {
 
 .youtube-wrapper {
   height: fit-content;
-  width: 1232px;
+  width: 100%;
   position: relative;
   display: flex;
   margin: 64px auto 120px auto;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 24px;
+  justify-content: center;
 }
 
 .youtube-header-wrapper {
   display: flex;
+  justify-content: center;
   flex-direction: row;
   align-items: center;
   padding: 0;
   gap: 24px;
-  width: 1232px;
+  width: 100%;
   height: 48px;
 }
 
@@ -1757,6 +1851,8 @@ a #izin-tinggal-online-button {
 .youtube-item-container {
   display: inline-flex;
   gap: 4px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .youtube-item-wrapper {
@@ -1803,6 +1899,7 @@ a #izin-tinggal-online-button {
   position: relative;
   display: inline-flex;
   flex-wrap: wrap;
+  justify-content: center;
   width: 1232px;
   height: 100%;
   margin: 120px auto 120px auto;
@@ -2011,7 +2108,7 @@ a #izin-tinggal-online-button {
 
 .content-wrapper{
   margin: 40px auto 160px auto;
-  width: 1232px;
+  width: 100%;
   display: inline-flex;
   column-gap: 60px;
   position: relative;
@@ -2071,7 +2168,7 @@ a #izin-tinggal-online-button {
 }
 
 .content-show h1 {
-  width: 879px;
+  width: 100%;
   height: 48px;
   font-weight: 700;
   font-size: 30px;
@@ -2084,12 +2181,13 @@ a #izin-tinggal-online-button {
 .layanan-imigrasi-content-tab {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   padding: 0;
   gap: 24px;
-  width: 879px;
+  width: 100%;
   height: 36px;
   border-bottom: 1px solid #E2E8F0;
+  justify-content: center;
 }
 
 .layanan-imigrasi-content-tab button {
@@ -2128,7 +2226,7 @@ a #izin-tinggal-online-button {
 }
 
 .content-galeri-tab-wrapper {
-  width: 1232px;
+  width: 100%;
   display: flex;
   position: relative;
   margin: 0 auto 40px auto;
@@ -2152,6 +2250,7 @@ a #izin-tinggal-online-button {
   display: flex;
   align-items: center;
   color: #1E293B;
+  justify-content: center;
 }
 
 .content-galeri-tab-wrapper button:focus {
@@ -2214,7 +2313,7 @@ a #izin-tinggal-online-button {
 }
 
 .show {
-  display: flex;
+  display: block;
 }
 
 .hide {
@@ -2271,7 +2370,7 @@ a #izin-tinggal-online-button {
 }
 
 #headline-subtitle-berita {
-  width: 814px;
+  width: 100%;
   height: 24px;
   font-weight: 200;
   font-size: 16px;
@@ -2281,7 +2380,7 @@ a #izin-tinggal-online-button {
   color: #FFFFFF;
 }
 #headline-title-berita {
-  width: 814px;
+  width: 100%;
   height: 162px;
   font-weight: 700;
   font-size: 36px;
@@ -2293,7 +2392,7 @@ a #izin-tinggal-online-button {
 }
 
 #headline-date-berita {
-  width: 814px;
+  width: 100%;
   height: 24px;
   font-weight: 20;
   font-size: 16px;
@@ -2338,7 +2437,7 @@ a #izin-tinggal-online-button {
 }
 
 .content-berita-tab-wrapper {
-  width: 1232px;
+  width: 100%;
   display: flex;
   position: relative;
   margin: 0 auto 40px auto;
@@ -2349,7 +2448,7 @@ a #izin-tinggal-online-button {
 }
 
 .content-berita-tab-wrapper button {
-  width: 606px;
+  width: 100%;
   height: 48px;
   position: relative;
   text-align: left;
@@ -2387,10 +2486,10 @@ a #izin-tinggal-online-button {
 
 .berita-grid-wrapper {
   flex-wrap: wrap;
-  width: 1232px;
+  width: 100%;
   height: fit-content;
   row-gap: 40px;
-  column-gap: 20px;
+  column-gap: 100px;
   margin-bottom: 120px;
 }
 
@@ -3000,7 +3099,7 @@ a #izin-tinggal-online-button {
   align-items: center;
   padding: 16px;
   gap: 16px;
-  width: 480px;
+  width: 100%;
   height: 56px;
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
@@ -3072,7 +3171,9 @@ a #izin-tinggal-online-button {
 
 .content-core-show{
   display: grid;
+  width: 100%;
   gap: 16px;
+  justify-items: start;
 }
 
 .content-core-hide {
@@ -3854,7 +3955,7 @@ ol li {
 
 @media screen and (max-width: 580px) {
   .topnav .content-header .dropdown-text {
-    position: relative !important;
+    /* position: relative !important; */
   }
 
   .dropdown-text a:not(:first-child) {display: none;}
@@ -3886,3 +3987,67 @@ ol li {
 .dropdown-text .icon {
   display: none;
 }
+
+
+/* responsive start by f*/
+a{
+  text-decoration: none !important;
+}
+.dropdown-conntainer{
+  width: 100%;
+}
+.dropdown-content-container{
+  padding: 24px 104px 24px 104px
+}
+.dropdown-content-title{
+  margin-left:30px;
+}
+.navbar{
+  /* height: 100px; */
+}
+.navbar-toggler{
+  visibility: hidden;
+}
+.navbar-header-logo{
+  width: 200px;
+}
+.container-fluid{
+  
+}
+.vertical-line-left{
+  border-left: 1px solid #eeeeee;
+  /* height: 100%; */
+}
+
+
+@media screen and (max-width: 1023px) {
+  .vertical-line-left{
+    border-left: 0px solid #eeeeee;
+    /* height: 100%; */
+  }
+
+  .dropdown-content-container{
+    padding: 0px;
+  }
+
+  .dropdown-content-title{
+    margin:10px 15px;
+  }
+
+  .header-contact{
+    padding:10px;
+  }
+
+  .navbar-toggler{
+    visibility: visible;
+  }
+
+  .wa-contact{
+    text-align: center;
+  }
+  
+  .mail-contact{
+    text-align: center;
+  }
+}
+/* responsive finish by f */
