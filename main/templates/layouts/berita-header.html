@@ -1,0 +1,54 @@
+
+{% if berita_from_kantor_imigrasi_cilegon %}
+    {% for berita in berita_from_kantor_imigrasi_cilegon %}
+        <div class="berita-header-container", style="background: linear-gradient(0deg, #1E293B, #1E293B), url('  ')">
+        <div class="berita-header-wrapper">
+            <div class="breadcrumb-berita-wrapper">
+                <span id="breadcrumb-berita-beranda">Beranda</span>
+                <i class="fa fa-chevron-right text-white" aria-hidden="true" id="chevron-right-breadcrumb"></i>
+                <span id="current-content" class="text-white">Berita</span>
+            </div>
+            <div class="headline-wrapper">
+                <span id="headline-subtitle-berita">Kantor Imigrasi Cilegon</span>
+                <span id="headline-title-berita"> {{ berita.fi }} </span>
+                <span id="headline-date-berita">16 Maret 2023</span>
+                <a href="" id="headline-baca-selengkapnya-button-berita" class="hover-button-light">Baca Selengkapnya</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+{% endif %}
+{% if berita_from_kemenkumham_republik_indonesia %}
+    <div class="berita-header-container">
+        <div class="berita-header-wrapper">
+            <div class="breadcrumb-berita-wrapper">
+                <span id="breadcrumb-berita-beranda">Beranda</span>
+                <i class="fa fa-chevron-right text-white" aria-hidden="true" id="chevron-right-breadcrumb"></i>
+                <span id="current-content" class="text-white">Berita</span>
+            </div>
+            <div class="headline-wrapper">
+                <span id="headline-subtitle-berita">Kemenkumham Republik Indonesia</span>
+                <span id="headline-title-berita">Penguatan Pengawasan Terhadap Orang Asing Dalam Mendukung Investasi Dan Pemulihan Ekonomi Nasional</span>
+                <span id="headline-date-berita">16 Maret 2023</span>
+                <a href="" id="headline-baca-selengkapnya-button-berita" class="hover-button-light">Baca Selengkapnya</a>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if berita_from_kemenkumham_kanwil_banten %}
+    <div class="berita-header-container">
+        <div class="berita-header-wrapper">
+            <div class="breadcrumb-berita-wrapper">
+                <span id="breadcrumb-berita-beranda">Beranda</span>
+                <i class="fa fa-chevron-right text-white" aria-hidden="true" id="chevron-right-breadcrumb"></i>
+                <span id="current-content" class="text-white">Berita</span>
+            </div>
+            <div class="headline-wrapper">
+                <span id="headline-subtitle-berita">Kemenkumham Kanwil Banten</span>
+                <span id="headline-title-berita">Penguatan Pengawasan Terhadap Orang Asing Dalam Mendukung Investasi Dan Pemulihan Ekonomi Nasional</span>
+                <span id="headline-date-berita">16 Maret 2023</span>
+                <a href="" id="headline-baca-selengkapnya-button-berita" class="hover-button-light">Baca Selengkapnya</a>
+            </div>
+        </div>
+    </div>
+{% endif %}

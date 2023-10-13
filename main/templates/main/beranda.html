@@ -1,0 +1,320 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+     <div class="overlay">
+        <div class="full-screen" id="overlay" onclick="overlayMaklumatOff()"></div>
+        <div class="maklumat-wrapper">
+            <div class="maklumat-container">
+                <img src="{% static 'main/img/maklumat-pelayanan.png' %}" id="maklumat-image">
+                <button onclick="overlayMaklumatOff()">
+                    <img src="{% static 'main/img/x-circle.png' %}" id="button-exit-overlay">
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="beranda-header">
+        <div id="beranda-header-title">
+            <p class="text-white">Selamat Datang di Situs </p>
+            <p class="text-white">Kantor Imigrasi Kelas II TPI Cilegon</p>
+        </div>
+        <div id="service-shortcut" class="text-center">
+            <span class="text-white">Cari informasi layanan keimigrasian untuk</span>
+            <div id="service-tab-switch" class="rounded-pill">
+                <button type="button" onclick="shortCutTab('wni')" id="service-tab-switch-item" class="opacity" autofocus>Warga Negara Indonesia</button>
+                <button type="button" onclick="shortCutTab('wna')" id="service-tab-switch-item" class="opacity">Warga Negara Asing</button>
+            </div>
+            {% if wni_menus %}
+                {% for wni_menu in wni_menus %}
+                    <div class="shortcut-item-container-wni">
+                        <a href="{% url 'layanan-imigrasi' %}" class="mr-10" onclick="selectSubMenu('{{ wni_menu.permalink }}')">{{ wni_menu.submenu_name }}</a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% if wna_menus %}
+                {% for wna_menu in wna_menus %}
+                    <div class="shortcut-item-container-wna">
+                        <a href="{% url 'layanan-imigrasi' %}" class="mr-10" onclick="selectSubMenu('{{ wna_menu.permalink }}')">{{ wna_menu.submenu_name }}</a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div id="beranda-header-social-media">
+            <a class="social-media-icon mr-10" href="https://www.facebook.com/v4.0/dialog/oauth?client_id=1910417302379768&display=popup&redirect_uri=https%3A%2F%2Fdash.callbell.eu%2Fusers%2Fauth%2Ffacebook%2Fcallback&response_type=code&scope=email%2Cpublic_profile%2Cmanage_pages%2Cpages_show_list%2Cpages_messaging%2Cads_read&state=5404ea28bdc02157ed43e0ec615e6449c93b630b72aeb6a8" target="_blank">
+                <img src="{% static 'main/img/icon/facebook-icon.png' %}">
+            </a>  
+            <a class="social-media-icon mr-10" href="https://www.instagram.com/imigrasi_cilegon/?hl=en" target="_blank">
+                <img src="{% static 'main/img/icon/instagram-icon.png' %}">
+            </a>
+            <a class="social-media-icon mr-10" href="https://twitter.com/kanim_cilegon" target="_blank">
+                <img src="{% static 'main/img/icon/twitter-icon.png' %}">
+            </a>
+            <a class="social-media-icon mr-10" href="https://www.youtube.com/@kantorimigrasikelasiitpici5025" target="_blank">
+                <img src="{% static 'main/img/icon/youtube-icon.png' %}">
+            </a>
+        </div>
+        <div class="text-center mouse-icon">
+            <img src="{% static 'main/img/icon/mouse-icon.png' %}">
+        </div>
+    </div>
+    {% include 'layouts/jam-layanan.html' %}
+    <div class="image-highlight-container image-highlight-container-bg">
+        <div id="image-hightlight">
+            <div id="preview-image">
+                {% if fotos %}
+                    {% for foto in fotos %}
+                        <div class="mySlides">
+                            <img src="{{ foto.galeri_image_file.url}}">
+                            <div id="number-of-preview">
+                                <span class="text-white">{{ forloop.counter }} dari 8</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <button id="previous-button" onclick="plusSlides(-1)">
+                    <i class="fa fa-chevron-left" style="color: #ffffff;"></i>
+                </button>
+                <button id="next-button" onclick="plusSlides(1)">
+                    <i class="fa fa-chevron-right" style="color: #ffffff;"></i>
+                </button>
+
+            </div>
+            <div id="list-image">
+                {% if fotos %}
+                    {% for foto in fotos %}
+                        <div id="image-item">
+                            <img src="{{ foto.galeri_image_file.url }}" onclick="currentSlide({{ forloop.counter }})">
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="laporan-pelayanan-container hide">
+        <div class="total-pelayanan-container">
+            {% if total_all_pelayanan %}
+                <b id="total-keseluruhan-pelayanan" align="left">{{ total_all_pelayanan }}</b>
+            {% endif %}
+            <p align="left">Total keseluruhan pelayanan di Kantor Imigrasi Kelas II TPI Cilegon</p>
+            <span id="terakhir-update" align="left">Update Terakhir: 13 Mei 2023</span>
+            <a href="{% url 'dasbor-publik' %}"><button>Laporan Pelayanan Selengkapnya</button></a>
+        </div>
+        <div class="card-container">
+            <div class="pelayanan-minggu-ini card">
+                <p id="pelayanan-minggu-ini-title" align="left">Minggu ini</p>
+                {% if total_all_this_week_pelayanan %}
+                    <p id="pelayanan-minggu-ini-total" align="left">{{ total_all_this_week_pelayanan }} Pelayanan</p>
+                {% endif %}
+            </div>
+        <div class="pelayanan-bulan-ini card">
+            <p id="pelayanan-bulan-ini-title" align="left">bulan ini</p>
+            {% if total_all_this_month_pelayanan %}
+                <p id="pelayanan-bulan-ini-total" align="left">{{ total_all_this_month_pelayanan }} Pelayanan</p>
+            {% endif %}
+        </div>
+        <div class="pelayanan-tahun-ini card">
+            <p id="pelayanan-tahun-ini-title" align="left">tahun ini</p>
+            {% if total_all_this_year_pelayanan %}
+                <p id="pelayanan-tahun-ini-total" align="left">{{ total_all_this_year_pelayanan }} Pelayanan</p>
+            {% endif %}
+        </div>
+        </div>
+    </div>
+    <div class="berita-terkini">
+        <div class="berita-terkini-container">
+            <div class="berita-terkini-header">
+                <span id="berita-terkini-title">Berita Terkini</span>
+                <span class="berita-terkini-vertical-line"></span>
+                <a href="{% url 'berita' %}"><button id="lihat-semua-berita-button">Lihat Semua Berita</button></a>
+            </div>
+            <div class="berita-terkini-item-container">
+                {% if headline_berita and headline_berita_image %}
+                <a class="berita-terkini-highlight" href="{% url 'berita-detail' headline_berita.id %}">
+                        <img src="{{ headline_berita_image.berita_image_file.url }}" id="berita-terkini-highlight-image">
+                        <div class="highlight-text-container">
+                            <span id="highlight-title">{{ headline_berita.berita_title }}</span>
+                            <span id="highlight-subtitle">{{ headline_berita.berita_descrition|slice:"500" }} </span>
+                            <span id="highlight-date">{{ headline_berita.create_at }} · Kantor Imigrasi Cilegon</span>
+                        </div>
+
+                </a>
+                {% endif %}
+                <span class="berita-terkini-horizontal-line"></span>
+                <div class="berita-terkini-list">
+                    {% if berita_with_image %}
+                        {% for berita, berita_image in berita_with_image %}
+                            <a class="berita-terkini-item" href="{% url 'berita-detail' berita.id %}">
+                            <div class="item-text-container">
+                                <span id="berita-terkini-item-title">{{ berita.berita_title|slice:"300" }} </span>
+                                <span id="berita-terkini-item-date">{{ berita.create_at }} · Kantor Imigrasi Cilegon</span>
+                            </div>
+                            <img src="{{ berita_image.berita_image_file.url }}" id="berita-terkini-item-image">
+                        </a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="apps-link-container">
+        <div class="apps-link-wrapper">
+            <div class="m-paspor-banner">
+                    <div class="m-paspor-banner-button-wrapper">
+                        <a href="https://apps.apple.com/id/app/m-paspor/id1576336459">
+                            <img src="{% static 'main/img/appstore-button.png' %}" id="m-paspor-appstore-button">
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=id.go.imigrasi.paspor_online&hl=id&gl=US">
+                            <img src="{% static 'main/img/googleplay-button.png' %}" id="m-paspor-playstore-button">
+                        </a>
+                    </div>
+            </div>
+            <div class="apoa-ito-wrapper">
+                <div class="apoa-banner">
+                    <div class="apoa-banner-buttons">
+                        <a href="#">
+                            <button id="kunjungi-web-button" >Kunjungi Web</button>
+                        </a>
+                        <a href="#">
+                            <img src="{% static 'main/img/googleplay-button.png' %}" id="apoa-playstore-button">
+                        </a>
+                    </div>
+                </div>
+                <div class="izin-tinggal-online-banner">
+                    <a href="#">
+                        <button id="izin-tinggal-online-button" >Kunjungi Web</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="social-media-container">
+        <div class="social-media-wrapper">
+            <div class="instagram-wrapper">
+                <div class="instagram-header-wrapper">
+                    <span id="instagram-title">Dari Instagram</span>
+                    <span class="berita-terkini-vertical-line"></span>
+                    <a href="https://www.instagram.com/imigrasi_cilegon/?hl=en" id="lihat-di-instagram-button" target="_blank">Lihat di Instagram</a>
+                </div>
+                <div class="instagram-item-wrapper">
+                    {% if instagram_image %}
+                        {% for image in instagram_image|slice:":12" %}
+                            <img src='{{ image }}' id="instagram-picture">
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="twitter-wrapper">
+                <a class="twitter-timeline" data-width="397" data-height="654" href="https://twitter.com/kanim_cilegon">Tweets by kanim_cilegon</a>
+                <div class="view-more-twitter-wrapper">
+                    <a href="https://twitter.com/kanim_cilegon" id="view-more-twitter" target="_blank">View more on Twitter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="youtube-container">
+        <div class="youtube-wrapper">
+            <div class="youtube-header-wrapper">
+                <span id="youtube-header-title">Youtube</span>
+                <span class="berita-terkini-vertical-line"></span>
+                <a href="https://www.youtube.com/channel/UCwfVXz2Q-VJuBVrHQS4r0LQ" id="lihat-semua-video-button" target="_blank">Lihat Semua Video</a>
+            </div>
+            <div class="youtube-item-container">
+                {% if youtube_videos %}
+                    {% for youtube_video in youtube_videos %}
+                        <div class="youtube-item-wrapper">
+                            <img src="{{ youtube_video.image_url }}">
+                            <a href="{{youtube_video.url}}" class="play-button">
+                                <img src="{% static 'main/img/icon/play-button-icon.png' %}">
+                            </a>
+                            <span id="youtube-title">{{ youtube_video.video_title }}</span>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="portal-lainnya-container">
+        <div class="portal-lainnya-wrapper">
+            <div class="portal-lainnya-title-wrapper">
+                <span id="portal-lainnya-title">Portal Lainnya</span>
+                <span id="portal-lainnya-subtitle">Akses ke beberapa layanan pemerintahan dan instansi terkait</span>
+            </div>
+            <div class="portal-item-wrapper">
+                <a href="https://www.imigrasi.go.id/" target="_blank">
+                    <img src="{% static 'main/img/icon/imigrasi-logo.png' %}" id="portal-item-icon">
+                    <span id="portal-item-title">Imigrasi</span>
+                    <span id="portal-item-subtitle">Website resmi Imigrasi</span>
+                </a>
+            </div>
+            <div class="portal-item-wrapper">
+                <a href="https://kemenkumham.go.id/" target="_blank">
+                    <img src="{% static 'main/img/icon/kemenkumham-logo.png' %}" id="portal-item-icon">
+                    <span id="portal-item-title">Kemenkumham</span>
+                    <span id="portal-item-subtitle">Website resmi Kementerian Hukum dan HAM</span>
+                </a>
+            </div>
+            <div class="portal-item-wrapper">
+                <a href="https://poltekim.ac.id/" target="_blank">
+                    <img src="{% static 'main/img/icon/poltekim-logo.png' %}" id="portal-item-icon">
+                    <span id="portal-item-title">Politeknik Imigrasi (Poltekim)</span>
+                    <span id="portal-item-subtitle">Website resmi Akademi Imigrasi / Politeknik Imigrasi</span>
+                </a>
+            </div>
+            <div class="portal-item-wrapper">
+                <a href="https://www.lapor.go.id/" target="_blank">
+                    <img src="{% static 'main/img/icon/lapor-imigrasi-logo.png' %}" id="portal-item-icon">
+                    <span id="portal-item-title">Layanan Aspirasi dan Pengaduan Online Rakyat</span>
+                    <span id="portal-item-subtitle">Sistem pengelolaan pengaduan pelayanan publik dalam satu pintu</span>
+                </a>
+            </div>
+            <div class="portal-item-wrapper">
+                <a href="https://www.kpk.go.id/" target="_blank">
+                    <img src="{% static 'main/img/icon/kpk-logo.png' %}" id="portal-item-icon">
+                    <span id="portal-item-title">KPK</span>
+                    <span id="portal-item-subtitle">Website resmi KPK</span>
+                </a>
+            </div>
+            <div class="portal-item-wrapper">
+                <a href="https://menpan.go.id/site/" target="_blank">
+                    <img src="{% static 'main/img/icon/kemenpan-rb-logo.png' %}" id="portal-item-icon">
+                    <span id="portal-item-title">KemenPAN-RB</span>
+                    <span id="portal-item-subtitle">Website resmi Kementerian Pendayagunaan Aparatur Negara dan Reformasi Birokrasi</span>
+                </a>
+            </div>
+            <div class="portal-item-wrapper">
+                <a href="https://imigrasisingaraja.kemenkumham.go.id/tim-pengawasan-orang-asing-timpora/" target="_blank">
+                    <img src="{% static 'main/img/icon/timpora-logo.png' %}" id="portal-item-icon">
+                    <span id="portal-item-title">TIMPORA Kota Cilegon</span>
+                    <span id="portal-item-subtitle">Tim Pengawasan Orang Asing Kota Cilegon</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="wbs-container">
+        <div class="wbs-wrapper">
+            <ul>
+                <li>
+                    <img src="{% static 'main/img/icon/imigrasi-logo.png' %}" id="wbs-icon">
+                </li>
+                <li>
+                    <p id="wbs-title">Kantor Imigrasi Kelas II TPI Cilegon</p>
+                </li>
+                <li>
+                    <p id="wbs-subtitle">Whistle Blowing System</p>
+                </li>
+                <li>
+                    <a href="https://wbs.kemenkumham.go.id/index.php?r=site/main" target="_blank" id="wbs-button">Pengaduan
+                        dan Saran</a>
+                </li>
+            </ul>
+        </div>
+    </div> 
+    <script>
+    window.onload = function () {
+        showFirstSlide();
+    }
+    </script>
+{% endblock %}

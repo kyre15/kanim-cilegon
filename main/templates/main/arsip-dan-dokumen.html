@@ -1,0 +1,74 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    {% include 'layouts/content-header.html' with content_name="Informasi Publik" subcontent_name="Arsip dan Dokumen"%}
+    <div class="main-content">
+        <div class="content-wrapper">
+            <div class="content-sidebar-container">
+                <div class="content-sidebar-menu-list-wrapper">
+                    <div class="sidebar-menu-title">
+                        <span id="sidebar-menu-title-text">Arsip dan Dokumen</span>
+                    </div>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            {% if list_of_submenu_arsip_dan_dokumen %}
+                                {% for list_of_submenu in list_of_submenu_arsip_dan_dokumen %}
+                                    <li class="sidebar-submenu-item">
+                                        <button id="sidebar-submenu-item-text" onclick="changeSubMenu('{{ list_of_submenu.permalink }}')">{{list_of_submenu.submenu_name}}</button>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="content-show">
+                <ul class="content-core-show" id="daftar-isian-pelaksanaan-anggaran">
+                    <li>
+                        <h1 class="arsip-dan-dokumen-title-header">Daftar Isian Pelaksana Anggaran</h1>
+                    </li>
+                    <li class="daftar-isian-pelaksanaan-anggaran-wrapper">
+                        {% if daftar_isian_pelaksanaan_anggaran %}
+                            {% for item in daftar_isian_pelaksanaan_anggaran %}
+                                <div class="file-wrapper">
+                                    <img src="{% static 'main/img/icon/pdf-file-icon.png' %}">
+                                    <span class="file-title">{{ item.file_name }}</span>
+                                    <a href="{{ item.file.url }}" id="unduh-file-button">
+                                        <button class="unduh-button">Unduh</button>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </li>
+                </ul>
+                <ul class="content-core-hide" id="laporan-akuntabilitas-kinerja">
+                    <li>
+                        <h1>Laporan Akuntabilitas Kinerja</h1>
+                    </li>
+                    <li class="daftar-isian-pelaksanaan-anggaran-wrapper">
+                        {% if laporan_akuntabilitas_kinerja %}
+                            {% for item in laporan_akuntabilitas_kinerja %}
+                                <div class="file-wrapper">
+                                    <img src="{% static 'main/img/icon/pdf-file-icon.png' %}">
+                                    <span class="file-title">{{ item.file_name }}</span>
+                                    <a href="{{ item.file.url }}" id="unduh-file-button">
+                                        <button class="unduh-button">Unduh</button>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% include 'layouts/jam-layanan.html' %}
+    <script>
+    window.onload = function () {
+        setSubMenuOnLoad();
+    }
+    </script>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    {% include 'layouts/content-header.html' with content_name="Timpora" subcontent_name="Timpora"%}
+    <div class="main-content">
+        <div class="content-wrapper">
+            <div class="content-sidebar-container">
+                <div class="content-sidebar-menu-list-wrapper">
+                    <div class="sidebar-menu-title">
+                        <span id="sidebar-menu-title-text">Timpora</span>
+                    </div>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            {% if list_of_submenu_timpora %}
+                                {% for list_of_submenu in list_of_submenu_timpora %}
+                                    <li class="sidebar-submenu-item">
+                                        <button id="sidebar-submenu-item-text" onclick="changeSubMenu('{{ list_of_submenu.permalink }}')">{{list_of_submenu.submenu_name}}</button>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="content-show">
+                <ul class="content-core-show" id="dasar-hukum-pembentukan-timpora">
+                    <li>
+                        <h1 class="arsip-dan-dokumen-title-header">Dasar Hukum Pembentukan TIMPORA</h1>
+                    </li>
+                    <li class="dasar-hukum-pembentukan-impora-wrapper">
+                        {% if file_timpora %}
+                            {% for item in file_timpora %}
+                                <div class="file-wrapper">
+                                    <img src="{% static 'main/img/icon/pdf-file-icon.png' %}">
+                                    <span class="file-title">{{ item.file_name }}</span>
+                                    <a href="{{ item.file.url }}" id="unduh-file-button">
+                                        <button class="unduh-button">Unduh</button>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% include 'layouts/jam-layanan.html' %}
+{% endblock %}

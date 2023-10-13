@@ -1,0 +1,302 @@
+{% load static %}
+<div class="header-info" style="background:black">
+    <div class="header-contact" id="headcon">
+        <div class="wa-contact">
+            <i class="fa fa-whatsapp text-white"></i>
+            <a class="mr-10 text-white phone" href="tel:+6282299841694">+6282299841694</a>
+        </div>
+        <div class="mail-contact">
+            <i class="fa fa-envelope-o" style="color: #ffffff;"></i> 
+            <a class="text-white mr-10 mail" href="mailto:kanim.cilegon@kemenkumham.go.id">kanim.cilegon@kemenkumham.go.id</a>
+        </div>
+    </div>
+    <div class="header-menu">
+        <a class="elapor mr-10" href="https://www.lapor.go.id/" target="_blank">
+            <img src="{% static 'main/img/E-lapor.png' %}" alt="elapor-logo"></a>
+        <a href="{% url 'timpora' %}" class="text-white mr-10">TIMPORA</a>
+        <a href="https://peraturan.go.id/" class="text-white mr-10" target="_blank">PRODUK HUKUM</a>
+        <a href="https://wbs.kemenkumham.go.id/index.php?r=site/main" class="text-white mr-10" target="_blank">WBS</a>
+        <a href="{% url 'zona-integritas' %}" class="text-white mr-10">ZONA INTEGRITAS</a>
+    </div>
+</div>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="{% static 'main/img/header-logo.png' %}" alt="head-logo" class="navbar-header-logo">
+      </a>
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+        <span class="navbar-toggler-icon"></span>
+       </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 dropdown-text">
+          <li class="nav-item" style="margin:8px 0px">
+            <a class="tablinks" href="{% url 'home' %}" style="text-decoration:none">Beranda</a>
+          </li>
+          <li class="nav-item">
+            <button class="tablinks Layanan" id="btnLayanan" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Layanan Imigrasi
+                <i class="fa fa-chevron-down"></i>
+            </button>
+            <div class="dropdown-menu dropdown-conntainer" aria-labelledby="btnLayanan" id="drop-layanan">
+                <div class="row dropdown-content-container">
+                    <div class="col-xs-12 col-md-4">
+                        <div class="header-menu-items" id="WNI">
+                            <span class="dropdown-content-title"> WARGA NEGARA INDONESIA </span>
+                            <ul>
+                                <li class="header-menu-item">
+                                    <a class="item mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('paspor-baru')"> Paspor Baru </a>
+                                </li>
+                                <li class="header-menu-item hide">
+                                    <a class="item mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('penyerahan-paspor')"> Penyerahan Paspor </a>
+                                </li>
+                                <li class="header-menu-item">
+                                    <a class="item mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('pergantian-paspor')"> Pergantian Paspor </a>
+                                </li>
+                                <li class="header-menu-item">
+                                    <a class="item mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('pergantian-paspor-hilang-rusak')"> Pergantian Paspor Hilang/Rusak </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                
+                    <div class="col-xs-12 col-md-8" id="WNA">
+                        <span class="dropdown-content-title"> WARGA NEGARA ASING </span>
+                        <div class="row">
+                            <div class="col-x2-12 col-md-6 vertical-line-left">
+                                <ul>
+                                    <li class="header-menu-item">
+                                        <a class="item mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('perpanjang-visa-kunjungan-saat-kedatangan')"> Perpanjang Visa Kunjungan Saat Kedatangan </a>
+                                    </li>
+                                    <li class="header-menu-item">
+                                        <a class="item mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('izin-tinggal-kunjungan')"> Izin Tinggal Kunjungan </a>
+                                    </li>
+                                    <li class="header-menu-item">
+                                        <a class="item mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('izin-tinggal-terbatas')"> Izin Tinggal Terbatas </a>
+                                    </li>
+                                    <li class="header-menu-item">
+                                        <a class="item mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('izin-masuk-kembali')"> Izin Masuk Kembali </a>
+                                    </li>
+                                    <li class="header-menu-item">
+                                        <a class="item mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('izin-tinggal-tetap')"> Izin Tinggal Tetap </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-x2-12 col-md-6">
+                                <ul>
+                                    <li class="header-menu-item ">
+                                        <a class="item mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('alih-status-izin-tinggal')"> Alih Status Izin Tinggal </a>
+                                    </li>
+                                    <li class="header-menu-item ">
+                                        <a class="item mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('perubahan-alamat')"> Perubahan Alamat </a>
+                                    </li>
+                                    <li class="header-menu-item ">
+                                        <a class="item mr-10" href="{% url 'layanan-imigrasi' %}" onclick="selectSubMenu('pendaftaran-anak-berkewarganegaraan-ganda')"> Pendaftaran Anak Berkewarganegaraan Ganda dan Fasilitas Keimigrasian (Ganda Terbatas) </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <button class="tablinks Publik " id="btnPublik" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Informasi Publik
+                <i class="fa fa-chevron-down"></i>
+            </button>
+            <div class="dropdown-menu dropdown-conntainer" aria-labelledby="btnPublik" id="drop-publik">
+                <div class="row dropdown-content-container">
+                    <div class="col-xs-12 col-md-3">
+                        <span class="dropdown-content-title"> INFORMASI PUBLIK </span>
+                        <ul>
+                            <li class="header-menu-item">
+                                <a class="item mr-10" href="{% url 'biaya-keimigrasian' %}"> Biaya Keimigrasian </a>
+                            </li>
+                        </ul>
+                    </div>
+                
+                    <div class="col-xs-12 col-md-3 vertical-line-left">
+                        <span class="dropdown-content-title"> BERITA </span>
+                        <ul>
+                            <li class="header-menu-item">
+                                <a class="item mr-10" href="{% url 'berita' %}"> Kantor Imigrasi Cilegon </a>
+                            </li>
+                            <li class="header-menu-item">
+                                <a class="item mr-10" href="{% url 'berita' %}"> Kemenkumham Republik Indonesia </a>
+                            </li>
+                            <li class="header-menu-item">
+                                <a class="item mr-10" href="{% url 'berita' %}"> Kemenkumham Kanwil Banten </a>
+                            </li>
+                        </ul>
+                    </div>
+        
+                    <div class="col-xs-12 col-md-3 vertical-line-left">
+                        <span class="dropdown-content-title"> ARSIP DAN DOKUMEN </span>
+                        <ul>
+                            <li class="header-menu-item">
+                                <a class="item mr-10" href="{% url 'arsip-dan-dokumen' %}" onclick="selectSubMenu('daftar-isian-pelaksanaan-anggaran')"> Daftar Isian Pelaksanaan Anggaran </a>
+                            </li>
+                            <li class="header-menu-item">
+                                <a class="item mr-10" href="{% url 'arsip-dan-dokumen' %}" onclick="selectSubMenu('laporan-akuntabilitas-kinerja')"> Laporan Akuntabilitas Kinerja </a>
+                            </li>
+                        </ul>
+                    </div>
+        
+                    <div class="col-xs-12 col-md-3 vertical-line-left" >
+                        <span class="dropdown-content-title "> DASBOR PUBLIK </span>
+                        <ul>
+                            <li class="header-menu-item hide">
+                                <a class="item mr-10" href="{% url 'dasbor-publik' %}" > Laporan Pelayanan </a>
+                            </li>
+                            <li class="header-menu-item">
+                                <a class="item mr-10" href="{% url 'dasbor-publik' %}"> IPK dan IKM </a>
+                            </li>
+                        </ul>
+                    </div>
+                
+                </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <button class="tablinks Profil " id="btnProfil" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Profil
+                <i class="fa fa-chevron-down"></i>
+            </button>
+
+            <div class="dropdown-menu dropdown-conntainer" aria-labelledby="btnProfil" id="drop-profil">
+                <div class="row dropdown-content-container">
+                    <div class="col-xs-12 col-md-6">
+                        <span class="dropdown-content-title"> PROFIL </span>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <ul>
+                                    <li class="header-menu-item">
+                                        <a class="item mr-10" href="{% url 'profile' %}" onclick="selectSubMenu('sejarah-imigrasi')"> Sejarah Imigrasi </a>
+                                    </li>
+                                    <li class="header-menu-item">
+                                        <a class="item mr-10" href="{% url 'profile' %}" onclick="selectSubMenu('sejarah-kantor')"> Sejarah Kantor </a>
+                                    </li>
+                                    <li class="header-menu-item">
+                                        <a class="item mr-10" href="{% url 'profile' %}" onclick="selectSubMenu('visi-dan-misi')"> Visi dan Misi </a>
+                                    </li>
+                                    <li class="header-menu-item">
+                                        <a class="item mr-10" href="{% url 'profile' %}" onclick="selectSubMenu('struktur-organisasi')"> Struktur Organisasi </a>
+                                    </li>
+                                    <li class="header-menu-item">
+                                        <a class="item mr-10" href="{% url 'profile' %}" onclick="selectSubMenu('tugas-dan-funsi')"> Tugas dan Fungsi </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <ul>
+                                    <li class="header-menu-item">
+                                        <a class="item mr-10" href="{% url 'profile' %}" onclick="selectSubMenu('wilayah-kerja')"> Wilayah Kerja </a>
+                                    </li>
+                                    <li class="header-menu-item ">
+                                        <a class="item mr-10" href="{% url 'profile' %}" onclick="selectSubMenu('kakanim-dari-waktu')"> Kakanim dari Waktu </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+                
+        
+                    <div class="col-xs-12 col-md-6 vertical-line-left">
+                        <span class="dropdown-content-title"> GALERI </span>
+                        <ul>
+                            <li class="header-menu-item">
+                                <a class="item mr-10" href="{% url 'galeri' %}"> Foto </a>
+                            </li>
+                            <li class="header-menu-item">
+                                <a class="item mr-10" href="{% url 'galeri' %}"> Video </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <button class="tablinks PPID " id="btnPPID" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">PPID
+                <i class="fa fa-chevron-down"></i>
+            </button>
+            <div class="dropdown-menu dropdown-conntainer" aria-labelledby="btnPPID" id="drop-ppid">
+                <div class="row dropdown-content-container">
+                    <span class="dropdown-content-title"> PPID </span>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-4">
+                            <ul>
+                                <li class="header-menu-item">
+                                    <a class="item mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('dasar-hukum-ppid')"> Dasar Hukum PPID </a>
+                                </li>
+                                <li class="header-menu-item">
+                                    <a class="item mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('sk-penetapan-ppid')"> SK Penetapan PPID </a>
+                                </li>
+                                <li class="header-menu-item">
+                                    <a class="item mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('struktur-ppid')"> Struktur PPID </a>
+                                </li>
+                                <li class="header-menu-item">
+                                    <a class="item mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('tugas-dan-fungsi-ppid')"> Tugas dan Fungsi PPID </a>
+                                </li>
+                                <li class="header-menu-item">
+                                    <a class="item mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('standar-pelayanan-informasi')"> Standar Pelayanan Informasi </a>
+                                </li>
+                            </ul>
+                        </div>
+                    
+                        <div class="col-xs-12 col-md-4">
+                            <ul>
+                                <li class="header-menu-item">
+                                    <a class="item mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('kegiatan-tata-kelola-informasi-publik')"> Kegiatan Tata Kelola Informasi Publik </a>
+                                </li>
+                                <li class="header-menu-item">
+                                    <a class="item mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('sk-informasi-yang-dikecualikan')"> SK Informasi yang Dikecualikan </a>
+                                </li>
+                                <li class="header-menu-item">
+                                    <a class="item mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('daftar-informasi-publik')"> Daftar Informasi Publik </a>
+                                </li>
+                                <li class="header-menu-item">
+                                    <a class="item mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('informasi-berkala')"> Informasi Berkala </a>
+                                </li>
+                                <li class="header-menu-item">
+                                    <a class="item mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('informasi-setiap-saat')"> Informasi Setiap Saat </a>
+                                </li>
+                            </ul>
+                        </div>
+    
+                        <div class="col-xs-12 col-md-4">
+                            <ul>
+                                <li class="header-menu-item">
+                                    <a class="item mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('informasi-serta-merta')"> Informasi Serta Merta </a>
+                                </li>
+                                <li class="header-menu-item">
+                                    <a class="item mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('informasi-dikecualikan')"> Informasi Dikecualikan </a>
+                                </li>
+                                <li class="header-menu-item">
+                                    <a class="item mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('profile-ppid')"> Profil PPID </a>
+                                </li>
+                                <li class="header-menu-item">
+                                    <a class="item mr-10" href="{% url 'ppid' %}" onclick="selectSubMenu('form-permintaan-informasi-dan-pernyataan-kebenaran')"> Form Permintaan Informasi & Pernyataan Kebenaran </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+          </li>
+          
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  
+<script type="text/javascript" src="{% static 'main/js/script.js' %}"></script>
+    
+
+
+    
+
+
+
