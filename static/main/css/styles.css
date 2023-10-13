@@ -1798,7 +1798,7 @@ a #izin-tinggal-online-button {
   align-items: center;
   padding: 0;
   gap: 24px;
-  width: 902px;
+  width: 100%;
   height: 48px;
 }
 
@@ -3987,7 +3987,7 @@ ol li {
 
 /* responsive start by f*/
 a{
-  text-decoration: none;
+  text-decoration: none !important;
 }
 .dropdown-conntainer{
   width: 100%;
