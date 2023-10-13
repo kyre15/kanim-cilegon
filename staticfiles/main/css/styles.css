@@ -1033,6 +1033,8 @@ a:focus {
   height: 420px;
   width: 960px;
   margin: auto;
+  display: flex;
+  justify-content: center;
 }
 
 #preview-image {
@@ -1060,10 +1062,6 @@ a:focus {
 #preview-image img {
   height: 420px;
   width: 748px;
-}
-
-#image-hightlight {
-  display: flex;
 }
 
 #previous-button {
