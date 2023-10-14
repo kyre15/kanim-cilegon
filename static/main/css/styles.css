@@ -84,9 +84,16 @@ a{
   #jam-layanan-label { 
     display: none;
   }
+  .layanan-imigrasi-content-tab{
+    flex-direction: column !important;
+  }
+  
 }
 
 @media screen and (max-width:1152px) {
+  .content-show h1{
+    justify-content: center !important;
+  }
 
   .galeri-foto-grid-wrapper {
     width: 500px !important;
@@ -187,15 +194,7 @@ a{
   }
 
   .content-show {
-    width: 414px !important;
-  }
-
-  .content-core-show {
-    width: 414px !important;
-  }
-
-  .content-core-show li {
-    width: 414px !important;
+    width: 100% !important;
   }
 
   .content-core-hide li {
@@ -240,10 +239,14 @@ a{
   .subtitle-wilaya-kerja {
     width: 100% !important;
   }
+  .layanan-imigrasi-content-tab{
+    width: 520px !important;
+  }
 }
 
 
 @media screen and (max-width:1016px) {
+  
   .instagram-wrapper {
     height: 100% !important;
   }
@@ -282,6 +285,8 @@ a{
   .layanan-imigrasi-content-tab {
     /* flex-direction: column !important; */
     border-bottom: 0px !important;
+    width: 100% !important;
+    height: fit-content !important;
   }
 
   .struktur-organisasi-wrapper{
@@ -319,9 +324,7 @@ a{
     width: 100% !important;
   }
 
-  .content-show {
-    width: 414px !important;
-  }
+
 
   .content-core-show {
     display: grid;
@@ -339,11 +342,17 @@ a{
   }
 
   .content-show ul li {
-    width: 414px !important;
+    width: 100% !important;
   }
 }
 
 @media screen and (max-width:803px) {
+  .row{
+    flex-direction: column !important;
+  }
+  .row-cols-4>*{
+    width: 50% !important;
+  }
   .instagram-wrapper {
     height: 100% !important;
   }
@@ -365,6 +374,15 @@ a{
   }
 }
 @media screen and (max-width:410px){
+  .content-core-show img {
+    width: 100% !important;
+  }
+  .row-cols-4>*{
+    width: 75% !important;
+  }
+  .content-core-show ol,ul{
+    padding-left: 0px !important;
+  }
   .header-contact{
     display: inline-flex !important;
     flex-wrap: wrap !important;
@@ -456,7 +474,7 @@ a{
 }
 
 .footer-head {
-  margin: 24px 104px;
+  margin: 24px ;
   display: inline-flex;
 }
 
@@ -2051,7 +2069,7 @@ a #izin-tinggal-online-button {
 .content-header-wrapper {
   position: relative;
   display: grid;
-  margin: 64px auto auto 104px;
+  margin: auto;
   gap: 16px;
 }
 
@@ -2110,6 +2128,7 @@ a #izin-tinggal-online-button {
   display: inline-flex;
   column-gap: 60px;
   position: relative;
+  justify-content: center;
 }
 
 .content-sidebar-container {
@@ -3171,7 +3190,9 @@ a #izin-tinggal-online-button {
   display: grid;
   width: 100%;
   gap: 16px;
-  justify-items: start;
+  justify-items: center;
+  justify-content: center;
+  
 }
 
 .content-core-hide {
