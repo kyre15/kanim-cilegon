@@ -471,6 +471,9 @@ a{
   #map{
     width: 100% !important;
   }
+  .content-core-show{
+    padding-right: 2rem !important;
+  }
 }
 @media screen and (max-width:410px){
   .content-berita-wrapper{
@@ -501,9 +504,6 @@ a{
   }
   .row-cols-4>*{
     width: 75% !important;
-  }
-  .content-core-show ol,ul{
-    padding-left: 0px !important;
   }
   .header-contact{
     display: inline-flex !important;
