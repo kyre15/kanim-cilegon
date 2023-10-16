@@ -78,6 +78,13 @@ a{
   text-decoration: none;
   font-size: 16px;
 }
+.ipk-dan-ikm-wrapper .row{
+  --bs-gutter-x: 0;
+}
+.col-12 canvas{
+  width: 100% !important;
+  height: fit-content !important;
+}
 
 @media screen and (max-width:580px) {
 
@@ -91,8 +98,27 @@ a{
 }
 
 @media screen and (max-width:1152px) {
+  .visi-dan-misi-wrapper{
+    flex-direction: column !important;
+    height: fit-content !important;
+    width: 100% !important;
+  }
+  .moto-wrapper{
+    width: 100% !important;
+  }
+  .visi-dan-misi-container{
+    width: 100% !important;
+  }
+  .moto-text{
+    margin: auto !important;
+  }
+  .tata-nilai-wrapper{
+    width: 100% !important;
+    padding : 0 !important;
+  }
   .content-show h1{
     justify-content: center !important;
+    height: fit-content !important;
   }
 
   .galeri-foto-grid-wrapper {
@@ -246,9 +272,32 @@ a{
 
 
 @media screen and (max-width:1016px) {
-  
+  #moto-title{
+    width: 100% !important;
+  }
+  .tata-nilai-title{
+    width: 100% !important;
+  }
   .instagram-wrapper {
     height: 100% !important;
+  }
+  .tata-nilai-subtitle{
+    width: 100% !important;
+  }
+  .moto-text-3-poin{
+    width: 100% !important;
+  }
+  .pasti-detail-wrapper{
+    width: 100% !important;
+  }
+  .akuntabel-wrapper{
+    width: 350px !important;
+  }
+  .transparan-wrapper{
+    width: 350px !important;
+  }
+  .profesional-akuntabel-wrapper,.sinergi-transparan-wrapper,.inovatif-wrapper,.tata-nilia-content-description,.tata-nilai-content-title{
+    width: 100% !important;
   }
 
   .instagram-item-wrapper {
@@ -302,6 +351,16 @@ a{
 
 
 @media screen and (max-width:650px) {
+  .content-galeri-tab-wrapper button{
+    width: 100% !important;
+  }
+  .col-12 canvas{
+    width: 100% !important;
+    height: fit-content !important;
+  }
+  .content-core-show table{
+    width: 100% !important;
+  }
   .d-flex{
     display: flex !important;
     flex-direction: column;
@@ -347,6 +406,17 @@ a{
 }
 
 @media screen and (max-width:803px) {
+  .profesional-akuntabel-wrapper,.sinergi-transparan-wrapper,.inovatif-wrapper{
+    flex-direction: column !important;
+    height: fit-content !important;
+    border-bottom: 0 !important;;
+  }
+  .tata-nilai-wrapper,.pasti-detail-wrapper{
+    height: fit-content !important;
+  }
+  .profesional-wrapper,.sinergi-wrapper,.inovatif-content-wrapper{
+    border-right: 0 !important;
+  }
   .row{
     flex-direction: column !important;
   }
@@ -355,6 +425,13 @@ a{
   }
   .instagram-wrapper {
     height: 100% !important;
+  }
+  .moto-text-3-poin{
+    flex-direction: column !important;
+    height: fit-content !important;
+  }
+  .moto-wrapper{
+    height: fit-content !important;
   }
 
   .instagram-item-wrapper {
@@ -372,10 +449,55 @@ a{
   .social-media-url {
     display: none;
   }
+  .misi{
+    width: 100% !important;
+    margin: auto !important;
+  }
+  #misi-title,#misi-description{
+    width: 100% !important;
+  }
+  .visi,#visi-title,#visi-description{
+    width: 100% !important;
+  }
+  .visi{
+    margin: auto !important;
+  }
+  #moto-pertama-text,#moto-kedua-text,#moto-ketiga-text{
+    width: 100% !important;
+  }
+  .profesional-wrapper,.sinergi-wrapper,.transparan-wrapper,.akuntabel-wrapper,.inovatif-content-wrapper{
+    width: 100% !important;
+  }
+  #map{
+    width: 100% !important;
+  }
 }
 @media screen and (max-width:410px){
-  .content-core-show img {
+  .content-berita-wrapper{
     width: 100% !important;
+  }
+  .file-wrapper .file-title{
+    width: 100% !important;
+  }
+  
+  .berita-item{
+    width: 100% !important;
+  }
+  #berita-item-image{
+    width: 100% !important;
+  }
+  #berita-item-title{
+    width: 100% !important;
+  }
+  #berita-item-description{
+    width: 100% !important;
+  }
+  #berita-item-date{
+    width: 100% !important;
+  }
+  .content-core-show img,table {
+    width: 100% !important;
+    padding: 0% !important;
   }
   .row-cols-4>*{
     width: 75% !important;
@@ -428,6 +550,10 @@ a{
   .m-paspor-banner-button-wrapper{
     padding-left: 130px !important;
     padding-right: 130px !important;
+  }
+  .file-wrapper img{
+    height: 24px !important;
+    width: 24px !important;
   }
 }
 
@@ -2388,7 +2514,7 @@ a #izin-tinggal-online-button {
 
 #headline-subtitle-berita {
   width: 100%;
-  height: 24px;
+  height: fit-content;
   font-weight: 200;
   font-size: 16px;
   line-height: 150%;
@@ -2398,7 +2524,7 @@ a #izin-tinggal-online-button {
 }
 #headline-title-berita {
   width: 100%;
-  height: 162px;
+  height: fit-content;
   font-weight: 700;
   font-size: 36px;
   line-height: 150%;
