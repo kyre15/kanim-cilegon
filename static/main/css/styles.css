@@ -101,6 +101,9 @@ a{
 }
 
 @media screen and (max-width:1152px) {
+  .berita-detail-description{
+    width: 100% !important;
+  }
   .content-berita-tab-wrapper button{
     justify-content: center !important;
   }
@@ -499,7 +502,7 @@ a{
     padding-left: 10px !important;
   }
   .berita-detail-terkait-item{
-    flex-direction: row !important;
+    flex-wrap: wrap !important;
   }
   .content-header-wrapper{
     margin: auto !important;
@@ -2409,7 +2412,7 @@ a #izin-tinggal-online-button {
 
 .content-galeri-wrapper {
   height: fit-content;
-  width: 100%;
+  width: 1232px;
   margin: auto;
   position: relative;
 }
@@ -2420,6 +2423,7 @@ a #izin-tinggal-online-button {
   position: relative;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   margin: 0 auto 40px auto;
   padding-top: 16px;
   padding-bottom: 16px;
@@ -2468,7 +2472,7 @@ a #izin-tinggal-online-button {
 .galeri-foto-grid-wrapper {
   width: 100%;
   display: flex;
-  justify-content: center;
+
   gap: 8px;
   /* margin: auto auto 120px auto; */
   position: relative;
@@ -2684,7 +2688,6 @@ a #izin-tinggal-online-button {
   height: fit-content;
   row-gap: 40px;
   column-gap: 20px;
-  justify-content: center;
   margin-bottom: 120px;
 }
 
