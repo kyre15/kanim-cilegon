@@ -78,22 +78,66 @@ a{
   text-decoration: none;
   font-size: 16px;
 }
+.ipk-dan-ikm-wrapper .row{
+  --bs-gutter-x: 0;
+}
+.col-12 canvas{
+  width: 100% !important;
+  height: fit-content !important;
+}
 
 @media screen and (max-width:580px) {
+  .file-wrapper .file-title{
+    width: 100% !important;
+  }
 
   #jam-layanan-label { 
     display: none;
   }
+  .layanan-imigrasi-content-tab{
+    flex-direction: column !important;
+  }
+  
 }
 
 @media screen and (max-width:1152px) {
+  .berita-detail-description{
+    width: 100% !important;
+  }
+  .content-berita-tab-wrapper button{
+    justify-content: center !important;
+  }
+  .visi-dan-misi-wrapper{
+    flex-direction: column !important;
+    height: fit-content !important;
+    width: 100% !important;
+  }
+  .moto-wrapper{
+    width: 100% !important;
+  }
+  .visi-dan-misi-container{
+    width: 100% !important;
+  }
+  .moto-text{
+    margin: auto !important;
+  }
+  .tata-nilai-wrapper{
+    width: 100% !important;
+    padding : 0 !important;
+  }
+  .content-show h1{
+    justify-content: center !important;
+    height: fit-content !important;
+  }
 
   .galeri-foto-grid-wrapper {
-    width: 500px !important;
+    width: 100% !important;
+    justify-content: center !important;
   }
 
   .galeri-video-grid-wrapper {
-    width: 500px !important;
+    width: 100% !important;
+    justify-content: center !important;
   }
 
   .content-galeri-tab-wrapper {
@@ -187,15 +231,7 @@ a{
   }
 
   .content-show {
-    width: 414px !important;
-  }
-
-  .content-core-show {
-    width: 414px !important;
-  }
-
-  .content-core-show li {
-    width: 414px !important;
+    width: 100% !important;
   }
 
   .content-core-hide li {
@@ -212,13 +248,16 @@ a{
 
   .berita-grid-kantor-imigrasi-cilegon {
     display: inline-flex;
-    flex-direction: column;
+    justify-content: center !important;
+    flex-direction: row;
+    padding-left: 20px !important;
   }
   
   .berita-grid-kemenkumham-republik-indonesia1,
   .berita-grid-kemenkumham-kanwil-banten1 {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
   }
 
   .berita-detail-wrapper {
@@ -240,12 +279,39 @@ a{
   .subtitle-wilaya-kerja {
     width: 100% !important;
   }
+  .layanan-imigrasi-content-tab{
+    width: 520px !important;
+  }
 }
 
 
 @media screen and (max-width:1016px) {
+  #moto-title{
+    width: 100% !important;
+  }
+  .tata-nilai-title{
+    width: 100% !important;
+  }
   .instagram-wrapper {
     height: 100% !important;
+  }
+  .tata-nilai-subtitle{
+    width: 100% !important;
+  }
+  .moto-text-3-poin{
+    width: 100% !important;
+  }
+  .pasti-detail-wrapper{
+    width: 100% !important;
+  }
+  .akuntabel-wrapper{
+    width: 350px !important;
+  }
+  .transparan-wrapper{
+    width: 350px !important;
+  }
+  .profesional-akuntabel-wrapper,.sinergi-transparan-wrapper,.inovatif-wrapper,.tata-nilia-content-description,.tata-nilai-content-title{
+    width: 100% !important;
   }
 
   .instagram-item-wrapper {
@@ -282,6 +348,8 @@ a{
   .layanan-imigrasi-content-tab {
     /* flex-direction: column !important; */
     border-bottom: 0px !important;
+    width: 100% !important;
+    height: fit-content !important;
   }
 
   .struktur-organisasi-wrapper{
@@ -297,6 +365,16 @@ a{
 
 
 @media screen and (max-width:650px) {
+  .content-galeri-tab-wrapper button{
+    width: 100% !important;
+  }
+  .col-12 canvas{
+    width: 100% !important;
+    height: fit-content !important;
+  }
+  .content-core-show table{
+    width: 100% !important;
+  }
   .d-flex{
     display: flex !important;
     flex-direction: column;
@@ -319,9 +397,7 @@ a{
     width: 100% !important;
   }
 
-  .content-show {
-    width: 414px !important;
-  }
+
 
   .content-core-show {
     display: grid;
@@ -339,13 +415,43 @@ a{
   }
 
   .content-show ul li {
-    width: 414px !important;
+    width: 100% !important;
   }
 }
 
 @media screen and (max-width:803px) {
+  .berita-detail-description{
+    width: 100% !important;
+  }
+  .berita-detail-container{
+    padding: 24px !important;
+  }
+  .profesional-akuntabel-wrapper,.sinergi-transparan-wrapper,.inovatif-wrapper{
+    flex-direction: column !important;
+    height: fit-content !important;
+    border-bottom: 0 !important;;
+  }
+  .tata-nilai-wrapper,.pasti-detail-wrapper{
+    height: fit-content !important;
+  }
+  .profesional-wrapper,.sinergi-wrapper,.inovatif-content-wrapper{
+    border-right: 0 !important;
+  }
+  .row{
+    flex-direction: column !important;
+  }
+  .row-cols-4>*{
+    width: 50% !important;
+  }
   .instagram-wrapper {
     height: 100% !important;
+  }
+  .moto-text-3-poin{
+    flex-direction: column !important;
+    height: fit-content !important;
+  }
+  .moto-wrapper{
+    height: fit-content !important;
   }
 
   .instagram-item-wrapper {
@@ -363,8 +469,83 @@ a{
   .social-media-url {
     display: none;
   }
+  .misi{
+    width: 100% !important;
+    margin: auto !important;
+  }
+  #misi-title,#misi-description{
+    width: 100% !important;
+  }
+  .visi,#visi-title,#visi-description{
+    width: 100% !important;
+  }
+  .visi{
+    margin: auto !important;
+  }
+  #moto-pertama-text,#moto-kedua-text,#moto-ketiga-text{
+    width: 100% !important;
+  }
+  .profesional-wrapper,.sinergi-wrapper,.transparan-wrapper,.akuntabel-wrapper,.inovatif-content-wrapper{
+    width: 100% !important;
+  }
+  #map{
+    width: 100% !important;
+  }
+  .content-core-show{
+    padding-right: 2rem !important;
+  }
 }
 @media screen and (max-width:410px){
+  
+  .berita-header-wrapper{
+    margin: auto !important;
+    padding-left: 10px !important;
+  }
+  .berita-detail-terkait-item{
+    flex-wrap: wrap !important;
+  }
+  .content-header-wrapper{
+    margin: auto !important;
+  }
+ 
+  .berita-detail-wrapper{
+    padding: 0 !important;
+  }
+  .breadcrumb-berita-wrapper,.headline-wrapper{
+    justify-content: flex-start !important;
+  }
+  .content-berita-wrapper{
+    width: 100% !important;
+  }
+  .file-wrapper .file-title{
+    width: 100% !important;
+  }
+  
+  .berita-item{
+    width: 100% !important;
+  }
+  #berita-item-image{
+    width: 100% !important;
+  }
+  #berita-item-title{
+    width: 100% !important;
+  }
+  #berita-item-description{
+    width: 100% !important;
+  }
+  #berita-item-date{
+    width: 100% !important;
+  }
+  .content-core-show img, table {
+    width: 100% !important;
+    padding: 0% !important;
+  }
+  #sejarah-imigrasi img {
+    width: 100% !important;
+  }
+  .row-cols-4>*{
+    width: 75% !important;
+  }
   .header-contact{
     display: inline-flex !important;
     flex-wrap: wrap !important;
@@ -411,6 +592,17 @@ a{
     padding-left: 130px !important;
     padding-right: 130px !important;
   }
+  .file-wrapper img{
+    height: 24px !important;
+    width: 24px !important;
+  }
+  .leaflet-marker-pane img{
+    width: 25px !important;
+    height: 41px !important;
+  }
+  .leaflet-container img.leaflet-tile{
+    width: 256px !important;
+  }
 }
 
 .phone {
@@ -456,7 +648,7 @@ a{
 }
 
 .footer-head {
-  margin: 24px 104px;
+  margin: 24px ;
   display: inline-flex;
 }
 
@@ -2110,6 +2302,7 @@ a #izin-tinggal-online-button {
   display: inline-flex;
   column-gap: 60px;
   position: relative;
+  justify-content: center;
 }
 
 .content-sidebar-container {
@@ -2161,6 +2354,7 @@ a #izin-tinggal-online-button {
 
 .content-show {
   width: 919px;
+  padding: 24px;
   display: block;
   position: relative;
 }
@@ -2218,7 +2412,7 @@ a #izin-tinggal-online-button {
 
 .content-galeri-wrapper {
   height: fit-content;
-  /*width: 1232px;*/
+  width: 1232px;
   margin: auto;
   position: relative;
 }
@@ -2227,6 +2421,9 @@ a #izin-tinggal-online-button {
   width: 100%;
   display: flex;
   position: relative;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   margin: 0 auto 40px auto;
   padding-top: 16px;
   padding-bottom: 16px;
@@ -2273,8 +2470,9 @@ a #izin-tinggal-online-button {
 }
 
 .galeri-foto-grid-wrapper {
-  width: 1232px;
+  width: 100%;
   display: flex;
+
   gap: 8px;
   /* margin: auto auto 120px auto; */
   position: relative;
@@ -2288,8 +2486,9 @@ a #izin-tinggal-online-button {
 }
 
 .galeri-video-grid-wrapper {
-  width: 1232px;
+  width: 100%;
   display: none;
+  justify-content: center !important;
   gap: 20px;
   /* margin: auto auto 120px auto; */
   position: relative;
@@ -2319,7 +2518,8 @@ a #izin-tinggal-online-button {
 }
 
 .berita-header-wrapper {
-  margin: 64px 104px;
+  margin: 0 104px 64px 104px;
+  padding-top: 50px;
   display: block;
   position: relative;
 }
@@ -2369,7 +2569,7 @@ a #izin-tinggal-online-button {
 
 #headline-subtitle-berita {
   width: 100%;
-  height: 24px;
+  height: fit-content;
   font-weight: 200;
   font-size: 16px;
   line-height: 150%;
@@ -2379,7 +2579,7 @@ a #izin-tinggal-online-button {
 }
 #headline-title-berita {
   width: 100%;
-  height: 162px;
+  height: fit-content;
   font-weight: 700;
   font-size: 36px;
   line-height: 150%;
@@ -2429,7 +2629,7 @@ a #izin-tinggal-online-button {
 
 .content-berita-wrapper {
   height: fit-content;
-  /*width: 1232px;*/
+  width: 1232px;
   margin: auto;
   position: relative;
 }
@@ -2487,7 +2687,7 @@ a #izin-tinggal-online-button {
   width: 100%;
   height: fit-content;
   row-gap: 40px;
-  column-gap: 100px;
+  column-gap: 20px;
   margin-bottom: 120px;
 }
 
@@ -2559,6 +2759,8 @@ a #izin-tinggal-online-button {
 .berita-detail-wrapper {
   position: relative;
   width: 1232px;
+  padding: 24px;
+  justify-content: center;
   height: fit-content;
   display: inline-flex;
   margin: 40px auto 120px auto;
@@ -2610,12 +2812,12 @@ a #izin-tinggal-online-button {
   align-items: flex-start;
   padding: 0px 0px 0px 16px;
   gap: 16px;
-  width: 502px;
+  width: 100%;
   height: fit-content;
 }
 
 #berita-detail-terkait-list-title {
-  width: 486px;
+  width: 100%;
   height: 32px;
   font-weight: 700;
   font-size: 20px;
@@ -2627,7 +2829,7 @@ a #izin-tinggal-online-button {
   display: flex;
   padding: 16px 0px 16px;
   gap: 16px;
-  width: 486px;
+  width: 100%;
   height: fit-content;
   border-top: 1px solid #E2E8F0;
 }
@@ -2647,12 +2849,12 @@ a #izin-tinggal-online-button {
 .berita-terkait-text-wrapper {
   display: inline-block;
   position: relative;
-  width: 326px;
+  width: 100%;
   height: fit-content;
 }
 
 #berita-detail-terkini-item-title {
-  width: 326px;
+  width: 100%;
   height: fit-content;
   font-weight: 700;
   font-size: 16px;
@@ -2664,7 +2866,7 @@ a #izin-tinggal-online-button {
 }
 
 #berita-detail-terkini-item-date {
-  width: 326px;
+  width: 100%;
   height: fit-content;
   font-weight: 400;
   font-size: 12px;
@@ -3171,7 +3373,9 @@ a #izin-tinggal-online-button {
   display: grid;
   width: 100%;
   gap: 16px;
-  justify-items: start;
+  justify-items: center;
+  justify-content: center;
+  
 }
 
 .content-core-hide {
@@ -3897,7 +4101,7 @@ table:not(:only-child) {
 }
 
 .subtitle-wilaya-kerja {
-  width: 919px;
+  width: 100%;
   height: 72px;
   font-weight: 200;
   font-size: 16px;
@@ -3917,7 +4121,7 @@ ol li {
 }
 
 .list-of-pt {
-  width: 311px;
+  width: 100%;
   height: fit-content;
   position: relative;
 }
@@ -3946,6 +4150,7 @@ ol li {
 .ipk-dan-ikm-wrapper {
   width: 1232px;
   height: fit-content;
+  padding: 10px;
   margin: auto auto 120px auto;
   position: relative;
   display: grid;
@@ -3954,6 +4159,9 @@ ol li {
 @media screen and (max-width: 580px) {
   .topnav .content-header .dropdown-text {
     /* position: relative !important; */
+  }
+  #sk-penetapan-ppid img{
+    width: 100% !important;
   }
 
   .dropdown-text a:not(:first-child) {display: none;}
@@ -3967,6 +4175,16 @@ ol li {
 }
 
 @media screen and (max-width: 580px) {
+  .berita-grid-wrapper{
+    justify-content: normal !important;
+    padding-left: 5px !important;
+  }
+  .content-berita-tab-wrapper button{
+    justify-content: normal !important;
+  }
+  .subtitle-wilaya-kerja{
+    height: fit-content !important;
+  }
   .dropdown-text.responsive {
     position: relative !important;
     display: flex !important;
