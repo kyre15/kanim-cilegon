@@ -101,11 +101,17 @@ a{
 }
 
 @media screen and (max-width:1152px) {
+  .kakanim-dari-waktu-wrapper{
+    width: 100% !important;
+  }
   .berita-detail-description{
     width: 100% !important;
   }
   .content-berita-tab-wrapper button{
     justify-content: center !important;
+  }
+  #kakanim-dari-waktu{
+    justify-content: normal !important;
   }
   .visi-dan-misi-wrapper{
     flex-direction: column !important;
@@ -286,6 +292,9 @@ a{
 
 
 @media screen and (max-width:1016px) {
+  .kakanim-dari-waktu-wrapper{
+    justify-content: center !important;
+  }
   #moto-title{
     width: 100% !important;
   }
@@ -456,7 +465,9 @@ a{
 
   .instagram-item-wrapper {
     height: 1300px !important;
-    width: fit-content !important;
+    width: 100% !important;
+    align-content: center !important;
+    align-items: center !important;
   }
   .instagram-item-wrapper img {
     width: 195px;
@@ -496,6 +507,9 @@ a{
   }
 }
 @media screen and (max-width:410px){
+  .masa-jabatan-kakanim,.nama-kakanim,.profile-kakanim,.kakanim-wrapper{
+    width: 100% !important;
+  }
   
   .berita-header-wrapper{
     margin: auto !important;
@@ -573,7 +587,7 @@ a{
   .instagram-item-wrapper{
     flex-wrap: nowrap !important;
     height: 2400px !important;
-    width : fit-content !important;
+    width : 100% !important;
   }
   .instagram-item-wrapper img {
     width: 195px;
