@@ -1,0 +1,44 @@
+{% extends 'dashboard/layouts/dashboard-base.html' %}
+{% load static %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        {% if foto %}
+        <a type="button" class="m-3 btn btn-primary" href="{% url "add_foto" %}">Add Foto</a>
+            <br>
+            <br>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Image Description</th>
+                            <th scope="col">Create At</th>
+                            <th scope="col">File</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for file in foto %}
+                        <tr>
+                            <td>{{file.descripion_image}}</th>
+                            <td class="w-25">{{file.image_added_at}}</td>
+                            <td class="w-25">
+                                <img src="{{file.galeri_image_file.url}}" width="300">
+                            </td>
+                            <td class="w-25">
+                                <a type="button" class="m-3 btn btn-primary" href="{% url "update_foto" file.id %}">Edit</a>
+                                <a type="button" class="m-3 btn btn-warning" href="{% url "delete_foto" file.id %}">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+              </div>
+        {% else %}
+        <div class="col-md-6 offset-md-3">
+            <h1> File Belum Ada Silahkan Di Input</h1>
+            <a type="button" class="m-3 btn btn-primary" href="{% url "add_foto" %}">Add Foto</a>
+        </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

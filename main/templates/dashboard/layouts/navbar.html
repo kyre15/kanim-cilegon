@@ -1,0 +1,151 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url "home" %}">Kanim Cilegon Dashboard</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        {% if request.user.is_authenticated %}
+        <div class="collapse navbar-collapse" id="main_nav">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown" id="myDropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Layanan Imigrasi  </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="#"> Warga Negara Indonesia &raquo; </a>
+                            <ul class="submenu dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url "paspor_baru" %}">Paspor Baru</a></li>
+                                <li><a class="dropdown-item" href="{% url "pergantian_paspor" %}">Pergantian Paspor</a></li>
+                                <li><a class="dropdown-item" href="{% url "pergantian_paspor_hilang_atau_rusak" %}">Pegantian Paspor Hilang/Rusak</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"> Warga Negara Asing &raquo; </a>
+                            <ul class="submenu dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url "perpanjang_visa_kunjungan_saat_kedatangan" %}"> Perpanjang Visa Kunjungan Saat Kedatangan </a></li>
+                                <li><a class="dropdown-item" href="{% url "izin_tinggal_kunjungan" %}"> Izin Tinggal Kunjungan </a></li>
+                                <li><a class="dropdown-item" href="{% url "izin_tinggal_terbatas" %}"> Izin Tinggal Terbatas </a></li>
+                                <li><a class="dropdown-item" href="{% url "izin_masuk_kembali" %}"> Izin Masuk Kembali </a></li>
+                                <li><a class="dropdown-item" href="{% url "izin_tinggal_tetap" %}"> Izin Tinggal Tetap </a></li>
+                                <li><a class="dropdown-item" href="{% url "alih_status_izin_tinggal" %}"> Alih Status Izin Tinggal </a></li>
+                                <li><a class="dropdown-item" href="{% url "perubahan_alamat" %}"> Perubahan Alamat </a></li>
+                                <li><a class="dropdown-item" href="{% url "pendaftaran_anak" %}"> Pendaftaran Anak Berkewarganegaraan Ganda dan Fasilitas Keimigrasian (Ganda Terbatas) </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" id="myDropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Informasi Publik  </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="#"> Informasi Publik &raquo; </a>
+                            <ul class="submenu dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="#">Biaya Imigrasi &raquo; </a>
+                                    <ul class="submenu dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url "dokumen_perjalanan_republik_indonesia" %}">Dokumen Perjalanan Republik Indonesia</a></li>
+                                        <li><a class="dropdown-item" href="{% url "visa_kunjungan" %}">Visa Kunjungan</a></li>
+                                        <li><a class="dropdown-item" href="{% url "visa_tinggal_terbatas" %}">Visa Tinggal Terbatas</a></li>
+                                        <li><a class="dropdown-item" href="{% url "izin_kunjungan" %}">Izin Kunjungan</a></li>
+                                        <li><a class="dropdown-item" href="{% url "izin_tinggal_tetap_keimigrasian" %}">Izin Tinggal Tetap</a></li>
+                                        <li><a class="dropdown-item" href="{% url "izin_masuk_kembali_keimigrasian" %}">Izin Masuk Kembali (Re-Entry Permit)</a></li>
+                                        <li><a class="dropdown-item" href="{% url "izin_tinggal_terbatas_keimigrasian" %}">Izin Tinggal Terbatas</a></li>
+                                        <li><a class="dropdown-item" href="{% url "biaya_beban" %}">Biaya Beban</a></li>
+                                        <li><a class="dropdown-item" href="{% url "smart_card" %}">Smart Card</a></li>
+                                        <li><a class="dropdown-item" href="{% url "kartu_perjalanan_bisnis" %}">Kartu Perjalanan Pebisnis Asia Pacific Economic Cooperation (KPP APEC)/APEC Business Travel Card (ABTC)</a></li>
+                                        <li><a class="dropdown-item" href="{% url "fasilitas_keimigrasian" %}">Fasilitas Keimigrasian (Afidavit) Bagi Anak Berkewarganegaraan Ganda</a></li>
+                                        <li><a class="dropdown-item" href="{% url "surat_keterangan_keimigrasian" %}">Surat Keterangan Keimigrasian</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"> Berita &raquo; </a>
+                            <ul class="submenu dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url "kantor_imigrasi_cilegon" %}">Kantor Imigrasi</a></li>
+                                <li><a class="dropdown-item" href="{% url "kemenkumham_republik_indonesia" %}">Kemenkumham Republik Indonesia</a></li>
+                                <li><a class="dropdown-item" href="{% url "kemenkumham_kanwil_banten" %}">Kemenkumham Kanwil Banten</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"> Arsip dan Dokumen &raquo; </a>
+                            <ul class="submenu dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url "daftar_isian_pelaksana_anggaran" %}">Daftar Isian Pelaksana Anggaran</a></li>
+                                <li><a class="dropdown-item" href="{% url "laporan_akuntabilitas_kinerja" %}">Laporan Akuntabilitas Kinerja</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"> Dasbor Publik &raquo; </a>
+                            <ul class="submenu dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url "ipk_dan_ipm" %}">IPK dan IKM</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" id="myDropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Profile  </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="#"> Profile &raquo; </a>
+                            <ul class="submenu dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url "sejarah_imigrasi" %}">Sejarah Imigarsi</a></li>
+                                <li><a class="dropdown-item" href="{% url "sejarah_kantor" %}">Sejarah Kantor</a></li>
+                                <li><a class="dropdown-item" href="{% url "tugas_dan_fungsi_profile" %}">Tugas dan Fungsi</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"> Galeri &raquo; </a>
+                            <ul class="submenu dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url "show_foto" %}">Foto</a></li>
+                                <li><a class="dropdown-item" href="{% url "show_video" %}">Video</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" id="myDropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  PPID  </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="#"> PPID &raquo; </a>
+                            <ul class="submenu dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url "dasar_hukum_ppid" %}">Dasar Hukum PPID</a></li>
+                                <li><a class="dropdown-item" href="{% url "sk_penetapan_ppid" %}">SK Penetapan PPID</a></li>
+                                <li><a class="dropdown-item" href="{% url "struktur_ppid" %}">Struktur PPID</a></li>
+                                <li><a class="dropdown-item" href="{% url "tugas_dan_fungsi_ppid" %}">Tugas dan Fungsi PPID</a></li>
+                                <li><a class="dropdown-item" href="{% url "standar_pelayanan_informasi" %}">Standar Pelayanan Informasi</a></li>
+                                <li><a class="dropdown-item" href="{% url "kegiatan_tata_kelola_informasi_publik" %}">Kegiatan Tata Kelola Informasi Publik</a></li>
+                                <li><a class="dropdown-item" href="{% url "sk_informasi_yang_dikecualikan" %}">SK Informasi yang Dikecualikan</a></li>
+                                <li><a class="dropdown-item" href="{% url "daftar_informasi_publik" %}">Daftar Informasi Publik</a></li>
+                                <li><a class="dropdown-item" href="{% url "file_informasi_berkala" %}">Informsai Berkala</a></li>
+                                <li><a class="dropdown-item" href="{% url "informasi_setiap_saat" %}">Informasi Setiap Saat</a></li>
+                                <li><a class="dropdown-item" href="{% url "informasi_serta_merta" %}">Informasi Serta Merta</a></li>
+                                <li><a class="dropdown-item" href="{% url "informasi_dikecualikan" %}">Informasi Dikecualikan</a></li>
+                                <li><a class="dropdown-item" href="{% url "profile_ppid" %}">Profile PPID</a></li>
+                                <li><a class="dropdown-item" href="{% url "form_permintaan_informasi_dan_pernyataan_kebenaran" %}">Form Permintaan Informasi & Pernyataan Kebenaran</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" id="myDropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Lainnya  </a>
+                    <ul class="dropdown-menu">
+                        <li> <a class="dropdown-item" href="{% url "timpora" %}"> Timpora </a></li>
+                        <li> 
+                            <a class="dropdown-item" href="#"> Zona Integritas &raquo;  </a>
+                            <ul class="submenu dropdown-menu">
+                                <li> <a class="dropdown-item" href="{% url "pengertian" %}">Pengertian</a></li>
+                                <li> <a class="dropdown-item" href="{% url "area_perubahan" %}">6 Area Perubahan</a></li>
+                                <li> <a class="dropdown-item" href="{% url "dokumentasi_kegiatan_pzi" %}">Dokumentasi Kegiatan PZI</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                
+            </ul>
+            
+        </div>
+        <a class="navbar-brand" aria-current="page" href="{% url "logout_dashboard" %}">Logout</a>
+        {% endif %}
+    <!-- navbar-collapse.// -->
+    </div>
+    <!-- container-fluid.// -->
+</nav>

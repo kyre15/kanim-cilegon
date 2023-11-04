@@ -1,0 +1,26 @@
+{% extends 'dashboard/layouts/dashboard-base.html' %}
+
+{% block content %}
+    <div class="col-md-6 offset-md-3">
+        {% if request.user.is_authenticated %}
+            <h1> Selamat Datang Di Dashboard Kanim Cilegon </h1>
+        {%else%}
+            <h1> Login </h1>
+            <br/>
+            <form method="POST" action="{% url "dashboard" %}">
+                {% csrf_token %}
+                <form>
+                    <div class="mb-3">
+                        <label for="inputUsername" class="form-label">Username</label>
+                        <input type="username" class="form-control" name="username" aria-describedby="usernameHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </form>
+    </div>
+    {%endif%}
+{% endblock %}

@@ -146,7 +146,7 @@ class StrukturOrganisasi(models.Model):
     name = models.CharField(max_length=50)
     jabatan = models.CharField(max_length=100, choices=JABATAN)
     TMT = models.DateTimeField()
-    foto = models.ImageField(upload_to='photo_pejabat/')
+    foto = models.ImageField(upload_to='photo_pejabat/', default='1')
 
 class VisiDanMisi(models.Model):
     visi = models.CharField(max_length=200)
@@ -205,6 +205,32 @@ class IndexKepuasanMasyarakat(models.Model):
     total_kurang_baik = models.IntegerField()
     total_tidak_baik = models.IntegerField()
     p = models.CharField(max_length=5)
+    
+class IndexSurvey(models.Model):
+    total_sangat_baik = models.IntegerField(default=1)
+    total_baik = models.IntegerField(default=1)
+    total_kurang_baik = models.IntegerField(default=1)
+    total_tidak_baik = models.IntegerField(default=1)
 
 class IPKandIKM(models.Model):
     date = models.DateTimeField()
+    informasi = models.OneToOneField(IndexSurvey,on_delete=models.CASCADE, related_name='informasi')
+    persyaratan = models.OneToOneField(IndexSurvey,on_delete=models.CASCADE, related_name='persyaratan')
+    prosedur_atau_alur = models.OneToOneField(IndexSurvey,on_delete=models.CASCADE, related_name='prosedur_atau_alur')
+    waktu_penyelesaian = models.OneToOneField(IndexSurvey,on_delete=models.CASCADE, related_name='waktu_penyelesaian')
+    tarif_biaya = models.OneToOneField(IndexSurvey,on_delete=models.CASCADE, related_name='tarif_biaya')
+    sarana_prasarana = models.OneToOneField(IndexSurvey,on_delete=models.CASCADE, related_name='sarana_prasarana')
+    respon = models.OneToOneField(IndexSurvey,on_delete=models.CASCADE, related_name='respon')
+    konsultasi_dan_pengaduan = models.OneToOneField(IndexSurvey,on_delete=models.CASCADE, related_name='konsultasi_dan_pengaduan')
+    diskriminasi = models.OneToOneField(IndexSurvey,on_delete=models.CASCADE, related_name='diskriminasi')
+    kecurangan = models.OneToOneField(IndexSurvey,on_delete=models.CASCADE, related_name='kecurangan')
+    gratifikasi = models.OneToOneField(IndexSurvey,on_delete=models.CASCADE, related_name='gratifikasi')
+    pungli = models.OneToOneField(IndexSurvey,on_delete=models.CASCADE, related_name='pungli')
+    calo = models.OneToOneField(IndexSurvey,on_delete=models.CASCADE, related_name='calo')
+    
+class IPKandIKMSurvey(models.Model):
+    date = models.DateTimeField()
+    index_survey = models.ForeignKey(
+        'IndexSurvey',
+        on_delete=models.CASCADE,
+    )

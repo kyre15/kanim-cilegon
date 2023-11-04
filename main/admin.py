@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django import forms
 
-from main.models import MainMenu, SubMenu, Content, Menu, YoutubeVideo, Berita, BeritaImage, FotoGaleri, FileArsipDanDokumen, Kakanim, StrukturOrganisasi, VisiDanMisi, ListPerusahaanDanPenginapanWilayahKerja, LaporanPelayananWNA, LaporanPelayananWNI, IndexPersepsiKorupsi, IndexKepuasanMasyarakat
+from main.models import MainMenu, SubMenu, Content, Menu, YoutubeVideo, Berita, BeritaImage, FotoGaleri, FileArsipDanDokumen, Kakanim, StrukturOrganisasi, VisiDanMisi, ListPerusahaanDanPenginapanWilayahKerja, LaporanPelayananWNA, LaporanPelayananWNI, IndexPersepsiKorupsi, IndexKepuasanMasyarakat, IPKandIKM, IndexSurvey
 
 # class MainMenuField(admin.ModelAdmin):
 #     list_display = ('main_menu_name', 'create_at')
@@ -110,3 +110,31 @@ class IndexKepuasanMasyarakatField(admin.ModelAdmin):
         'p'
     )
 admin.site.register(IndexKepuasanMasyarakat, IndexKepuasanMasyarakatField)
+
+class IPKandIPMField(admin.ModelAdmin):
+    list_display = (
+        'date',
+        'informasi',
+        'persyaratan',
+        'prosedur_atau_alur',
+        'waktu_penyelesaian',
+        'tarif_biaya',
+        'sarana_prasarana',
+        'respon',
+        'konsultasi_dan_pengaduan',
+        'diskriminasi',
+        'kecurangan',
+        'gratifikasi',
+        'pungli',
+        'calo'
+    )
+admin.site.register(IPKandIKM, IPKandIPMField)
+
+class IndexSurveyField(admin.ModelAdmin):
+    list_display = (
+        'total_sangat_baik',
+        'total_baik',
+        'total_kurang_baik',
+        'total_tidak_baik',
+    )
+admin.site.register(IndexSurvey, IndexSurveyField)

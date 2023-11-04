@@ -1,0 +1,38 @@
+{% extends 'dashboard/layouts/dashboard-base.html' %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        {% if alih_status_izin_tinggal %}
+            <a type="button" class="m-3 btn btn-primary" href="{% url "update_layanan_imigrasi" alih_status_izin_tinggal.content_menu_id %}">Edit</a>
+            <br>
+            <br>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Menu</th>
+                            <th scope="col">Create At</th>
+                            <th scope="col">Tentang Layanan dan Persyaratan</th>
+                            <th scope="col">Alur Proses dan Prosedur</th>
+                            <th scope="col">Biaya</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{alih_status_izin_tinggal.content_name}}</th>
+                            <td class="w-25">{{alih_status_izin_tinggal.create_at}}</td>
+                            <td class="w-25">{{alih_status_izin_tinggal.tentang_layanan_dan_persyaratan|safe}}</td>
+                            <td class="w-25">{{alih_status_izin_tinggal.alur_proses_dan_prosedur|safe}}</td>
+                            <td class="w-25">{{alih_status_izin_tinggal.biaya|safe}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+              </div>
+        {% else %}
+        <div class="col-md-6 offset-md-3">
+            <h1> Konten Belum Ada Silahkan Di Input</h1>
+            <a type="button" class="m-3 btn btn-primary" href="{% url "add_layanan_imigrasi" %}">Add Content</a>
+        </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

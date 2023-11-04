@@ -31,33 +31,157 @@ function setSubMenuOnLoad() {
     document.getElementById(selectedSubMenu).classList.add("content-core-show");
 }
 
-function chartGenerator(id, sangatBaik, baik, kurangBaik, tidakBaik) {
+function chartGenerator(
+  id, 
+  informasiTotalSangatBaik,
+  informasiTotalBaik,
+  informasiTotalKurangBaik,
+  informasiTotalTidakBaik,
+  persyaratanTotalSangatBaik,
+  persyaratanTotalBaik,
+  persyaratanTotalKurangBaik,
+  persyaratanTotalTidakBaik,
+  prosedur_atau_alurTotalSangatBaik,
+  prosedur_atau_alurTotalBaik,
+  prosedur_atau_alurTotalKurangBaik,
+  prosedur_atau_alurTotalTidakBaik,
+  waktu_penyelesaianTotalSangatBaik,
+  waktu_penyelesaianTotalBaik,
+  waktu_penyelesaianTotalKurangBaik,
+  waktu_penyelesaianTotalTidakBaik,
+  tarif_biayaTotalSangatBaik,
+  tarif_biayaTotalBaik,
+  tarif_biayaTotalKurangBaik,
+  tarif_biayaTotalTidakBaik,
+  sarana_prasaranaTotalSangatBaik,
+  sarana_prasaranaTotalBaik,
+  sarana_prasaranaTotalKurangBaik,
+  sarana_prasaranaTotalTidakBaik,
+  responTotalSangatBaik,
+  responTotalBaik,
+  responTotalKurangBaik,
+  responTotalTidakBaik,
+  konsultasi_dan_pengaduanTotalSangatBaik,
+  konsultasi_dan_pengaduanTotalBaik,
+  konsultasi_dan_pengaduanTotalKurangBaik,
+  konsultasi_dan_pengaduanTotalTidakBaik,
+  diskriminasiTotalSangatBaik,
+  diskriminasiTotalBaik,
+  diskriminasiTotalKurangBaik,
+  diskriminasiTotalTidakBaik,
+  kecuranganTotalSangatBaik,
+  kecuranganTotalBaik,
+  kecuranganTotalKurangBaik,
+  kecuranganTotalTidakBaik,
+  gratifikasiTotalSangatBaik,
+  gratifikasiTotalBaik,
+  gratifikasiTotalKurangBaik,
+  gratifikasiTotalTidakBaik,
+  pungliTotalSangatBaik,
+  pungliTotalBaik,
+  pungliTotalKurangBaik,
+  pungliTotalTidakBaik,
+  caloTotalSangatBaik,
+  caloTotalBaik,
+  caloTotalKurangBaik,
+  caloTotalTidakBaik
+  ) {
       new Chart(document.getElementById('myChart'+id.toString()), {
         type: 'bar',
         data: {
-          labels: ['P1'],
+          labels: [
+            'informasi',
+            'persyaratan',
+            'prosedur_atau_alur',
+            'waktu_penyelesaian',
+            'tarif_biaya',
+            'sarana_prasarana',
+            'respon',
+            'konsultasi_dan_pengaduan',
+            'diskriminasi',
+            'kecurangan',
+            'gratifikasi',
+            'pungli',
+            'calo'
+          ],
           datasets: [
-              {
-                  label: 'Sangat Baik',
-                  data: [sangatBaik],
-                  borderWidth: 1
-              },
-              {
-                  label: 'Baik',
-                  data: [baik],
-                  borderWidth: 1
-              },
-              {
-                  label: 'Kurang Baik',
-                  data: [kurangBaik],
-                  borderWidth: 1
-              },
-              {
-                  label: 'Tidak Baik',
-                  data: [tidakBaik],
-                  borderWidth: 1
-              },
-          ]
+            {
+                label: 'Sangat Baik',
+                data: [
+                  informasiTotalSangatBaik,
+                  persyaratanTotalSangatBaik,
+                  prosedur_atau_alurTotalSangatBaik,
+                  waktu_penyelesaianTotalSangatBaik,
+                  tarif_biayaTotalSangatBaik,
+                  sarana_prasaranaTotalSangatBaik,
+                  responTotalSangatBaik,
+                  konsultasi_dan_pengaduanTotalSangatBaik,
+                  diskriminasiTotalSangatBaik,
+                  kecuranganTotalSangatBaik,
+                  gratifikasiTotalSangatBaik,
+                  pungliTotalSangatBaik,
+                  caloTotalSangatBaik
+                ],
+                borderWidth: 1
+            },
+            {
+                label: 'Baik',
+                data: [
+                  informasiTotalBaik,
+                  persyaratanTotalBaik,
+                  prosedur_atau_alurTotalBaik,
+                  waktu_penyelesaianTotalBaik,
+                  tarif_biayaTotalBaik,
+                  sarana_prasaranaTotalBaik,
+                  responTotalBaik,
+                  konsultasi_dan_pengaduanTotalBaik,,
+                  diskriminasiTotalBaik,
+                  kecuranganTotalBaik,
+                  gratifikasiTotalBaik,
+                  pungliTotalBaik,
+                  caloTotalBaik
+                ],
+                borderWidth: 1
+            },
+            {
+                label: 'Kurang Baik',
+                data: [
+                  informasiTotalKurangBaik,
+                  persyaratanTotalKurangBaik,
+                  prosedur_atau_alurTotalKurangBaik,
+                  waktu_penyelesaianTotalKurangBaik,
+                  tarif_biayaTotalKurangBaik,
+                  sarana_prasaranaTotalKurangBaik,
+                  responTotalKurangBaik,
+                  konsultasi_dan_pengaduanTotalKurangBaik,
+                  diskriminasiTotalKurangBaik,
+                  kecuranganTotalKurangBaik,
+                  gratifikasiTotalKurangBaik,
+                  pungliTotalKurangBaik,
+                  caloTotalKurangBaik
+                ],
+                borderWidth: 1
+            },
+            {
+                label: 'Tidak Baik',
+                data: [
+                  informasiTotalTidakBaik,
+                  persyaratanTotalTidakBaik,
+                  prosedur_atau_alurTotalTidakBaik,
+                  waktu_penyelesaianTotalTidakBaik,
+                  tarif_biayaTotalTidakBaik,
+                  sarana_prasaranaTotalTidakBaik,
+                  responTotalTidakBaik,
+                  konsultasi_dan_pengaduanTotalTidakBaik,
+                  diskriminasiTotalTidakBaik,
+                  kecuranganTotalTidakBaik,
+                  gratifikasiTotalTidakBaik,
+                  pungliTotalTidakBaik,
+                  caloTotalTidakBaik
+                ],
+                borderWidth: 1
+            },
+        ]
         },
         options: {
           scales: {

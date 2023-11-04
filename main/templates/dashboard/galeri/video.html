@@ -1,0 +1,44 @@
+{% extends 'dashboard/layouts/dashboard-base.html' %}
+{% load static %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        {% if video %}
+        <a type="button" class="m-3 btn btn-primary" href="{% url "add_video" %}">Add Video</a>
+            <br>
+            <br>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Video Title</th>
+                            <th scope="col">Create At</th>
+                            <th scope="col">Video Url</th>
+                            <th scope="col">Image Video Url</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for file in video %}
+                        <tr>
+                            <td>{{file.video_title}}</th>
+                            <td class="w-25">{{file.create_at}}</td>
+                            <td class="w-25">{{file.url}}</td>
+                            <td class="w-25">{{file.image_url}}</td>
+                            <td class="w-25">
+                                <a type="button" class="m-3 btn btn-primary" href="{% url "update_video" file.id %}">Edit</a>
+                                <a type="button" class="m-3 btn btn-warning" href="{% url "delete_video" file.id %}">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+              </div>
+        {% else %}
+        <div class="col-md-6 offset-md-3">
+            <h1> File Belum Ada Silahkan Di Input</h1>
+            <a type="button" class="m-3 btn btn-primary" href="{% url "add_video" %}">Add Video</a>
+        </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

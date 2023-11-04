@@ -1,0 +1,140 @@
+{% extends 'dashboard/layouts/dashboard-base.html' %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+    <a type="button" class="m-3 btn btn-primary" href="{% url "admin:main_ipkandikm_add" %}">Add Data</a>
+        {% if ipk_dan_ipm %}
+            <br>
+            <br>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Informasi</th>
+                            <th scope="col">Persyaratan</th>
+                            <th scope="col">Prosedur atau Alur</th>
+                            <th scope="col">Waktu Penyelesaian</th>
+                            <th scope="col">Tarif Biaya</th>
+                            <th scope="col">Sarana Prasarana</th>
+                            <th scope="col">Respon</th>
+                            <th scope="col">Konsultasi dan Pengaduan</th>
+                            <th scope="col">Diskriminasi</th>
+                            <th scope="col">Kecurangan</th>
+                            <th scope="col">Gratifikasi</th>
+                            <th scope="col">Pungli</th>
+                            <th scope="col">Calo</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in ipk_dan_ipm %}
+                        <tr>
+                            <th>{{item.date}}</th>
+                            <td class="w-25">
+                                <span> Sangat Baik: {{item.informasi.total_sangat_baik}} </span><br>
+                                <span> Baik: {{item.informasi.total_baik}} </span><br>
+                                <span> Kurang Baik: {{item.informasi.total_kurang_baik}} </span><br>
+                                <span> Tidak Baik: {{item.informasi.total_tidak_baik}} </span>
+                                <a type="button" class="m-3 btn btn-primary" href="{% url "update_data_survey_ipk_dan_ipm" item.informasi.id %}">Update Data</a>
+                            </td>
+                            <td class="w-25">
+                                <span> Sangat Baik: {{item.persyaratan.total_sangat_baik}} </span><br>
+                                <span> Baik: {{item.persyaratan.total_baik}} </span><br>
+                                <span> Kurang Baik: {{item.persyaratan.total_kurang_baik}} </span><br>
+                                <span> Tidak Baik: {{item.persyaratan.total_tidak_baik}} </span>
+                                <a type="button" class="m-3 btn btn-primary" href="{% url "update_data_survey_ipk_dan_ipm" item.persyaratan.id %}">Update Data</a>
+                            </td>
+                            <td class="w-25">
+                                <span> Sangat Baik: {{item.prosedur_atau_alur.total_sangat_baik}} </span><br>
+                                <span> Baik: {{item.prosedur_atau_alur.total_baik}} </span><br>
+                                <span> Kurang Baik: {{item.prosedur_atau_alur.total_kurang_baik}} </span><br>
+                                <span> Tidak Baik: {{item.prosedur_atau_alur.total_tidak_baik}} </span>
+                                <a type="button" class="m-3 btn btn-primary" href="{% url "update_data_survey_ipk_dan_ipm" item.prosedur_atau_alur.id %}">Update Data</a>
+                            </td>
+                            <td class="w-25">
+                                <span> Sangat Baik: {{item.waktu_penyelesaian.total_sangat_baik}} </span><br>
+                                <span> Baik: {{item.waktu_penyelesaian.total_baik}} </span><br>
+                                <span> Kurang Baik: {{item.waktu_penyelesaian.total_kurang_baik}} </span><br>
+                                <span> Tidak Baik: {{item.waktu_penyelesaian.total_tidak_baik}} </span>
+                                <a type="button" class="m-3 btn btn-primary" href="{% url "update_data_survey_ipk_dan_ipm" item.waktu_penyelesaian.id %}">Update Data</a>
+                            </td>
+                            <td class="w-25">
+                                <span> Sangat Baik: {{item.tarif_biaya.total_sangat_baik}} </span><br>
+                                <span> Baik: {{item.tarif_biaya.total_baik}} </span><br>
+                                <span> Kurang Baik: {{item.tarif_biaya.total_kurang_baik}} </span><br>
+                                <span> Tidak Baik: {{item.tarif_biaya.total_tidak_baik}} </span>
+                                <a type="button" class="m-3 btn btn-primary" href="{% url "update_data_survey_ipk_dan_ipm" item.tarif_biaya.id %}">Update Data</a>
+                            </td>
+                            <td class="w-25">
+                                <span> Sangat Baik: {{item.sarana_prasarana.total_sangat_baik}} </span><br>
+                                <span> Baik: {{item.sarana_prasarana.total_baik}} </span><br>
+                                <span> Kurang Baik: {{item.sarana_prasarana.total_kurang_baik}} </span><br>
+                                <span> Tidak Baik: {{item.sarana_prasarana.total_tidak_baik}} </span>
+                                <a type="button" class="m-3 btn btn-primary" href="{% url "update_data_survey_ipk_dan_ipm" item.sarana_prasarana.id %}">Update Data</a>
+                            </td>
+                            <td class="w-25">
+                                <span> Sangat Baik: {{item.respon.total_sangat_baik}} </span><br>
+                                <span> Baik: {{item.respon.total_baik}} </span><br>
+                                <span> Kurang Baik: {{item.respon.total_kurang_baik}} </span><br>
+                                <span> Tidak Baik: {{item.respon.total_tidak_baik}} </span>
+                                <a type="button" class="m-3 btn btn-primary" href="{% url "update_data_survey_ipk_dan_ipm" item.respon.id %}">Update Data</a>
+                            </td>
+                            <td class="w-25">
+                                <span> Sangat Baik: {{item.konsultasi_dan_pengaduan.total_sangat_baik}} </span><br>
+                                <span> Baik: {{item.konsultasi_dan_pengaduan.total_baik}} </span><br>
+                                <span> Kurang Baik: {{item.konsultasi_dan_pengaduan.total_kurang_baik}} </span><br>
+                                <span> Tidak Baik: {{item.konsultasi_dan_pengaduan.total_tidak_baik}} </span>
+                                <a type="button" class="m-3 btn btn-primary" href="{% url "update_data_survey_ipk_dan_ipm" item.konsultasi_dan_pengaduan.id %}">Update Data</a>
+                            </td>
+                            <td class="w-25">
+                                <span> Sangat Baik: {{item.diskriminasi.total_sangat_baik}} </span><br>
+                                <span> Baik: {{item.diskriminasi.total_baik}} </span><br>
+                                <span> Kurang Baik: {{item.diskriminasi.total_kurang_baik}} </span><br>
+                                <span> Tidak Baik: {{item.diskriminasi.total_tidak_baik}} </span>
+                                <a type="button" class="m-3 btn btn-primary" href="{% url "update_data_survey_ipk_dan_ipm" item.diskriminasi.id %}">Update Data</a>
+                            </td>
+                            <td class="w-25">
+                                <span> Sangat Baik: {{item.kecurangan.total_sangat_baik}} </span><br>
+                                <span> Baik: {{item.kecurangan.total_baik}} </span><br>
+                                <span> Kurang Baik: {{item.kecurangan.total_kurang_baik}} </span><br>
+                                <span> Tidak Baik: {{item.kecurangan.total_tidak_baik}} </span>
+                                <a type="button" class="m-3 btn btn-primary" href="{% url "update_data_survey_ipk_dan_ipm" item.kecurangan.id %}">Update Data</a>
+                            </td>
+                            <td class="w-25">
+                                <span> Sangat Baik: {{item.gratifikasi.total_sangat_baik}} </span><br>
+                                <span> Baik: {{item.gratifikasi.total_baik}} </span><br>
+                                <span> Kurang Baik: {{item.gratifikasi.total_kurang_baik}} </span><br>
+                                <span> Tidak Baik: {{item.gratifikasi.total_tidak_baik}} </span>
+                                <a type="button" class="m-3 btn btn-primary" href="{% url "update_data_survey_ipk_dan_ipm" item.gratifikasi.id %}">Update Data</a>
+                            </td>
+                            <td class="w-25">
+                                <span> Sangat Baik: {{item.pungli.total_sangat_baik}} </span><br>
+                                <span> Baik: {{item.pungli.total_baik}} </span><br>
+                                <span> Kurang Baik: {{item.pungli.total_kurang_baik}} </span><br>
+                                <span> Tidak Baik: {{item.pungli.total_tidak_baik}} </span>
+                                <a type="button" class="m-3 btn btn-primary" href="{% url "update_data_survey_ipk_dan_ipm" item.pungli.id %}">Update Data</a>
+                            </td>
+                            <td class="w-25">
+                                <span> Sangat Baik: {{item.calo.total_sangat_baik}} </span><br>
+                                <span> Baik: {{item.calo.total_baik}} </span><br>
+                                <span> Kurang Baik: {{item.calo.total_kurang_baik}} </span><br>
+                                <span> Tidak Baik: {{item.calo.total_tidak_baik}} </span>
+                                <a type="button" class="m-3 btn btn-primary" href="{% url "update_data_survey_ipk_dan_ipm" item.calo.id %}">Update Data</a>
+                            </td>
+                            <td class="w-25">
+                                <a type="button" class="m-3 btn btn-warning" href="{% url "delete_ipk_dan_ipm" item.id %}">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+              </div>
+        {% else %}
+        <div class="col-md-6 offset-md-3">
+            <h1> Konten Belum Ada Silahkan Di Input</h1>
+            <a type="button" class="m-3 btn btn-primary" href="{% url "add_ipk_dan_ipm" %}">Add Content</a>
+        </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

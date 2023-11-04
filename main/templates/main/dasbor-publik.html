@@ -223,11 +223,11 @@
     <div class="ipk-dan-ikm-container">
         <div class="ipk-dan-ikm-wrapper">
             <div class="row">
-                {% if this_year_ikm %}
-                    {% for ikm in this_year_ikm %}
-                        <div class="col-12 col-md-6 col-lg-6">
-                            <canvas id="myChart{{ ikm.id }}"></canvas>
-                        </div>
+                {% if ipk_dan_ipm %}
+                    {% for survey in ipk_dan_ipm %}
+                        <h1>Tahun {{survey.date.year}}</h1>
+                        <h1>Bulan {{survey.date.month}}</h1>
+                        <canvas id="myChart{{survey.id}}"></canvas>
                     {% endfor %}
                 {% endif %}
             </div>
@@ -240,12 +240,62 @@
     window.onload = function () {
         setSubMenuOnLoad();
     }
-    {% for ipk in this_year_ipk %}
-        chartGenerator({{ ipk.id }},
-            {{ ipk.total_sangat_baik }},
-            {{ ipk.total_baik }},
-            {{ ipk.total_kurang_baik }},
-            {{ ipk.total_tidak_baik }});
+    {% for survey_value in ipk_dan_ipm %}
+        chartGenerator(
+            {{ survey_value.id }},
+            {{ survey_value.informasi.total_sangat_baik }},
+            {{ survey_value.informasi.total_baik }},
+            {{ survey_value.informasi.total_kurang_baik }},
+            {{ survey_value.informasi.total_tidak_baik }},
+            {{ survey_value.persyaratan.total_sangat_baik }},
+            {{ survey_value.persyaratan.total_baik }},
+            {{ survey_value.persyaratan.total_kurang_baik }},
+            {{ survey_value.persyaratan.total_tidak_baik }},
+            {{ survey_value.prosedur_atau_alur.total_sangat_baik }},
+            {{ survey_value.prosedur_atau_alur.total_baik }},
+            {{ survey_value.prosedur_atau_alur.total_kurang_baik }},
+            {{ survey_value.prosedur_atau_alur.total_tidak_baik }},
+            {{ survey_value.waktu_penyelesaian.total_sangat_baik }},
+            {{ survey_value.waktu_penyelesaian.total_baik }},
+            {{ survey_value.waktu_penyelesaian.total_kurang_baik }},
+            {{ survey_value.waktu_penyelesaian.total_tidak_baik }},
+            {{ survey_value.tarif_biaya.total_sangat_baik }},
+            {{ survey_value.tarif_biaya.total_baik }},
+            {{ survey_value.tarif_biaya.total_kurang_baik }},
+            {{ survey_value.tarif_biaya.total_tidak_baik }},
+            {{ survey_value.sarana_prasarana.total_sangat_baik }},
+            {{ survey_value.sarana_prasarana.total_baik }},
+            {{ survey_value.sarana_prasarana.total_kurang_baik }},
+            {{ survey_value.sarana_prasarana.total_tidak_baik }},
+            {{ survey_value.respon.total_sangat_baik }},
+            {{ survey_value.respon.total_baik }},
+            {{ survey_value.respon.total_kurang_baik }},
+            {{ survey_value.respon.total_tidak_baik }},
+            {{ survey_value.konsultasi_dan_pengaduan.total_sangat_baik }},
+            {{ survey_value.konsultasi_dan_pengaduan.total_baik }},
+            {{ survey_value.konsultasi_dan_pengaduan.total_kurang_baik }},
+            {{ survey_value.konsultasi_dan_pengaduan.total_tidak_baik }},
+            {{ survey_value.diskriminasi.total_sangat_baik }},
+            {{ survey_value.diskriminasi.total_baik }},
+            {{ survey_value.diskriminasi.total_kurang_baik }},
+            {{ survey_value.diskriminasi.total_tidak_baik }},
+            {{ survey_value.kecurangan.total_sangat_baik }},
+            {{ survey_value.kecurangan.total_baik }},
+            {{ survey_value.kecurangan.total_kurang_baik }},
+            {{ survey_value.kecurangan.total_tidak_baik }},
+            {{ survey_value.gratifikasi.total_sangat_baik }},
+            {{ survey_value.gratifikasi.total_baik }},
+            {{ survey_value.gratifikasi.total_kurang_baik }},
+            {{ survey_value.gratifikasi.total_tidak_baik }},
+            {{ survey_value.pungli.total_sangat_baik }},
+            {{ survey_value.pungli.total_baik }},
+            {{ survey_value.pungli.total_kurang_baik }},
+            {{ survey_value.pungli.total_tidak_baik }},
+            {{ survey_value.calo.total_sangat_baik }},
+            {{ survey_value.calo.total_baik }},
+            {{ survey_value.calo.total_kurang_baik }},
+            {{ survey_value.calo.total_tidak_baik }},
+            );
     {% endfor %}
     </script>
 {% endblock %}

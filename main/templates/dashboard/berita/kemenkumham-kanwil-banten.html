@@ -1,0 +1,52 @@
+{% extends 'dashboard/layouts/dashboard-base.html' %}
+{% load static %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        {% if kemenkumham_kanwil_banten %}
+        <a type="button" class="m-3 btn btn-primary" href="{% url "add_berita" %}">Add Berita</a>
+        <a type="button" class="m-3 btn btn-primary" href="{% url "add_berita_image" %}">Add Image</a>
+            <br>
+            <br>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Create At</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for file, images in kemenkumham_kanwil_banten %}
+                        <tr>
+                            <td class="w-25">{{file.berita_title}}</th>
+                            <td class="w-25">{{file.create_at}}</td>
+                            <td class="w-25">{{file.berita_descrition}}</td>
+                            <td class="w-25">{{file.category_berita}}</td>
+                            <td class="w-25">
+                                {% for image in images %}
+                                    <a href="{% url "update_berita_image" image.id %}"><img src="{{image.berita_image_file.url}}" width="300"></a>
+                                    <a type="button" class="m-3 btn btn-warning" href="{% url "delete_berita_image" image.id %}">Delete Image</a>
+                                {% endfor %}
+                            </td>
+                            <td class="w-25">
+                                <a type="button" class="m-3 btn btn-primary" href="{% url "update_berita" file.id %}">Edit</a>
+                                <a type="button" class="m-3 btn btn-warning" href="{% url "delete_berita" file.id %}">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+              </div>
+        {% else %}
+        <div class="col-md-6 offset-md-3">
+            <h1> File Belum Ada Silahkan Di Input</h1>
+            <a type="button" class="m-3 btn btn-primary" href="{% url "add_berita" %}">Add Berita</a>
+        </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

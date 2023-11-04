@@ -1,0 +1,41 @@
+{% extends 'dashboard/layouts/dashboard-base.html' %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        {% if daftar_isian_pelaksana_anggaran %}
+        <a type="button" class="m-3 btn btn-primary" href="{% url "add_file" %}">Add File</a>
+            <br>
+            <br>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">File Name</th>
+                            <th scope="col">Create At</th>
+                            <th scope="col">File</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for file in daftar_isian_pelaksana_anggaran %}
+                        <tr>
+                            <td>{{file.file_name}}</th>
+                            <td class="w-25">{{file.file_added_at}}</td>
+                            <td class="w-25">{{file.file_name|safe}}</td>
+                            <td class="w-25">
+                                <a type="button" class="m-3 btn btn-primary" href="{% url "update_file" file.id %}">Edit</a>
+                                <a type="button" class="m-3 btn btn-warning" href="{% url "delete_file" file.id %}">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+              </div>
+        {% else %}
+        <div class="col-md-6 offset-md-3">
+            <h1> File Belum Ada Silahkan Di Input</h1>
+            <a type="button" class="m-3 btn btn-primary" href="{% url "add_file" %}">Add File</a>
+        </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

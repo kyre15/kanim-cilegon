@@ -1,0 +1,38 @@
+{% extends 'dashboard/layouts/dashboard-base.html' %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        {% if pendaftaran_anak %}
+            <a type="button" class="m-3 btn btn-primary" href="{% url "update_layanan_imigrasi" pendaftaran_anak.content_menu_id %}">Edit</a>
+            <br>
+            <br>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Menu</th>
+                            <th scope="col">Create At</th>
+                            <th scope="col">Tentang Layanan dan Persyaratan</th>
+                            <th scope="col">Alur Proses dan Prosedur</th>
+                            <th scope="col">Biaya</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{pendaftaran_anak.content_name}}</th>
+                            <td class="w-25">{{pendaftaran_anak.create_at}}</td>
+                            <td class="w-25">{{pendaftaran_anak.tentang_layanan_dan_persyaratan|safe}}</td>
+                            <td class="w-25">{{pendaftaran_anak.alur_proses_dan_prosedur|safe}}</td>
+                            <td class="w-25">{{pendaftaran_anak.biaya|safe}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+              </div>
+        {% else %}
+        <div class="col-md-6 offset-md-3">
+            <h1> Konten Belum Ada Silahkan Di Input</h1>
+            <a type="button" class="m-3 btn btn-primary" href="{% url "add_layanan_imigrasi" %}">Add Content</a>
+        </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}
