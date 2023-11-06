@@ -1,5 +1,28 @@
 var slideIndex = 1;
 
+function setSubMenuBeritaOnLoad() {
+    let selectedSubMenu = localStorage.getItem("subMenuBeritaSelected");
+
+    switch (selectedSubMenu) {
+        case 'berita-kantor-imigrasi':
+            document.getElementById('content-kantor-imigrasi-cilegon-tab-button').focus();
+            break;
+        case 'berita-kemenkumham':
+            document.getElementById('content-kemenkumham-republik-indonesia-tab-button').focus();
+            break;
+        case 'berita-kanwil':
+            document.getElementById('content-grid-kemenkumham-kanwil-banten-tab-button').focus();
+            break;
+    }
+
+    document.getElementById(selectedSubMenu).classList.remove("content-core-hide");
+    document.getElementById(selectedSubMenu).classList.add("content-core-show");
+}
+
+function selectSubMenuBerita(clickedSubMenu) {
+    localStorage.setItem("subMenuBeritaSelected", clickedSubMenu);
+}
+
 function setSubMenuOnLoad() {
     let selectedSubMenu = localStorage.getItem("subMenuSelected");
 
@@ -9,167 +32,166 @@ function setSubMenuOnLoad() {
 }
 
 function chartGenerator(
-      id, 
-      informasiTotalSangatBaik,
-      informasiTotalBaik,
-      informasiTotalKurangBaik,
-      informasiTotalTidakBaik,
-      persyaratanTotalSangatBaik,
-      persyaratanTotalBaik,
-      persyaratanTotalKurangBaik,
-      persyaratanTotalTidakBaik,
-      prosedur_atau_alurTotalSangatBaik,
-      prosedur_atau_alurTotalBaik,
-      prosedur_atau_alurTotalKurangBaik,
-      prosedur_atau_alurTotalTidakBaik,
-      waktu_penyelesaianTotalSangatBaik,
-      waktu_penyelesaianTotalBaik,
-      waktu_penyelesaianTotalKurangBaik,
-      waktu_penyelesaianTotalTidakBaik,
-      tarif_biayaTotalSangatBaik,
-      tarif_biayaTotalBaik,
-      tarif_biayaTotalKurangBaik,
-      tarif_biayaTotalTidakBaik,
-      sarana_prasaranaTotalSangatBaik,
-      sarana_prasaranaTotalBaik,
-      sarana_prasaranaTotalKurangBaik,
-      sarana_prasaranaTotalTidakBaik,
-      responTotalSangatBaik,
-      responTotalBaik,
-      responTotalKurangBaik,
-      responTotalTidakBaik,
-      konsultasi_dan_pengaduanTotalSangatBaik,
-      konsultasi_dan_pengaduanTotalBaik,
-      konsultasi_dan_pengaduanTotalKurangBaik,
-      konsultasi_dan_pengaduanTotalTidakBaik,
-      diskriminasiTotalSangatBaik,
-      diskriminasiTotalBaik,
-      diskriminasiTotalKurangBaik,
-      diskriminasiTotalTidakBaik,
-      kecuranganTotalSangatBaik,
-      kecuranganTotalBaik,
-      kecuranganTotalKurangBaik,
-      kecuranganTotalTidakBaik,
-      gratifikasiTotalSangatBaik,
-      gratifikasiTotalBaik,
-      gratifikasiTotalKurangBaik,
-      gratifikasiTotalTidakBaik,
-      pungliTotalSangatBaik,
-      pungliTotalBaik,
-      pungliTotalKurangBaik,
-      pungliTotalTidakBaik,
-      caloTotalSangatBaik,
-      caloTotalBaik,
-      caloTotalKurangBaik,
-      caloTotalTidakBaik
-      ) {
-        console.log(informasi)
-          new Chart(document.getElementById('myChart'+id.toString()), {
-            type: 'bar',
-            data: {
-              labels: [
-                'informasi',
-                'persyaratan',
-                'prosedur_atau_alur',
-                'waktu_penyelesaian',
-                'tarif_biaya',
-                'sarana_prasarana',
-                'respon',
-                'konsultasi_dan_pengaduan',
-                'diskriminasi',
-                'kecurangan',
-                'gratifikasi',
-                'pungli',
-                'calo'
-              ],
-              datasets: [
-                {
-                    label: 'Sangat Baik',
-                    data: [
-                      informasiTotalSangatBaik,
-                      persyaratanTotalSangatBaik,
-                      prosedur_atau_alurTotalSangatBaik,
-                      waktu_penyelesaianTotalSangatBaik,
-                      tarif_biayaTotalSangatBaik,
-                      sarana_prasaranaTotalSangatBaik,
-                      responTotalSangatBaik,
-                      konsultasi_dan_pengaduanTotalSangatBaik,
-                      diskriminasiTotalSangatBaik,
-                      kecuranganTotalSangatBaik,
-                      gratifikasiTotalSangatBaik,
-                      pungliTotalSangatBaik,
-                      caloTotalSangatBaik
-                    ],
-                    borderWidth: 1
-                },
-                {
-                    label: 'Baik',
-                    data: [
-                      informasiTotalBaik,
-                      persyaratanTotalBaik,
-                      prosedur_atau_alurTotalBaik,
-                      waktu_penyelesaianTotalBaik,
-                      tarif_biayaTotalBaik,
-                      sarana_prasaranaTotalBaik,
-                      responTotalBaik,
-                      konsultasi_dan_pengaduanTotalBaik,,
-                      diskriminasiTotalBaik,
-                      kecuranganTotalBaik,
-                      gratifikasiTotalBaik,
-                      pungliTotalBaik,
-                      caloTotalBaik
-                    ],
-                    borderWidth: 1
-                },
-                {
-                    label: 'Kurang Baik',
-                    data: [
-                      informasiTotalKurangBaik,
-                      persyaratanTotalKurangBaik,
-                      prosedur_atau_alurTotalKurangBaik,
-                      waktu_penyelesaianTotalKurangBaik,
-                      tarif_biayaTotalKurangBaik,
-                      sarana_prasaranaTotalKurangBaik,
-                      responTotalKurangBaik,
-                      konsultasi_dan_pengaduanTotalKurangBaik,
-                      diskriminasiTotalKurangBaik,
-                      kecuranganTotalKurangBaik,
-                      gratifikasiTotalKurangBaik,
-                      pungliTotalKurangBaik,
-                      caloTotalKurangBaik
-                    ],
-                    borderWidth: 1
-                },
-                {
-                    label: 'Tidak Baik',
-                    data: [
-                      informasiTotalTidakBaik,
-                      persyaratanTotalTidakBaik,
-                      prosedur_atau_alurTotalTidakBaik,
-                      waktu_penyelesaianTotalTidakBaik,
-                      tarif_biayaTotalTidakBaik,
-                      sarana_prasaranaTotalTidakBaik,
-                      responTotalTidakBaik,
-                      konsultasi_dan_pengaduanTotalTidakBaik,
-                      diskriminasiTotalTidakBaik,
-                      kecuranganTotalTidakBaik,
-                      gratifikasiTotalTidakBaik,
-                      pungliTotalTidakBaik,
-                      caloTotalTidakBaik
-                    ],
-                    borderWidth: 1
-                },
-            ]
+  id, 
+  informasiTotalSangatBaik,
+  informasiTotalBaik,
+  informasiTotalKurangBaik,
+  informasiTotalTidakBaik,
+  persyaratanTotalSangatBaik,
+  persyaratanTotalBaik,
+  persyaratanTotalKurangBaik,
+  persyaratanTotalTidakBaik,
+  prosedur_atau_alurTotalSangatBaik,
+  prosedur_atau_alurTotalBaik,
+  prosedur_atau_alurTotalKurangBaik,
+  prosedur_atau_alurTotalTidakBaik,
+  waktu_penyelesaianTotalSangatBaik,
+  waktu_penyelesaianTotalBaik,
+  waktu_penyelesaianTotalKurangBaik,
+  waktu_penyelesaianTotalTidakBaik,
+  tarif_biayaTotalSangatBaik,
+  tarif_biayaTotalBaik,
+  tarif_biayaTotalKurangBaik,
+  tarif_biayaTotalTidakBaik,
+  sarana_prasaranaTotalSangatBaik,
+  sarana_prasaranaTotalBaik,
+  sarana_prasaranaTotalKurangBaik,
+  sarana_prasaranaTotalTidakBaik,
+  responTotalSangatBaik,
+  responTotalBaik,
+  responTotalKurangBaik,
+  responTotalTidakBaik,
+  konsultasi_dan_pengaduanTotalSangatBaik,
+  konsultasi_dan_pengaduanTotalBaik,
+  konsultasi_dan_pengaduanTotalKurangBaik,
+  konsultasi_dan_pengaduanTotalTidakBaik,
+  diskriminasiTotalSangatBaik,
+  diskriminasiTotalBaik,
+  diskriminasiTotalKurangBaik,
+  diskriminasiTotalTidakBaik,
+  kecuranganTotalSangatBaik,
+  kecuranganTotalBaik,
+  kecuranganTotalKurangBaik,
+  kecuranganTotalTidakBaik,
+  gratifikasiTotalSangatBaik,
+  gratifikasiTotalBaik,
+  gratifikasiTotalKurangBaik,
+  gratifikasiTotalTidakBaik,
+  pungliTotalSangatBaik,
+  pungliTotalBaik,
+  pungliTotalKurangBaik,
+  pungliTotalTidakBaik,
+  caloTotalSangatBaik,
+  caloTotalBaik,
+  caloTotalKurangBaik,
+  caloTotalTidakBaik
+  ) {
+      new Chart(document.getElementById('myChart'+id.toString()), {
+        type: 'bar',
+        data: {
+          labels: [
+            'informasi',
+            'persyaratan',
+            'prosedur_atau_alur',
+            'waktu_penyelesaian',
+            'tarif_biaya',
+            'sarana_prasarana',
+            'respon',
+            'konsultasi_dan_pengaduan',
+            'diskriminasi',
+            'kecurangan',
+            'gratifikasi',
+            'pungli',
+            'calo'
+          ],
+          datasets: [
+            {
+                label: 'Sangat Baik',
+                data: [
+                  informasiTotalSangatBaik,
+                  persyaratanTotalSangatBaik,
+                  prosedur_atau_alurTotalSangatBaik,
+                  waktu_penyelesaianTotalSangatBaik,
+                  tarif_biayaTotalSangatBaik,
+                  sarana_prasaranaTotalSangatBaik,
+                  responTotalSangatBaik,
+                  konsultasi_dan_pengaduanTotalSangatBaik,
+                  diskriminasiTotalSangatBaik,
+                  kecuranganTotalSangatBaik,
+                  gratifikasiTotalSangatBaik,
+                  pungliTotalSangatBaik,
+                  caloTotalSangatBaik
+                ],
+                borderWidth: 1
             },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
+            {
+                label: 'Baik',
+                data: [
+                  informasiTotalBaik,
+                  persyaratanTotalBaik,
+                  prosedur_atau_alurTotalBaik,
+                  waktu_penyelesaianTotalBaik,
+                  tarif_biayaTotalBaik,
+                  sarana_prasaranaTotalBaik,
+                  responTotalBaik,
+                  konsultasi_dan_pengaduanTotalBaik,,
+                  diskriminasiTotalBaik,
+                  kecuranganTotalBaik,
+                  gratifikasiTotalBaik,
+                  pungliTotalBaik,
+                  caloTotalBaik
+                ],
+                borderWidth: 1
+            },
+            {
+                label: 'Kurang Baik',
+                data: [
+                  informasiTotalKurangBaik,
+                  persyaratanTotalKurangBaik,
+                  prosedur_atau_alurTotalKurangBaik,
+                  waktu_penyelesaianTotalKurangBaik,
+                  tarif_biayaTotalKurangBaik,
+                  sarana_prasaranaTotalKurangBaik,
+                  responTotalKurangBaik,
+                  konsultasi_dan_pengaduanTotalKurangBaik,
+                  diskriminasiTotalKurangBaik,
+                  kecuranganTotalKurangBaik,
+                  gratifikasiTotalKurangBaik,
+                  pungliTotalKurangBaik,
+                  caloTotalKurangBaik
+                ],
+                borderWidth: 1
+            },
+            {
+                label: 'Tidak Baik',
+                data: [
+                  informasiTotalTidakBaik,
+                  persyaratanTotalTidakBaik,
+                  prosedur_atau_alurTotalTidakBaik,
+                  waktu_penyelesaianTotalTidakBaik,
+                  tarif_biayaTotalTidakBaik,
+                  sarana_prasaranaTotalTidakBaik,
+                  responTotalTidakBaik,
+                  konsultasi_dan_pengaduanTotalTidakBaik,
+                  diskriminasiTotalTidakBaik,
+                  kecuranganTotalTidakBaik,
+                  gratifikasiTotalTidakBaik,
+                  pungliTotalTidakBaik,
+                  caloTotalTidakBaik
+                ],
+                borderWidth: 1
+            },
+        ]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
             }
-          });
-    }
+          }
+        }
+      });
+}
 
 function showFirstSlide() {
     let slide = document.getElementsByClassName("mySlides")[0];
@@ -240,6 +262,26 @@ function dropdownInformasi() {
   if (getPPIDID.className === "container-fluid-ppid drop") {
     getPPIDID.classList.remove('drop');
   } 
+}
+
+function dropdownHeader(target){
+  let extendItems = document.getElementsByClassName("extend-items");
+  console.log(extendItems[0]);
+  for(let i=0;i<extendItems.length;i++){
+    console.log(extendItems[i].getAttribute("id"));
+    if(extendItems[i].getAttribute("id").indexOf(target) != -1){
+      extendItems[i].setAttribute("class","container-fluid extend-items show")
+    }else{
+      extendItems[i].setAttribute("class","container-fluid extend-items hide")
+    }
+    console.log(extendItems[i].getAttribute("class"));
+    // let style = extendItems[i].getAttribute("style");
+    
+    // style += "visibility:hidden"
+    // extendItems[i].setAttribute("style",style);
+    console.log(extendItems[i]);
+    console.log(i);
+  }
 }
 
 function dropdownProfil() {
@@ -330,24 +372,6 @@ window.addEventListener("scroll", function(){
     nav.classList.remove("sticky");
   }
 })
-
-// function dropdownItemChecker() {  for adjusting dropdown height **
-//     var getWNIid = document.querySelectorAll('.header-menu-items.header-menu-item').length;
-//     var getWNAid = document.querySelectorAll('.header-menu-items.header-menu-item').length;
-//     let getStyle = document.getElementsByClassName('.dropdown-header.container-fluid').
-
-//     if (getWNIid.length == 5) {
-//       getStyle.height(252);
-//     } else if (getWNIid.length == 4) {
-//       getStyle.height(222);
-//     } else if (getWNIid.length == 3) {
-//       getStyle.height(202);
-//     } else if (getWNIid.length == 2) {
-//       getStyle.height(182);
-//     } else if (getWNIid.length == 1) {
-//       getStyle.height(162);
-//     }
-//   }
 
 function autoScroll(element) {
     document.getElementById(element).scrollIntoView();
