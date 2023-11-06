@@ -5,6 +5,7 @@ from . import dashboard_views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
+    path("eda884u7g1k7ck75cp0964jqtbcxmu.html", views.facebook_verification, name="facebook_verification"),
     path("", views.home, name="home"),
     path("layanan-imigrasi/", views.layanan_imigrasi, name="layanan-imigrasi"),
     path("galeri/", views.galeri, name="galeri"),

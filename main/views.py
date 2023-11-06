@@ -15,6 +15,9 @@ import subprocess
 import os
 import threading
 
+def facebook_verification(request):
+    return render(request, 'eda884u7g1k7ck75cp0964jqtbcxmu.html', {})
+
 def home(response):
     one_week_ago = datetime.today() - timedelta(days=7)
     wni_menus = SubMenu.objects.filter(menu__menu_name__contains="Warga Negara Indonesia")
